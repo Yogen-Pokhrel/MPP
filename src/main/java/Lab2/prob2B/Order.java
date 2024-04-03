@@ -1,4 +1,4 @@
-package Lab2.Problem2b;
+package Lab2.prob2B;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ public class Order {
     LocalDate orderDate;
     List<OrderLine> orderLines;
 
-    public Order(int num, LocalDate orderDate) {
+    Order(int num, LocalDate orderDate) {
         orderNum = num;
         this.orderDate = orderDate;
         orderLines = new ArrayList<>();
