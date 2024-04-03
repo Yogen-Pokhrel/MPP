@@ -9,7 +9,7 @@ public class Order {
     LocalDate orderDate;
     List<OrderLine> orderLines;
 
-    public Order(int num, LocalDate orderDate) {
+    Order(int num, LocalDate orderDate) {
         orderNum = num;
         this.orderDate = orderDate;
         orderLines = new ArrayList<>();

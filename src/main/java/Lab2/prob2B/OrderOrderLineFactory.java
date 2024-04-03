@@ -1,4 +1,4 @@
-package Lab2.prob2B.factory;
+package Lab2.prob2B;
 
 import Lab2.prob2B.Order;
 
@@ -9,7 +9,6 @@ public class OrderOrderLineFactory {
         if(orderDate == null){
             throw new Error("No order-date found");
         }
-        Order o1 = new Order(num, orderDate);
-        return o1;
+        return new Order(num, orderDate);
     }
 }
