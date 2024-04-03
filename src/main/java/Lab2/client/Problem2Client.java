@@ -1,7 +1,6 @@
 package Lab2.client;
 
-import Lab2.Problem2b.Order;
-import Lab2.Problem2b.OrderLine;
+import Lab2.prob2B.Order;
 
 import java.time.LocalDate;
 

@@ -1,4 +1,4 @@
-package Lab2.Problem2b;
+package Lab2.prob2B;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

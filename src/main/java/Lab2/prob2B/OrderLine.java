@@ -1,9 +1,10 @@
-package Lab2.Problem2b;
+package Lab2.prob2B;
 
 public class OrderLine {
     int orderLineNum;
     double price;
     int quantity;
+    Order order;
 
     OrderLine(int orderLineNum, double price, int quantity){
         this.orderLineNum = orderLineNum;
