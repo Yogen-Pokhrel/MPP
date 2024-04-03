@@ -1,4 +1,39 @@
 package Lab2.Problem2b;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Order {
+    int orderNum;
+    LocalDate orderDate;
+    List<OrderLine> orderLines;
+
+    public Order(int num, LocalDate orderDate) {
+        orderNum = num;
+        this.orderDate = orderDate;
+        orderLines = new ArrayList<>();
+    }
+
+    public int getOrderNum() {
+        return orderNum;
+    }
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public double computeTotalPrice(){
+        double price = 0.0;
+        for(OrderLine orderLine : orderLines){
+            price += orderLine.computeTotal();
+        }
+        return price;
+    }
+
+    public void addOrderLine(int orderLineNum, double price, int quantity){
+        orderLines.add(new OrderLine( orderLineNum,  price,  quantity));
+    }
+
+
 }
