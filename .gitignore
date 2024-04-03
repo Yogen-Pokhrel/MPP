@@ -36,6 +36,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
-./src/main/java/classwork/
-./src/main/java/docs/
+src/main/java/classwork/
+src/main/java/docs/
+src/main/java/demoCodes/
 *.doc
