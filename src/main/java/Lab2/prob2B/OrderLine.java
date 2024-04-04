@@ -6,10 +6,11 @@ public class OrderLine {
     int quantity;
     Order order;
 
-    OrderLine(int orderLineNum, double price, int quantity){
+    OrderLine(int orderLineNum, double price, int quantity, Order order){
         this.orderLineNum = orderLineNum;
         this.price = price;
         this.quantity = quantity;
+        this.order = order;
     }
 
     public int getOrderLineNum() {

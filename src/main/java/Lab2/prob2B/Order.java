@@ -32,7 +32,7 @@ public class Order {
     }
 
     public void addOrderLine(int orderLineNum, double price, int quantity){
-        orderLines.add(new OrderLine( orderLineNum,  price,  quantity));
+        orderLines.add(new OrderLine( orderLineNum,  price,  quantity, this));
     }
 
 
