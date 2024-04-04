@@ -9,8 +9,8 @@ public class Order {
     LocalDate orderDate;
     List<OrderLine> orderLines;
 
-    Order(int num, LocalDate orderDate) {
-        orderNum = num;
+    Order(int orderNum, LocalDate orderDate) {
+        this.orderNum = orderNum;
         this.orderDate = orderDate;
         orderLines = new ArrayList<>();
     }
@@ -32,8 +32,10 @@ public class Order {
     }
 
     public void addOrderLine(int orderLineNum, double price, int quantity){
-        orderLines.add(new OrderLine( orderLineNum,  price,  quantity));
+        orderLines.add(new OrderLine( orderLineNum,  price,  quantity, this));
     }
 
-
+    public List<OrderLine> getOrderLines(){
+        return orderLines;
+    }
 }

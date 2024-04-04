@@ -6,10 +6,11 @@ public class OrderLine {
     int quantity;
     Order order;
 
-    OrderLine(int orderLineNum, double price, int quantity){
+    OrderLine(int orderLineNum, double price, int quantity, Order order){
         this.orderLineNum = orderLineNum;
         this.price = price;
         this.quantity = quantity;
+        this.order = order;
     }
 
     public int getOrderLineNum() {
@@ -38,5 +39,10 @@ public class OrderLine {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Order: " + order.orderNum + ", Order Line Number: " + orderLineNum + ", Price " + price + ", Quantity: " + quantity + ", Sub Total: " + price * quantity;
     }
 }
