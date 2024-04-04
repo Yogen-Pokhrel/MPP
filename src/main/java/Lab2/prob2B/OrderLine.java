@@ -40,4 +40,9 @@ public class OrderLine {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString() {
+        return "Order: " + order.orderNum + ", Order Line Number: " + orderLineNum + ", Price " + price + ", Quantity: " + quantity + ", Sub Total: " + price * quantity;
+    }
 }

@@ -2,7 +2,7 @@ package Lab2.client;
 
 import Lab2.prob2A.Student;
 
-public class Problem1Client {
+public class Prob2AClient {
     public static void main(String[] args) {
         Student s1 = new Student("Yogen", "A");
         s1.getGradeReport().setGrade("A+");
