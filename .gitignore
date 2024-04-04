@@ -39,4 +39,6 @@ build/
 src/main/java/classwork/
 src/main/java/docs/
 src/main/java/demoCodes/
+out/
 *.doc
+.idea
