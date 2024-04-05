@@ -1,5 +1,5 @@
 
-package client;
+package Lab3.client;
 
 import Lab3.prob2.Apartment;
 import Lab3.prob2.Building;
