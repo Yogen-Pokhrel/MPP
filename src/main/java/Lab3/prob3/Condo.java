@@ -11,7 +11,7 @@ public class Condo extends Property {
 	}
 
 	public double computeRent(){
-		return 500 * numberOfFloors;
+		return 400 * numberOfFloors;
 	}
 
 	public String toString(){

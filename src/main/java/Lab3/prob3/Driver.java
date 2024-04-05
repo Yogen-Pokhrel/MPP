@@ -5,6 +5,8 @@ import java.util.List;
 public class Driver {
 
 	public static void main(String[] args) {
+		Property p1 = new House(new Address("1000 N 4th street", "Fairfield", "IA",  "52557"), 1200);
+		Admin a1 = new Admin(p1);
 		Address[] addresses = {
 				new Address("111 Main", "Fairfield", "IA", "52556"),
 				new Address("200 Forest Ave", "Fairfield", "IA", "52556"),
@@ -15,9 +17,14 @@ public class Driver {
 				new Condo(addresses[1], 2), 
 				new Trailer(addresses[2]) 
 		};
-		double totalRent = Admin.computeTotalRent(properties);
-		System.out.println(totalRent);
-		List<Property> fairfieldProperties =  Admin.listPropertiesInCity(properties, "Fairfield");
-		System.out.println(fairfieldProperties);
+
+		for(Property p: properties){
+			a1.addProperty(p);
+		}
+
+		double totalRent = a1.computeTotalRent();
+		System.out.println("Total rent is " + totalRent);
+		System.out.println("All admin properties are");
+		System.out.println(a1);
 	}
 }
