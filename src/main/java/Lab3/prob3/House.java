@@ -13,4 +13,8 @@ public class House extends Property{
 	public double computeRent(){
 		return 0.1 * lotSize;
 	}
+
+	public String toString(){
+		return "House at: " + getAddress() + " Lot Size: " + lotSize + " Rent: " + computeRent();
+	}
 }

@@ -10,4 +10,8 @@ public class Trailer extends Property {
 	public double computeRent(){
 		return RENT;
 	}
+
+	public String toString(){
+		return "Trailer at: " + getAddress() + " Rent: " + computeRent();
+	}
 }
