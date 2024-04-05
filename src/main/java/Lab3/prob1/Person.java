@@ -14,11 +14,10 @@ public class Person {
 		if(aPerson == null) return false; 
 		if(!(aPerson instanceof Person)) return false;
 		Person p = (Person)aPerson;
-		boolean isEqual = this.name.equals(p.name);
-		return isEqual;
+		return this.name.equals(p.name);
 	}
 	public static void main(String[] args) {
-		
+
 	}
 
 }
