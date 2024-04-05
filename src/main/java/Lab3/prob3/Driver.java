@@ -1,5 +1,6 @@
 package Lab3.prob3;
 
+import java.util.List;
 
 public class Driver {
 
@@ -16,5 +17,7 @@ public class Driver {
 		};
 		double totalRent = Admin.computeTotalRent(properties);
 		System.out.println(totalRent);
+		List<Property> fairfieldProperties =  Admin.listPropertiesInCity(properties, "Fairfield");
+		System.out.println(fairfieldProperties);
 	}
 }
