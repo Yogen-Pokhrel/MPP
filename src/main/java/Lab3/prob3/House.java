@@ -4,10 +4,16 @@ package Lab3.prob3;
 
 public class House extends Property{
 	private double lotSize;
+	private Address address;
 	
 	public House(Address address, double lotSize) {
-		super(address);
+		this.address = address;
 		this.lotSize = lotSize;
+	}
+
+	@Override
+	public Address getAddress() {
+		return address;
 	}
 
 	public double computeRent(){

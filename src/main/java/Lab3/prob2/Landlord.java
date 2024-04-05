@@ -4,23 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Landlord {
-    List<Building> buildings;
+    private List<Building> buildings;
 
-    public Landlord(){
-        this.buildings = new ArrayList<Building>();
+    /**
+     * Since we are maintaining 1 to * relationship we are collecting at least one building and one apartment data of the
+     * building initially
+     * */
+
+    public Landlord(double apartmentRent, double buildingMaintenanceCost){
+        this.buildings = new ArrayList<>();
+        Building b1 = new Building(buildingMaintenanceCost, this);
+        b1.addApartment(apartmentRent);
+        this.buildings.add(b1);
     }
 
-    public Landlord(Building building){
-        this.buildings = new ArrayList<Building>();
-        addBuilding(building);
-    }
-
-    public void addBuilding(double maintenanceCost, double apartmentRent){
-        buildings.add(new Building(maintenanceCost, apartmentRent));
-    }
-
-    public void addBuilding(Building building){
-        buildings.add(building);
+    public Building addBuilding(double maintenanceCost){
+        Building b = new Building(maintenanceCost, this);
+        buildings.add(b);
+        return b;
     }
 
     public double getTotalProfit(){
@@ -29,5 +30,19 @@ public class Landlord {
             totalProfit += building.calculateProfit();
         }
         return totalProfit;
+    }
+
+    public List<Building> getBuildings() {
+        return buildings;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Landlord { \n\tBuildings: [ \n");
+        for(Building b: this.buildings){
+            sb.append("\t\t" + b + "\n");
+        }
+        sb.append("\t\t]\n\t}");
+        return sb.toString();
     }
 }
