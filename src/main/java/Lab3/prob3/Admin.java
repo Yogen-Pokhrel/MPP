@@ -6,12 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Admin {
-    List<Property> properties;
-    Admin(Property property){
-        properties = new ArrayList<>();
-        properties.add(property);
-    }
-	public double computeTotalRent() {
+	public static double computeTotalRent(List<Property> properties) {
 		double totalRent = 0;
 		for (Property o : properties) {
 			totalRent += o.computeRent();
@@ -19,11 +14,8 @@ public class Admin {
 		return totalRent;
 	}
 
-    public void addProperty(Property property){
-        properties.add(property);
-    }
 
-	public static List<Property> listPropertiesInCity(Property[] properties, String city) {
+	public static List<Property> listPropertiesInCity(List<Property> properties, String city) {
         List<Property> propertiesInCity = new ArrayList<>();
         for (Property property : properties) {
             if (property.getAddress().getCity().equals(city)) {
@@ -31,15 +23,5 @@ public class Admin {
             }
         }
         return propertiesInCity;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("Admin { \n\tProperties: [ \n");
-        for(Property b: properties){
-            sb.append("\t\t" + b + "\n");
-        }
-        sb.append("\t\t]\n\t}");
-        return sb.toString();
     }
 }
