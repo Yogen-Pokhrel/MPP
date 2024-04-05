@@ -24,11 +24,12 @@ final public class PayCheck {
         return grossPay - tax;
     }
 
-    @Override
-    public String toString() {
-        return "Paystub: \n" + "\t" + "Gross Pay: " + grossPay + "\n" + "\t" + "FICA: " + fica + "\n" + "\t" + "State: "
+    public void print() {
+        String res = "Paystub: \n" + "\t" + "Gross Pay: " + grossPay + "\n" + "\t" + "FICA: " + fica + "\n" + "\t"
+                + "State: "
                 + stateTax + "\n" + "\t" + "Local: " + localTax + "\n" + "\t" + "Medicare: "
                 + medicare + "\n" + "\t" + "Social Security: " + socialSecurity + "\n" + "\t" + "NET PAY: "
                 + getNetPay();
+        System.out.println(res);
     }
 }

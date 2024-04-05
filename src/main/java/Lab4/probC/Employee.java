@@ -12,7 +12,9 @@ public abstract class Employee {
     }
 
     public void print(int month, int year) {
-        System.out.println("Employee ID: " + empId + "\n" + calcCompensation(month, year));
+        System.out.println("Employee ID: " + empId);
+        PayCheck payCheck = calcCompensation(month, year);
+        payCheck.print();
     }
 
     public abstract double calcGrossPay(int month, int year);
