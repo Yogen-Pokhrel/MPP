@@ -1,5 +1,6 @@
 package Lab4.probC;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Commissioned extends Employee {
@@ -14,11 +15,22 @@ public class Commissioned extends Employee {
         this.orders = orders;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     @Override
     public double calcGrossPay(int month, int year) {
         double total = 0;
+        List<Order> orders= getOrders();
+        month = month - 1;
+        if(month <= 0){
+            month = 11;
+            year--;
+        }
         for (Order order : orders) {
-            if (order.getOrderDate().getMonthValue() == month && order.getOrderDate().getYear() == year) {
+            LocalDate orderDate = order.getOrderDate();
+            if (orderDate.getMonthValue() == month && orderDate.getYear() == year) {
                 total += order.getOrderAmount();
             }
         }

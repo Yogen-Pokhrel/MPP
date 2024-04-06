@@ -20,7 +20,8 @@ public abstract class Employee {
     public abstract double calcGrossPay(int month, int year);
 
     public PayCheck calcCompensation(int month, int year) {
-        return new PayCheck(calcGrossPay(month, year), 23, 5, 1, 3, 7.5);
+        PayCheck pc = new PayCheck(calcGrossPay(month, year), 23, 5, 1, 3, 7.5);
+        return pc;
     };
 
 }
