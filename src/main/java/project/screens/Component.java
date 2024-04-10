@@ -1,7 +1,7 @@
 package project.screens;
 
+import javax.swing.*;
+
 public interface Component {
-    void init();
-    boolean isInitialized();
-    void setInitialized(boolean initialized);
+    JPanel getMainPanel();
 }

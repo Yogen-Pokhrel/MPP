@@ -7,9 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddMember extends JFrame{
+public class AddMember implements Component{
     private JButton button1;
-    private JPanel panel1;
+    private JPanel contentPane;
 
     public AddMember() {
         button1.addActionListener(new ActionListener() {
@@ -18,6 +18,10 @@ public class AddMember extends JFrame{
 
             }
         });
+    }
 
+    @Override
+    public JPanel getMainPanel() {
+        return contentPane;
     }
 }

@@ -1,14 +1,10 @@
 package project.screens;
 
 import javax.swing.*;
-import javax.swing.plaf.FontUIResource;
-import javax.swing.text.StyleContext;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Locale;
 
-public class Login extends JDialog {
+public class Login implements Component {
     private JPanel contentPane;
     private JPanel loginLeftContainer;
     private JPanel loginRightContainer;
@@ -19,9 +15,9 @@ public class Login extends JDialog {
     private JPasswordField enterPasswordPasswordField;
 
     public Login() {
-        setContentPane(contentPane);
-        setModal(true);
-        setTitle("Welcome to library");
+//        setContentPane(contentPane);
+//        setTitle("Login - Library System");
+//        setVisible(false);
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -29,11 +25,10 @@ public class Login extends JDialog {
             }
         });
     }
-    public static void main(String[] args) {
-        Login dialog = new Login();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
+
+    @Override
+    public JPanel getMainPanel() {
+        return contentPane;
     }
 
     private void createUIComponents() {

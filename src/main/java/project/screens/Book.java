@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Book extends JFrame {
+public class Book extends JFrame implements Component{
     private JPanel contentPane;
     private JTextField titleTextField;
     private JLabel addBookLabel;
@@ -19,16 +19,12 @@ public class Book extends JFrame {
     private JList selectedAuthorList;
 
     public Book() {
-        setContentPane(contentPane);
-        setVisible(true);
     }
 
-    public static void main(String[] args) {
-        Book dialog = new Book();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
-    }
+    @Override
+    public JPanel getMainPanel() {
+        return contentPane;
+}
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
