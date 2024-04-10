@@ -34,7 +34,6 @@ public class Login implements Component {
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
-
 }
 
 
