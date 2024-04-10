@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="project.screens.Dashboard">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="726" height="453"/>
+    </constraints>
+    <properties>
+      <preferredSize width="800" height="500"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="aa9b5" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="West"/>
+        <properties>
+          <background color="-1315861"/>
+          <preferredSize width="250" height="0"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="11382" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.5"/>
+              <preferredSize width="250" height="20"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="887e1" class="javax.swing.JLabel">
+                <constraints border-constraint="North"/>
+                <properties>
+                  <font style="1"/>
+                  <text value="Welcome, Yogen"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="76b92" layout-manager="FlowLayout" hgap="5" vgap="0" flow-align="1">
+            <constraints/>
+            <properties>
+              <preferredSize width="250" height="400"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="af8c5" class="javax.swing.JButton">
+                <constraints/>
+                <properties>
+                  <background color="-14076514"/>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="true"/>
+                  <defaultCapable value="true"/>
+                  <focusPainted value="false"/>
+                  <font style="1"/>
+                  <foreground color="-1"/>
+                  <horizontalAlignment value="2"/>
+                  <horizontalTextPosition value="0"/>
+                  <inheritsPopupMenu value="false"/>
+                  <name value="loginButton"/>
+                  <opaque value="true"/>
+                  <preferredSize width="250" height="40"/>
+                  <selected value="false"/>
+                  <text value="Books"/>
+                </properties>
+              </component>
+              <component id="df17a" class="javax.swing.JButton">
+                <constraints/>
+                <properties>
+                  <background color="-1315861"/>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="true"/>
+                  <defaultCapable value="true"/>
+                  <focusPainted value="false"/>
+                  <font style="1"/>
+                  <foreground color="-16711423"/>
+                  <horizontalAlignment value="2"/>
+                  <inheritsPopupMenu value="false"/>
+                  <name value="loginButton"/>
+                  <opaque value="true"/>
+                  <preferredSize width="250" height="40"/>
+                  <selected value="false"/>
+                  <text value="Members"/>
+                </properties>
+              </component>
+              <component id="85ef3" class="javax.swing.JButton">
+                <constraints/>
+                <properties>
+                  <background color="-1315861"/>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="true"/>
+                  <defaultCapable value="true"/>
+                  <focusPainted value="false"/>
+                  <font style="1"/>
+                  <foreground color="-16711423"/>
+                  <horizontalAlignment value="2"/>
+                  <inheritsPopupMenu value="false"/>
+                  <name value="loginButton"/>
+                  <opaque value="true"/>
+                  <preferredSize width="250" height="40"/>
+                  <selected value="false"/>
+                  <text value="Checkout Books"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="72be4" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <background color="-1"/>
+          <font style="1"/>
+          <minimumSize width="-1" height="-1"/>
+          <preferredSize width="-1" height="-1"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="8a446" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints/>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="65633" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints/>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
