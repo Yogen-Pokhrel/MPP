@@ -2,8 +2,16 @@ package project.screens;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 
 public class Main {
+    enum screens {
+        Login,
+        ListBooks,
+        ListMembers
+
+
+    }
     public static void main(String[] args) {
         EventQueue.invokeLater(() ->
         {
