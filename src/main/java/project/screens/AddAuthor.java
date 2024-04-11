@@ -13,7 +13,6 @@ public class AddAuthor  extends JFrame implements Component {
     private JPanel inner;
     private JCheckBox hasCredentials;
     private JButton saveButton;
-    private JLabel authorLabel;
     private JLabel fNameLabel;
     private JTextField fNameTextField;
     private JLabel lNameLabel;
