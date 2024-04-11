@@ -1,22 +1,21 @@
 package project.screens;
 
-import project.screens.Component;
-
 import javax.swing.*;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
 
-public class Book extends Routes implements Component {
+public class Member implements Component{
     private JButton button1;
 
-    private static Book instance;
+    private static Member instance;
     private JPanel contentPane;
     private JTable dataTable;
 
-    private Book() {
+    private Member() {
     }
-    public static Book getInstance() {
+    public static Member getInstance() {
         if(instance == null){
-            instance = new Book();
+            instance = new Member();
         }
         return instance;
     }
@@ -27,10 +26,10 @@ public class Book extends Routes implements Component {
     }
 
     void paintTableData(){
-        String[] columnNames = { "ID", "Book Name", "Author" };
+        String[] columnNames = { "ID", "Name", "Address" };
         String[][] data = {
-                { "20","Java 2", "Saurab" },
-                { "30","Machine Learning", "Abraham", }
+                { "20","Kundan Kumar Jha", "Fairfield 4031" },
+                { "30","Anand Jha", "Ottomwa 6014", }
         };
 
         dataTable = new JTable(data, columnNames);

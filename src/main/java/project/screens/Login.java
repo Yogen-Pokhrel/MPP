@@ -1,13 +1,12 @@
 package project.screens;
 
 import javax.swing.*;
-import javax.swing.plaf.FontUIResource;
-import javax.swing.text.StyleContext;
-import java.awt.*;
-import java.util.Locale;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Login extends JDialog {
+public class Login extends Routes implements Component {
     private JPanel contentPane;
+    private static Login instance;
     private JPanel loginLeftContainer;
     private JPanel loginRightContainer;
     private JTextField enterUsernameTextField;
@@ -16,21 +15,32 @@ public class Login extends JDialog {
     private JLabel loginSidebarTitle;
     private JPasswordField enterPasswordPasswordField;
 
-    public Login() {
-        setContentPane(contentPane);
-        setModal(true);
-        setTitle("Welcome to library");
+     private Login() {
+//        setContentPane(contentPane);
+//        setTitle("Login - Library System");
+//        setVisible(false);
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                navigateTo(SCREENS.Books);
+            }
+        });
     }
 
-    public static void main(String[] args) {
-        Login dialog = new Login();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
+    @Override
+    public JPanel getMainPanel() {
+        return contentPane;
     }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+    }
+
+    public static Login getInstance() {
+         if(instance == null){
+             instance = new Login();
+         }
+        return instance;
     }
 }
 
