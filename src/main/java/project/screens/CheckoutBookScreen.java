@@ -2,13 +2,13 @@ package project.screens;
 
 import javax.swing.*;
 
-public class CheckoutBook extends Routes implements Component {
+public class CheckoutBookScreen extends Routes implements Component {
 
-    private static CheckoutBook instance;
+    private static CheckoutBookScreen instance;
 
-    public static CheckoutBook getInstance() {
+    public static CheckoutBookScreen getInstance() {
         if (instance == null) {
-            instance = new CheckoutBook();
+            instance = new CheckoutBookScreen();
         }
         return instance;
     }

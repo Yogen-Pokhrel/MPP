@@ -1,35 +1,31 @@
 package project.screens;
 
 import javax.swing.*;
-import javax.swing.table.JTableHeader;
 import java.awt.*;
 
-public class Member extends Routes implements Component{
-    private JButton button1;
-
-    private static Member instance;
+public class AuthorScreen extends Routes implements Component {
     private JPanel contentPane;
     private JTable dataTable;
 
-    private Member() {
-    }
-    public static Member getInstance() {
-        if(instance == null){
-            instance = new Member();
-        }
-        return instance;
-    }
+    private static AuthorScreen instance;
 
     @Override
     public JPanel getMainPanel() {
         return contentPane;
     }
 
+    public static AuthorScreen getInstance() {
+        if(instance == null){
+            instance = new AuthorScreen();
+        }
+        return instance;
+    }
+
     void paintTableData(){
-        String[] columnNames = { "ID", "Name", "Address" };
+        String[] columnNames = { "ID", "Author Name" };
         String[][] data = {
-                { "20","Kundan Kumar Jha", "Fairfield 4031" },
-                { "30","Anand Jha", "Ottomwa 6014", }
+                { "20", "Saurab" },
+                { "30", "Abraham", }
         };
 
         dataTable = new JTable(data, columnNames);
@@ -41,13 +37,13 @@ public class Member extends Routes implements Component{
     @Override
     public void render() {
         Dashboard dash = Dashboard.getInstance();
-        dash.setPageTitle("Members List");
-        dash.setPageButtonTitle("Add Member");
+        dash.setPageTitle("Authors List");
+        dash.setPageButtonTitle("Add Author");
         dash.setPageButtonVisibility(true);
-        dash.repaintButtons(Routes.SCREENS.Members);
-        JButton pageButton = dash.getPageButton();
-        removeAllActionListenersOfButton(pageButton);
-        pageButton.addActionListener(e -> navigateTo(Routes.SCREENS.AddMember));
+        dash.repaintButtons(SCREENS.Authors);
+        JButton b = dash.getPageButton();
+        removeAllActionListenersOfButton(b);
+        b.addActionListener(e -> navigateTo(SCREENS.AddAuthor));
         JPanel mainPanel = dash.getInnerPanel();
         mainPanel.removeAll();
         mainPanel.add(getMainPanel());
@@ -62,4 +58,5 @@ public class Member extends Routes implements Component{
         UIDefaults defaults = UIManager.getLookAndFeelDefaults();
         defaults.putIfAbsent("Table.alternateRowColor", Color.LIGHT_GRAY);
     }
+
 }

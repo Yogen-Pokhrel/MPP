@@ -28,14 +28,14 @@ public class Routes extends JFrame {
 
     void navigateTo(SCREENS screen) {
         switch (screen) {
-            case Login -> Login.getInstance().render();
+            case Login -> LoginScreen.getInstance().render();
             case Books -> BookScreen.getInstance().render();
-            case AddBook -> AddBook.getInstance().render();
-            case Members -> Member.getInstance().render();
+            case AddBook -> AddBookScreen.getInstance().render();
+            case Members -> MemberScreen.getInstance().render();
             case AddMember -> AddMember.getInstance().render();
-            case Authors -> Author.getInstance().render();
-            case AddAuthor -> AddAuthor.getInstance().render();
-            case CheckoutBook -> CheckoutBook.getInstance().render();
+            case Authors -> AuthorScreen.getInstance().render();
+            case AddAuthor -> AddAuthorScreen.getInstance().render();
+            case CheckoutBook -> CheckoutBookScreen.getInstance().render();
         }
     }
 

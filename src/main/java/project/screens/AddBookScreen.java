@@ -5,15 +5,14 @@ import project.business.Book;
 import project.business.SystemController;
 
 import javax.swing.*;
-import javax.swing.event.ListDataListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddBook extends Routes implements Component{
+public class AddBookScreen extends Routes implements Component{
     private JPanel contentPane;
-    private static AddBook instance;
+    private static AddBookScreen instance;
     private JTextField titleTextField;
     private JLabel addBookLabel;
     private JLabel titleLabel;
@@ -43,7 +42,7 @@ public class AddBook extends Routes implements Component{
         }
     }
 
-    private AddBook() {
+    private AddBookScreen() {
         authorDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -94,9 +93,9 @@ public class AddBook extends Routes implements Component{
         refresh();
     }
 
-    public static AddBook getInstance() {
+    public static AddBookScreen getInstance() {
         if(instance == null){
-            instance = new AddBook();
+            instance = new AddBookScreen();
         }
         return instance;
     }
