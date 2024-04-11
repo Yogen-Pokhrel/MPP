@@ -6,11 +6,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Dashboard extends Routes implements Component {
-    private JPanel contentPanel;
     private static Dashboard instance;
+
+    public static Dashboard getInstance() {
+        if (instance == null) {
+            instance = new Dashboard();
+        }
+        return instance;
+    }
+
+    private JPanel contentPanel;
     private JButton allBooksButton;
     private JButton allMembersButton;
-    private JButton checkoutBooksButton;
+    private JButton CheckoutBookButton;
     private JPanel main;
     private JPanel aside;
     private JPanel mainPanelWrapper;
@@ -21,6 +29,7 @@ public class Dashboard extends Routes implements Component {
     private JPanel asideTitle;
     private JPanel navbarTitleWrapper;
     private JButton pageButton;
+
     private JButton allAuthors;
 
     private Dashboard() {
@@ -44,6 +53,7 @@ public class Dashboard extends Routes implements Component {
             }
         });
         allAuthors.addActionListener(e -> navigateTo(SCREENS.Authors));
+        CheckoutBookButton.addActionListener(e -> navigateTo(SCREENS.CheckoutBook));
     }
 
     @Override
@@ -55,7 +65,7 @@ public class Dashboard extends Routes implements Component {
         return main;
     }
 
-    public JButton getPageButton(){
+    public JButton getPageButton() {
         return pageButton;
     }
 
@@ -67,53 +77,57 @@ public class Dashboard extends Routes implements Component {
         this.pageButton.setText(buttonTitle);
     }
 
-    public void setPageButtonVisibility(boolean visibility){
+    public void setPageButtonVisibility(boolean visibility) {
         this.pageButton.setVisible(visibility);
     }
 
-    public JButton[] getAsideButtons(){
-        return new JButton[]{allBooksButton, allMembersButton, checkoutBooksButton, allAuthors};
+    public JButton[] getAsideButtons() {
+        return new JButton[] { allBooksButton, allMembersButton, CheckoutBookButton, allAuthors };
     }
 
-    public void repaintButtons(SCREENS screen){
+    public void repaintButtons(SCREENS screen) {
         clearSidebarSelectedDesign();
         JButton activeButton = null;
-        switch (screen){
-            case Books: activeButton = allBooksButton; break;
-            case AddBook: activeButton = allBooksButton; break;
-            case AddMember: activeButton = allMembersButton; break;
-            case Members: activeButton = allMembersButton; break;
+        switch (screen) {
+            case Books:
+                activeButton = allBooksButton;
+                break;
+            case AddBook:
+                activeButton = allBooksButton;
+                break;
+            case AddMember:
+                activeButton = allMembersButton;
+                break;
+            case Members:
+                activeButton = allMembersButton;
+                break;
             case AddAuthor:
-            case Authors: activeButton = allAuthors; break;
+            case Authors:
+                activeButton = allAuthors;
+                break;
         }
-        if(activeButton != null){
+        if (activeButton != null) {
             markAsSelected(activeButton);
         }
     }
 
-    public static Dashboard getInstance() {
-        if(instance == null){
-            instance = new Dashboard();
-        }
-        return instance;
-    }
-
-    void clearSidebarSelectedDesign(){
-        for(JButton btn : getAsideButtons()){
+    void clearSidebarSelectedDesign() {
+        for (JButton btn : getAsideButtons()) {
             btn.setBackground(Color.getColor("#EBEBEB"));
             btn.setForeground(Color.black);
-//            btn.setOpaque(false);
-//            btn.setBorderPainted(false);
+            // btn.setOpaque(false);
+            // btn.setBorderPainted(false);
         }
     }
 
-    void markAsSelected(JButton btn){
-        if(btn == null) return;
-        //41 53 158
+    void markAsSelected(JButton btn) {
+        if (btn == null)
+            return;
+        // 41 53 158
         btn.setBackground(Color.decode("#29359E"));
         btn.setForeground(Color.white);
-//        btn.setOpaque(true);
-//        btn.setBorderPainted(false);
+        // btn.setOpaque(true);
+        // btn.setBorderPainted(false);
     }
 
     private void createUIComponents() {
