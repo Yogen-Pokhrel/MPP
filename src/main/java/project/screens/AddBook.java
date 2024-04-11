@@ -1,9 +1,14 @@
 package project.screens;
 
+import project.business.Author;
+import project.business.Book;
+
 import javax.swing.*;
 import javax.swing.event.ListDataListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddBook extends JFrame implements Component{
     private JPanel contentPane;
@@ -38,15 +43,6 @@ public class AddBook extends JFrame implements Component{
     }
 
     private AddBook() {
-        saveButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String selectedOption = (String) authorDropdown.getSelectedItem();
-                // Update the list based on the selected option
-//                updateList(selectedOption);
-            }
-        });
-
         authorDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -60,6 +56,20 @@ public class AddBook extends JFrame implements Component{
                 if(model.isEmpty()){
                     authorDropdown.setSelectedIndex(-1);
                 }
+            }
+        });
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                List<Author> authorList = new ArrayList<>();
+                int borrowTime = (int) borrowTimeDropdown.getSelectedItem();
+                System.out.println(borrowTime);
+                Book book = new Book(
+                        isbnNumTextField.getText(),
+                        titleTextField.getText(),
+                        borrowTime,
+                        authorList
+                );
             }
         });
     }
