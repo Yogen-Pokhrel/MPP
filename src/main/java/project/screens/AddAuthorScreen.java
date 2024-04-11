@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddAuthor  extends Routes implements Component {
+public class AddAuthorScreen extends Routes implements Component {
 
     private JPanel contentPane;
     private JPanel inner;
@@ -31,9 +31,9 @@ public class AddAuthor  extends Routes implements Component {
     private JLabel zipLabel;
     private JTextField zipTextField;
 
-    private static AddAuthor instance;
+    private static AddAuthorScreen instance;
 
-    public AddAuthor() {
+    public AddAuthorScreen() {
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,9 +53,9 @@ public class AddAuthor  extends Routes implements Component {
         });
     }
 
-    public static AddAuthor getInstance() {
+    public static AddAuthorScreen getInstance() {
         if(instance == null){
-            instance = new AddAuthor();
+            instance = new AddAuthorScreen();
         }
         return instance;
     }

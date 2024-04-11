@@ -4,11 +4,10 @@ import project.business.LoginException;
 import project.business.SystemController;
 
 import javax.swing.*;
-import java.util.Arrays;
 
-public class Login extends Routes implements Component {
+public class LoginScreen extends Routes implements Component {
     private JPanel contentPane;
-    private static Login instance;
+    private static LoginScreen instance;
     private JPanel loginLeftContainer;
     private JPanel loginRightContainer;
     private JTextField username;
@@ -18,7 +17,7 @@ public class Login extends Routes implements Component {
     private JPasswordField password;
     private JLabel errorMessage;
 
-    private Login() {
+    private LoginScreen() {
         loginButton.addActionListener(e -> {
             SystemController controller = new SystemController();
             String uName = username.getText();
@@ -52,9 +51,9 @@ public class Login extends Routes implements Component {
         errorMessage = new JLabel();
     }
 
-    public static Login getInstance() {
+    public static LoginScreen getInstance() {
          if(instance == null){
-             instance = new Login();
+             instance = new LoginScreen();
          }
         return instance;
     }
