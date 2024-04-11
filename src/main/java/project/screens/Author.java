@@ -34,6 +34,24 @@ public class Author extends Routes implements Component {
         //dataTable.setBounds(30, 40, 200, 300);
     }
 
+    @Override
+    public void render() {
+        Dashboard dash = Dashboard.getInstance();
+        dash.setPageTitle("Authors List");
+        dash.setPageButtonTitle("Add Author");
+        dash.setPageButtonVisibility(true);
+        dash.repaintButtons(SCREENS.Authors);
+        JButton b = dash.getPageButton();
+        removeAllActionListenersOfButton(b);
+        b.addActionListener(e -> navigateTo(SCREENS.AddAuthor));
+        JPanel mainPanel = dash.getInnerPanel();
+        mainPanel.removeAll();
+        mainPanel.add(getMainPanel());
+        paintTableData();
+        thread.setContentPane(dash.getMainPanel());
+        refresh();
+    }
+
     private void createUIComponents() {
         // TODO: place custom component creation code here
         paintTableData();

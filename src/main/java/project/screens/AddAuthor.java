@@ -65,6 +65,19 @@ public class AddAuthor  extends Routes implements Component {
         return contentPane;
     }
 
+    @Override
+    public void render() {
+        Dashboard dash = Dashboard.getInstance();
+        dash.setPageTitle("Add author");
+        dash.setPageButtonVisibility(false);
+        dash.repaintButtons(SCREENS.Authors);
+        JPanel mainPanel = dash.getInnerPanel();
+        mainPanel.removeAll();
+        mainPanel.add(getMainPanel());
+        thread.setContentPane(dash.getMainPanel());
+        refresh();
+    }
+
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }

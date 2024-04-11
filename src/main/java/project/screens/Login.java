@@ -23,8 +23,6 @@ public class Login extends Routes implements Component {
             SystemController controller = new SystemController();
             String uName = username.getText();
             String pass = String.valueOf(password.getPassword());
-            System.out.println("Username " + uName);
-            System.out.println("Password " + pass);
             errorMessage.setText("");
             try{
                 controller.login(uName, pass);
@@ -41,6 +39,12 @@ public class Login extends Routes implements Component {
     @Override
     public JPanel getMainPanel() {
         return contentPane;
+    }
+
+    @Override
+    public void render() {
+        thread.setContentPane(getMainPanel());
+        refresh();
     }
 
     private void createUIComponents() {

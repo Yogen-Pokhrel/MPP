@@ -30,6 +30,24 @@ public class BookScreen extends Routes implements Component {
         return contentPane;
     }
 
+    @Override
+    public void render() {
+        Dashboard dash = Dashboard.getInstance();
+        dash.setPageTitle("Books List");
+        dash.setPageButtonTitle("Add Book");
+        dash.setPageButtonVisibility(true);
+        dash.repaintButtons(SCREENS.Books);
+        JButton pageButton = dash.getPageButton();
+        removeAllActionListenersOfButton(pageButton);
+        pageButton.addActionListener(e -> navigateTo(SCREENS.AddBook));
+        JPanel mainPanel = dash.getInnerPanel();
+        paintTableData();
+        mainPanel.removeAll();
+        mainPanel.add(getMainPanel());
+        thread.setContentPane(dash.getMainPanel());
+        refresh();
+    }
+
     void paintTableData(){
         String[] columnNames = { "ID", "Book Name", "Copies", "Author Name" };
         SystemController controller = new SystemController();

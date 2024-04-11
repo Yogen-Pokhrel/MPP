@@ -22,152 +22,29 @@ public class Routes extends JFrame {
     }
 
     void init() {
-        navigateTo(SCREENS.Books);
+        //other logic can be implemented to redirect the user to the dashboard page if already logged in during application startup
+        navigateTo(SCREENS.Login);
     }
 
     void navigateTo(SCREENS screen) {
         switch (screen) {
-            case Login -> loginNavigator();
-            case Books -> booksNavigator();
-            case AddBook -> addBooksNavigator();
-            case Members -> membersNavigator();
-            case AddMember -> addMembersNavigator();
-            case Authors -> authorsNavigator();
-            case AddAuthor -> addAuthorsNavigator();
-            case CheckoutBook -> addCheckoutBookNavigator();
-            default -> loginNavigator();
+            case Login -> Login.getInstance().render();
+            case Books -> BookScreen.getInstance().render();
+            case AddBook -> AddBook.getInstance().render();
+            case Members -> Member.getInstance().render();
+            case AddMember -> AddMember.getInstance().render();
+            case Authors -> Author.getInstance().render();
+            case AddAuthor -> AddAuthor.getInstance().render();
+            case CheckoutBook -> CheckoutBook.getInstance().render();
         }
     }
 
-    private void loginNavigator() {
-        thread.setContentPane(Login.getInstance().getMainPanel());
+    public void refresh(){
         thread.revalidate();
         thread.repaint();
     }
 
-    private void booksNavigator() {
-        Dashboard dash = Dashboard.getInstance();
-        dash.setPageTitle("Books List");
-        dash.setPageButtonTitle("Add Book");
-        dash.setPageButtonVisibility(true);
-        dash.repaintButtons(SCREENS.Books);
-        JButton b = dash.getPageButton();
-        removeAllActionListenersOfButton(b);
-        b.addActionListener(e -> navigateTo(SCREENS.AddBook));
-        JPanel mainPanel = dash.getInnerPanel();
-        BookScreen book = BookScreen.getInstance();
-        book.paintTableData();
-        mainPanel.removeAll();
-        mainPanel.add(book.getMainPanel());
-        thread.setContentPane(dash.getMainPanel());
-        thread.revalidate();
-        thread.repaint();
-    }
-
-    private void addBooksNavigator() {
-        Dashboard dash = Dashboard.getInstance();
-        dash.setPageTitle("Add a book");
-        dash.setPageButtonVisibility(false);
-        dash.repaintButtons(SCREENS.Books);
-        JButton b = dash.getPageButton();
-        removeAllActionListenersOfButton(b);
-        b.addActionListener(e -> navigateTo(SCREENS.Members));
-        JPanel mainPanel = dash.getInnerPanel();
-        AddBook book = AddBook.getInstance();
-        mainPanel.removeAll();
-        mainPanel.add(book.getMainPanel());
-        thread.setContentPane(dash.getMainPanel());
-        thread.revalidate();
-        thread.repaint();
-    }
-
-    private void membersNavigator() {
-        Dashboard dash = Dashboard.getInstance();
-        dash.setPageTitle("Members List");
-        dash.setPageButtonTitle("Add Member");
-        dash.setPageButtonVisibility(true);
-        dash.repaintButtons(SCREENS.Members);
-        JButton b = dash.getPageButton();
-        removeAllActionListenersOfButton(b);
-        b.addActionListener(e -> navigateTo(SCREENS.AddMember));
-        JPanel mainPanel = dash.getInnerPanel();
-        mainPanel.removeAll();
-        Member member = Member.getInstance();
-        mainPanel.add(member.getMainPanel());
-        member.paintTableData();
-        thread.setContentPane(dash.getMainPanel());
-        thread.revalidate();
-        thread.repaint();
-    }
-
-    private void authorsNavigator() {
-        Dashboard dash = Dashboard.getInstance();
-        dash.setPageTitle("Authors List");
-        dash.setPageButtonTitle("Add Author");
-        dash.setPageButtonVisibility(true);
-        dash.repaintButtons(SCREENS.Authors);
-        JButton b = dash.getPageButton();
-        removeAllActionListenersOfButton(b);
-        b.addActionListener(e -> navigateTo(SCREENS.AddAuthor));
-        JPanel mainPanel = dash.getInnerPanel();
-        mainPanel.removeAll();
-        Author member = Author.getInstance();
-        mainPanel.add(member.getMainPanel());
-        member.paintTableData();
-        thread.setContentPane(dash.getMainPanel());
-        thread.revalidate();
-        thread.repaint();
-    }
-
-    private void addMembersNavigator() {
-        Dashboard dash = Dashboard.getInstance();
-        dash.setPageTitle("Add a Member");
-        dash.setPageButtonVisibility(false);
-        dash.repaintButtons(SCREENS.Members);
-        JButton b = dash.getPageButton();
-        removeAllActionListenersOfButton(b);
-        JPanel mainPanel = dash.getInnerPanel();
-        mainPanel.removeAll();
-        AddMember member = AddMember.getInstance();
-        mainPanel.add(member.getMainPanel());
-        thread.setContentPane(dash.getMainPanel());
-        thread.revalidate();
-        thread.repaint();
-    }
-
-    private void addAuthorsNavigator() {
-        Dashboard dash = Dashboard.getInstance();
-        dash.setPageTitle("Add author");
-        dash.setPageButtonVisibility(false);
-        dash.repaintButtons(SCREENS.Authors);
-        JButton b = dash.getPageButton();
-        removeAllActionListenersOfButton(b);
-        JPanel mainPanel = dash.getInnerPanel();
-        mainPanel.removeAll();
-        AddAuthor member = AddAuthor.getInstance();
-        mainPanel.add(member.getMainPanel());
-        thread.setContentPane(dash.getMainPanel());
-        thread.revalidate();
-        thread.repaint();
-    }
-
-    private void addCheckoutBookNavigator() {
-        Dashboard dash = Dashboard.getInstance();
-        dash.setPageTitle("Checkout books");
-        dash.setPageButtonVisibility(false);
-        dash.repaintButtons(SCREENS.CheckoutBook);
-        JButton b = dash.getPageButton();
-        removeAllActionListenersOfButton(b);
-        JPanel mainPanel = dash.getInnerPanel();
-        mainPanel.removeAll();
-        CheckoutBook member = CheckoutBook.getInstance();
-        mainPanel.add(member.getMainPanel());
-        thread.setContentPane(dash.getMainPanel());
-        thread.revalidate();
-        thread.repaint();
-    }
-
-    void removeAllActionListenersOfButton(JButton button) {
+    public void removeAllActionListenersOfButton(JButton button) {
         ActionListener[] listeners = button.getActionListeners();
         for (ActionListener al : listeners) {
             button.removeActionListener(al);

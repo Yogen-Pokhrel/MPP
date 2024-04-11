@@ -133,4 +133,9 @@ public class Dashboard extends Routes implements Component {
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
+
+    @Override
+    public void render() {
+        //we are not rendering the default design, instead it is used as a layout to render other elements
+    }
 }
