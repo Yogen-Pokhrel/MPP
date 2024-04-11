@@ -21,6 +21,7 @@ public class Dashboard extends Routes implements Component {
     private JPanel asideTitle;
     private JPanel navbarTitleWrapper;
     private JButton pageButton;
+    private JButton allAuthors;
 
     private Dashboard() {
         allBooksButton.addActionListener(new ActionListener() {
@@ -42,6 +43,7 @@ public class Dashboard extends Routes implements Component {
                 navigateTo(SCREENS.Login);
             }
         });
+        allAuthors.addActionListener(e -> navigateTo(SCREENS.Authors));
     }
 
     @Override
@@ -65,8 +67,12 @@ public class Dashboard extends Routes implements Component {
         this.pageButton.setText(buttonTitle);
     }
 
+    public void setPageButtonVisibility(boolean visibility){
+        this.pageButton.setVisible(visibility);
+    }
+
     public JButton[] getAsideButtons(){
-        return new JButton[]{allBooksButton, allMembersButton, checkoutBooksButton};
+        return new JButton[]{allBooksButton, allMembersButton, checkoutBooksButton, allAuthors};
     }
 
     public void repaintButtons(SCREENS screen){
@@ -74,9 +80,11 @@ public class Dashboard extends Routes implements Component {
         JButton activeButton = null;
         switch (screen){
             case Books: activeButton = allBooksButton; break;
-            case AddBooks: activeButton = allBooksButton; break;
-            case AddMembers: activeButton = allMembersButton; break;
+            case AddBook: activeButton = allBooksButton; break;
+            case AddMember: activeButton = allMembersButton; break;
             case Members: activeButton = allMembersButton; break;
+            case AddAuthor:
+            case Authors: activeButton = allAuthors; break;
         }
         if(activeButton != null){
             markAsSelected(activeButton);
