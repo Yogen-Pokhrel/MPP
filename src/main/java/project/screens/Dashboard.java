@@ -1,6 +1,7 @@
 package project.screens;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -68,11 +69,43 @@ public class Dashboard extends Routes implements Component {
         return new JButton[]{allBooksButton, allMembersButton, checkoutBooksButton};
     }
 
+    public void repaintButtons(SCREENS screen){
+        clearSidebarSelectedDesign();
+        JButton activeButton = null;
+        switch (screen){
+            case Books: activeButton = allBooksButton; break;
+            case AddBooks: activeButton = allBooksButton; break;
+            case AddMembers: activeButton = allMembersButton; break;
+            case Members: activeButton = allMembersButton; break;
+        }
+        if(activeButton != null){
+            markAsSelected(activeButton);
+        }
+    }
+
     public static Dashboard getInstance() {
         if(instance == null){
             instance = new Dashboard();
         }
         return instance;
+    }
+
+    void clearSidebarSelectedDesign(){
+        for(JButton btn : getAsideButtons()){
+            btn.setBackground(Color.getColor("#EBEBEB"));
+            btn.setForeground(Color.black);
+//            btn.setOpaque(false);
+//            btn.setBorderPainted(false);
+        }
+    }
+
+    void markAsSelected(JButton btn){
+        if(btn == null) return;
+        //41 53 158
+        btn.setBackground(Color.decode("#29359E"));
+        btn.setForeground(Color.white);
+//        btn.setOpaque(true);
+//        btn.setBorderPainted(false);
     }
 
     private void createUIComponents() {

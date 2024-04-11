@@ -16,15 +16,7 @@ public class Login extends Routes implements Component {
     private JPasswordField enterPasswordPasswordField;
 
      private Login() {
-//        setContentPane(contentPane);
-//        setTitle("Login - Library System");
-//        setVisible(false);
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                navigateTo(SCREENS.Books);
-            }
-        });
+        loginButton.addActionListener(e -> navigateTo(SCREENS.Books));
     }
 
     @Override
