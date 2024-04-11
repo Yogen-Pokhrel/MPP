@@ -57,7 +57,7 @@
                   <horizontalAlignment value="2"/>
                   <horizontalTextPosition value="0"/>
                   <inheritsPopupMenu value="false"/>
-                  <name value="loginButton"/>
+                  <name value="allBooksButton"/>
                   <opaque value="true"/>
                   <preferredSize width="200" height="40"/>
                   <selected value="false"/>
@@ -76,11 +76,30 @@
                   <foreground color="-16711423"/>
                   <horizontalAlignment value="2"/>
                   <inheritsPopupMenu value="false"/>
-                  <name value="loginButton"/>
+                  <name value="allMembersButton"/>
                   <opaque value="true"/>
                   <preferredSize width="200" height="40"/>
                   <selected value="false"/>
                   <text value="Members"/>
+                </properties>
+              </component>
+              <component id="6e6c8" class="javax.swing.JButton" binding="allAuthors">
+                <constraints/>
+                <properties>
+                  <background color="-1315861"/>
+                  <borderPainted value="false"/>
+                  <contentAreaFilled value="true"/>
+                  <defaultCapable value="true"/>
+                  <focusPainted value="false"/>
+                  <font style="1"/>
+                  <foreground color="-16711423"/>
+                  <horizontalAlignment value="2"/>
+                  <inheritsPopupMenu value="false"/>
+                  <name value="allAuthorsButton"/>
+                  <opaque value="true"/>
+                  <preferredSize width="200" height="40"/>
+                  <selected value="false"/>
+                  <text value="Authors"/>
                 </properties>
               </component>
               <component id="85ef3" class="javax.swing.JButton" binding="checkoutBooksButton">
@@ -95,7 +114,7 @@
                   <foreground color="-16711423"/>
                   <horizontalAlignment value="2"/>
                   <inheritsPopupMenu value="false"/>
-                  <name value="loginButton"/>
+                  <name value="checkoutBooksButton"/>
                   <opaque value="true"/>
                   <preferredSize width="200" height="40"/>
                   <selected value="false"/>

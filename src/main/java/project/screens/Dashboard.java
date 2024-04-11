@@ -1,6 +1,7 @@
 package project.screens;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,6 +21,7 @@ public class Dashboard extends Routes implements Component {
     private JPanel asideTitle;
     private JPanel navbarTitleWrapper;
     private JButton pageButton;
+    private JButton allAuthors;
 
     private Dashboard() {
         allBooksButton.addActionListener(new ActionListener() {
@@ -41,6 +43,7 @@ public class Dashboard extends Routes implements Component {
                 navigateTo(SCREENS.Login);
             }
         });
+        allAuthors.addActionListener(e -> navigateTo(SCREENS.Authors));
     }
 
     @Override
@@ -64,8 +67,28 @@ public class Dashboard extends Routes implements Component {
         this.pageButton.setText(buttonTitle);
     }
 
+    public void setPageButtonVisibility(boolean visibility){
+        this.pageButton.setVisible(visibility);
+    }
+
     public JButton[] getAsideButtons(){
-        return new JButton[]{allBooksButton, allMembersButton, checkoutBooksButton};
+        return new JButton[]{allBooksButton, allMembersButton, checkoutBooksButton, allAuthors};
+    }
+
+    public void repaintButtons(SCREENS screen){
+        clearSidebarSelectedDesign();
+        JButton activeButton = null;
+        switch (screen){
+            case Books: activeButton = allBooksButton; break;
+            case AddBook: activeButton = allBooksButton; break;
+            case AddMember: activeButton = allMembersButton; break;
+            case Members: activeButton = allMembersButton; break;
+            case AddAuthor:
+            case Authors: activeButton = allAuthors; break;
+        }
+        if(activeButton != null){
+            markAsSelected(activeButton);
+        }
     }
 
     public static Dashboard getInstance() {
@@ -73,6 +96,24 @@ public class Dashboard extends Routes implements Component {
             instance = new Dashboard();
         }
         return instance;
+    }
+
+    void clearSidebarSelectedDesign(){
+        for(JButton btn : getAsideButtons()){
+            btn.setBackground(Color.getColor("#EBEBEB"));
+            btn.setForeground(Color.black);
+//            btn.setOpaque(false);
+//            btn.setBorderPainted(false);
+        }
+    }
+
+    void markAsSelected(JButton btn){
+        if(btn == null) return;
+        //41 53 158
+        btn.setBackground(Color.decode("#29359E"));
+        btn.setForeground(Color.white);
+//        btn.setOpaque(true);
+//        btn.setBorderPainted(false);
     }
 
     private void createUIComponents() {
