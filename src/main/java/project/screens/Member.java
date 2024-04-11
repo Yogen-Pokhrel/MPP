@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 
-public class Member implements Component{
+public class Member extends Routes implements Component{
     private JButton button1;
 
     private static Member instance;
@@ -36,6 +36,24 @@ public class Member implements Component{
         dataTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
 
         //dataTable.setBounds(30, 40, 200, 300);
+    }
+
+    @Override
+    public void render() {
+        Dashboard dash = Dashboard.getInstance();
+        dash.setPageTitle("Members List");
+        dash.setPageButtonTitle("Add Member");
+        dash.setPageButtonVisibility(true);
+        dash.repaintButtons(Routes.SCREENS.Members);
+        JButton pageButton = dash.getPageButton();
+        removeAllActionListenersOfButton(pageButton);
+        pageButton.addActionListener(e -> navigateTo(Routes.SCREENS.AddMember));
+        JPanel mainPanel = dash.getInnerPanel();
+        mainPanel.removeAll();
+        mainPanel.add(getMainPanel());
+        paintTableData();
+        thread.setContentPane(dash.getMainPanel());
+        refresh();
     }
 
     private void createUIComponents() {

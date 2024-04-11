@@ -2,7 +2,7 @@ package project.screens;
 
 import javax.swing.*;
 
-public class AddMember extends JFrame implements Component{
+public class AddMember extends Routes implements Component{
     private JPanel contentPane;
     private static AddMember instance;
     private JTextField titleTextField;
@@ -24,6 +24,19 @@ public class AddMember extends JFrame implements Component{
     public JPanel getMainPanel() {
         return contentPane;
 }
+
+    @Override
+    public void render() {
+        Dashboard dash = Dashboard.getInstance();
+        dash.setPageTitle("Add a Member");
+        dash.setPageButtonVisibility(false);
+        dash.repaintButtons(SCREENS.Members);
+        JPanel mainPanel = dash.getInnerPanel();
+        mainPanel.removeAll();
+        mainPanel.add(getMainPanel());
+        thread.setContentPane(dash.getMainPanel());
+        refresh();
+    }
 
     public static AddMember getInstance() {
         if(instance == null){

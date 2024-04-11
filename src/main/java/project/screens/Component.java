@@ -4,4 +4,6 @@ import javax.swing.*;
 
 public interface Component {
     JPanel getMainPanel();
+
+    void render();
 }

@@ -40,6 +40,11 @@ public class SystemController implements ControllerInterface {
 		retval.addAll(da.readBooksMap().keySet());
 		return retval;
 	}
+
+	public HashMap<String, Book> getAllBooks() {
+		DataAccess da = new DataAccessFacade();
+		return da.readBooksMap();
+	}
 	
 	
 }

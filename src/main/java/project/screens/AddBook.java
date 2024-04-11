@@ -2,6 +2,7 @@ package project.screens;
 
 import project.business.Author;
 import project.business.Book;
+import project.business.SystemController;
 
 import javax.swing.*;
 import javax.swing.event.ListDataListener;
@@ -10,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddBook extends JFrame implements Component{
+public class AddBook extends Routes implements Component{
     private JPanel contentPane;
     private static AddBook instance;
     private JTextField titleTextField;
@@ -63,13 +64,14 @@ public class AddBook extends JFrame implements Component{
             public void actionPerformed(ActionEvent e) {
                 List<Author> authorList = new ArrayList<>();
                 int borrowTime = (int) borrowTimeDropdown.getSelectedItem();
-                System.out.println(borrowTime);
                 Book book = new Book(
                         isbnNumTextField.getText(),
                         titleTextField.getText(),
                         borrowTime,
                         authorList
                 );
+
+                SystemController controller = new SystemController();
             }
         });
     }
@@ -78,6 +80,19 @@ public class AddBook extends JFrame implements Component{
     public JPanel getMainPanel() {
         return contentPane;
 }
+
+    @Override
+    public void render() {
+        Dashboard dash = Dashboard.getInstance();
+        dash.setPageTitle("Add a book");
+        dash.setPageButtonVisibility(false);
+        dash.repaintButtons(Routes.SCREENS.Books);
+        JPanel mainPanel = dash.getInnerPanel();
+        mainPanel.removeAll();
+        mainPanel.add(getMainPanel());
+        thread.setContentPane(dash.getMainPanel());
+        refresh();
+    }
 
     public static AddBook getInstance() {
         if(instance == null){

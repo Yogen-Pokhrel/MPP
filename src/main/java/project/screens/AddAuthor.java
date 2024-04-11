@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddAuthor  extends JFrame implements Component {
+public class AddAuthor  extends Routes implements Component {
 
     private JPanel contentPane;
     private JPanel inner;
@@ -63,6 +63,19 @@ public class AddAuthor  extends JFrame implements Component {
     @Override
     public JPanel getMainPanel() {
         return contentPane;
+    }
+
+    @Override
+    public void render() {
+        Dashboard dash = Dashboard.getInstance();
+        dash.setPageTitle("Add author");
+        dash.setPageButtonVisibility(false);
+        dash.repaintButtons(SCREENS.Authors);
+        JPanel mainPanel = dash.getInnerPanel();
+        mainPanel.removeAll();
+        mainPanel.add(getMainPanel());
+        thread.setContentPane(dash.getMainPanel());
+        refresh();
     }
 
     private void createUIComponents() {

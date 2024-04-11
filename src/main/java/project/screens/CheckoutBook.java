@@ -21,4 +21,17 @@ public class CheckoutBook extends Routes implements Component {
     public JPanel getMainPanel() {
         return contentPane;
     }
+
+    @Override
+    public void render() {
+        Dashboard dash = Dashboard.getInstance();
+        dash.setPageTitle("Checkout books");
+        dash.setPageButtonVisibility(false);
+        dash.repaintButtons(SCREENS.CheckoutBook);
+        JPanel mainPanel = dash.getInnerPanel();
+        mainPanel.removeAll();
+        mainPanel.add(getMainPanel());
+        thread.setContentPane(dash.getMainPanel());
+        refresh();
+    }
 }
