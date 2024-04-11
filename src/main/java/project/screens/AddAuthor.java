@@ -2,7 +2,7 @@ package project.screens;
 
 import javax.swing.*;
 
-public class AddAuthor  extends JFrame implements Component {
+public class AddAuthor  extends Routes implements Component {
 
     private JPanel contentPane;
     private JPanel inner;

@@ -1,10 +1,7 @@
 package project.screens;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class Routes extends JFrame {
     public static Routes thread = new Routes();
@@ -55,7 +52,7 @@ public class Routes extends JFrame {
         removeAllActionListenersOfButton(b);
         b.addActionListener(e -> navigateTo(SCREENS.AddBook));
         JPanel mainPanel = dash.getInnerPanel();
-        Book book = Book.getInstance();
+        BookScreen book = BookScreen.getInstance();
         book.paintTableData();
         mainPanel.removeAll();
         mainPanel.add(book.getMainPanel());
