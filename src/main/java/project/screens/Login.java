@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Login implements Component {
+public class Login extends Routes implements Component {
     private JPanel contentPane;
+    private static Login instance;
     private JPanel loginLeftContainer;
     private JPanel loginRightContainer;
     private JTextField enterUsernameTextField;
@@ -14,14 +15,14 @@ public class Login implements Component {
     private JLabel loginSidebarTitle;
     private JPasswordField enterPasswordPasswordField;
 
-    public Login() {
+     private Login() {
 //        setContentPane(contentPane);
 //        setTitle("Login - Library System");
 //        setVisible(false);
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                navigateTo(SCREENS.Books);
             }
         });
     }
@@ -33,6 +34,13 @@ public class Login implements Component {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+    }
+
+    public static Login getInstance() {
+         if(instance == null){
+             instance = new Login();
+         }
+        return instance;
     }
 }
 

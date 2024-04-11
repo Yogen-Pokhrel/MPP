@@ -1,11 +1,10 @@
 package project.screens;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 
-public class Book extends JFrame implements Component{
+public class AddBook extends JFrame implements Component{
     private JPanel contentPane;
+    private static AddBook instance;
     private JTextField titleTextField;
     private JLabel addBookLabel;
     private JLabel titleLabel;
@@ -17,14 +16,22 @@ public class Book extends JFrame implements Component{
     private JComboBox authorDropdown;
     private JButton addAuthorButton;
     private JList selectedAuthorList;
+    private JPanel inner;
 
-    public Book() {
+    private AddBook() {
     }
 
     @Override
     public JPanel getMainPanel() {
         return contentPane;
 }
+
+    public static AddBook getInstance() {
+        if(instance == null){
+            instance = new AddBook();
+        }
+        return instance;
+    }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
