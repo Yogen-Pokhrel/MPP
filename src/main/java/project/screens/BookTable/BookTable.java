@@ -38,7 +38,7 @@ public class BookTable extends JTable {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int row = rowAtPoint(evt.getPoint());
                 int col = columnAtPoint(evt.getPoint());
-                if (row >= 0 && col == 4) {
+                if (row >= 0 && col == 5) {
                     Book book = (Book) getValueAt(row, col);
                     book.addCopy();
                     DataAccess da = new DataAccessFacade();
