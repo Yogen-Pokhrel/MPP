@@ -2,6 +2,7 @@ package project.screens;
 
 import project.business.Address;
 import project.business.Author;
+import project.business.SystemController;
 import project.dataaccess.DataAccess;
 import project.dataaccess.DataAccessFacade;
 import project.project.utils.validation.DialogUtils;
@@ -62,8 +63,8 @@ public class AddAuthorScreen extends Routes implements Component {
                         ),
                         bioTextField.getText()
                 );
-                DataAccess da = new DataAccessFacade();
-                da.saveNewAuthor(author);
+                SystemController systemController = new SystemController();
+                systemController.addNewAuthor(author);
             }
         });
     }

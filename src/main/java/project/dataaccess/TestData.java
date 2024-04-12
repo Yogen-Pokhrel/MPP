@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import project.business.Address;
-import project.business.Author;
-import project.business.Book;
-import project.business.LibraryMember;
+import project.business.*;
 
 /**
  * This class loads data into the data repository and also
@@ -28,6 +25,7 @@ public class TestData {
 		td.libraryMemberData();
 		td.userData();
 		td.authorData();
+		td.checkoutRecordData();
 		DataAccess da = new DataAccessFacade();
 		System.out.println(da.readBooksMap());
 		System.out.println(da.readUserMap());
@@ -49,6 +47,10 @@ public class TestData {
 
 	public void authorData() {
 		DataAccessFacade.loadAuthorMap(allAuthors);
+	}
+
+	public void checkoutRecordData() {
+		DataAccessFacade.loadCheckoutRecordMap(checkoutRecords);
 	}
 	
 	//create library members
@@ -112,4 +114,6 @@ public class TestData {
 			add(new User("103", "111", Auth.BOTH, "Saurab", "Ghimire", "736 234 9899"));
 		}
 	};
+
+	List<CheckoutRecord> checkoutRecords = new ArrayList<>();
 }

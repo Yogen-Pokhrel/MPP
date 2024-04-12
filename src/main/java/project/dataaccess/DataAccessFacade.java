@@ -47,7 +47,7 @@ public class DataAccessFacade implements DataAccess {
 		HashMap<String, CheckoutRecord> memos = readCheckoutRecordMap();
 		String memberId = checkoutRecord.getLibraryMember().getMemberId();
 		memos.put(memberId, checkoutRecord);
-		saveToStorage(StorageType.AUTHORS, memos);
+		saveToStorage(StorageType.CHECKOUTRECORD, memos);
 	}
 
 	public void saveNewBook(Book book) {
@@ -116,6 +116,12 @@ public class DataAccessFacade implements DataAccess {
 		HashMap<String, Author> authors = new HashMap<String, Author>();
 		authorList.forEach(user -> authors.put(user.getAuthorId(), user));
 		saveToStorage(StorageType.AUTHORS, authors);
+	}
+
+	static void loadCheckoutRecordMap(List<CheckoutRecord> checkoutRecords) {
+		HashMap<String, CheckoutRecord> checkoutRecord = new HashMap<String, CheckoutRecord>();
+		checkoutRecords.forEach(record -> checkoutRecord.put(record.getLibraryMember().getMemberId(), record));
+		saveToStorage(StorageType.CHECKOUTRECORD, checkoutRecord);
 	}
  
 	static void loadMemberMap(List<LibraryMember> memberList) {

@@ -8,6 +8,9 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 import project.business.Book;
+import project.dataaccess.DataAccess;
+import project.dataaccess.DataAccessFacade;
+import project.screens.BookScreen;
 
 public class BookTable extends JTable {
 
@@ -33,6 +36,9 @@ public class BookTable extends JTable {
                 if (row >= 0 && col == 4) {
                     Book book = (Book) getValueAt(row, col);
                     book.addCopy();
+                    DataAccess da = new DataAccessFacade();
+                    da.saveNewBook(book);
+                    BookScreen.getInstance().render();
                 }
             }
         });

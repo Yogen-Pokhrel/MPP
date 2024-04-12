@@ -52,7 +52,7 @@ public class BookScreen extends Routes implements Component {
         refresh();
     }
 
-    void paintTableData() {
+    public void paintTableData() {
         String[] columnNames = { "ISBN", "Book Name", "Copies", "Author Name", "Action", };
         SystemController controller = new SystemController();
         HashMap<String, Book> books = controller.getAllBooks();

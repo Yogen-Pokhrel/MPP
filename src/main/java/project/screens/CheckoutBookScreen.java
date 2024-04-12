@@ -6,12 +6,21 @@ import project.dataaccess.DataAccessFacade;
 import project.project.utils.validation.DialogUtils;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.util.HashMap;
 
 public class CheckoutBookScreen extends Routes implements Component {
 
     private static CheckoutBookScreen instance;
+    private JPanel contentPane;
+
+    private JPanel inner;
+    private JButton submitButton;
+    private JButton clearButton;
+    private JTextField memberId;
+    private JTextField isbn;
+    private JTable dataTable;
+    private JScrollPane dataTableWrapper;
 
     public CheckoutBookScreen() {
         submitButton.addActionListener(e -> {
@@ -25,13 +34,24 @@ public class CheckoutBookScreen extends Routes implements Component {
                  book = controller.getBookByISBN(isbn);
              }catch (NullPointerException nullPointerException){
                  DialogUtils.showValidationMessage(nullPointerException.getMessage());
+                 return;
              }
+             BookCopy bookCopy = null;
+             try{
+                 bookCopy = book.getNextAvailableCopy();
+             }catch (NullPointerException nullPointerException){
+                 DialogUtils.showValidationMessage(nullPointerException.getMessage());
+                 return;
+             }
+
             CheckoutRecord checkoutRecord = new CheckoutRecord(
                     libraryMember,
-                    new CheckoutEntry(book)
+                    new CheckoutEntry(book, bookCopy)
             );
-            DataAccess da = new DataAccessFacade();
-            da.saveNewCheckoutRecord(checkoutRecord);
+
+            SystemController systemController = new SystemController();
+            systemController.addNewCheckoutRecord(checkoutRecord);
+//            paintTableData(memberId);
         });
         clearButton.addActionListener(e -> {
 
@@ -39,20 +59,9 @@ public class CheckoutBookScreen extends Routes implements Component {
     }
 
     public static CheckoutBookScreen getInstance() {
-//        if (instance == null) {
-//            instance = new CheckoutBookScreen();
-//        }
         instance = new CheckoutBookScreen();
         return instance;
     }
-
-    private JPanel contentPane;
-
-    private JPanel inner;
-    private JButton submitButton;
-    private JButton clearButton;
-    private JTextField memberId;
-    private JTextField isbn;
 
     @Override
     public JPanel getMainPanel() {
@@ -70,5 +79,34 @@ public class CheckoutBookScreen extends Routes implements Component {
         mainPanel.add(getMainPanel());
         thread.setContentPane(dash.getMainPanel());
         refresh();
+    }
+
+    void paintTableData(String memberId){
+        String[] columnNames = { "Copy Num", "ISBN", "Book Name", "Checkout Date", "Due Date" };
+        SystemController controller = new SystemController();
+        CheckoutRecord checkoutRecord;
+        try{
+             checkoutRecord = controller.getCheckoutRecordByMemberId(memberId);
+        }catch (NullPointerException nullPointerException){
+            return;
+        }
+
+        Object[][] data = new Object[checkoutRecord.getCheckoutEntry().size()][];
+        int index = 0;
+        for(CheckoutEntry checkoutEntry: checkoutRecord.getCheckoutEntry()){
+            data[index++] =(new Object[]{checkoutEntry.getBookCopy().getCopyNum(), checkoutEntry.getBook().getIsbn(), checkoutEntry.getBook().getTitle(), checkoutEntry.getCheckoutDate(), checkoutEntry.getDueDate(), });
+        }
+
+        dataTable = new JTable(data, columnNames);
+        dataTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
+//        createUIComponents();
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+        dataTable = new JTable();
+        paintTableData("1001");
+        UIDefaults defaults = UIManager.getLookAndFeelDefaults();
+        defaults.putIfAbsent("Table.alternateRowColor", Color.LIGHT_GRAY);
     }
 }
