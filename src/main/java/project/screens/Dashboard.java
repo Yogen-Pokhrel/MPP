@@ -1,6 +1,7 @@
 package project.screens;
 
 import project.business.SystemController;
+import project.dataaccess.Auth;
 import project.dataaccess.User;
 
 import javax.swing.*;
@@ -45,7 +46,7 @@ public class Dashboard extends Routes implements Component {
     @Override
     public JPanel getMainPanel() {
         User user = SystemController.loggedInUser;
-        if(user != null){
+        if (user != null) {
             loggedUserLabel.setText("Hi, " + user.getFirstName());
         }
         return contentPanel;
@@ -68,10 +69,13 @@ public class Dashboard extends Routes implements Component {
     }
 
     public void setPageButtonVisibility(boolean visibility) {
-        this.pageButton.setVisible(visibility);
+        pageButton.setVisible(visibility && SystemController.currentAuth != Auth.LIBRARIAN ? true : false);
     }
 
     public JButton[] getAsideButtons() {
+        if (SystemController.currentAuth != Auth.LIBRARIAN) {
+            checkoutBooksButton.setVisible(false);
+        }
         return new JButton[] { allBooksButton, allMembersButton, checkoutBooksButton, allAuthors };
     }
 
@@ -80,12 +84,22 @@ public class Dashboard extends Routes implements Component {
         JButton activeButton = null;
         switch (screen) {
             case Books:
-            case AddBook: activeButton = allBooksButton;break;
+            case AddBook:
+                activeButton = allBooksButton;
+                break;
             case AddMember:
-            case Members: activeButton = allMembersButton;break;
+            case Members:
+                activeButton = allMembersButton;
+                break;
             case AddAuthor:
-            case Authors: activeButton = allAuthors;break;
-            case CheckoutBook: activeButton = checkoutBooksButton; break;
+            case Authors:
+                activeButton = allAuthors;
+                break;
+            case CheckoutBook:
+                activeButton = checkoutBooksButton;
+                break;
+            default:
+                break;
         }
         if (activeButton != null) {
             markAsSelected(activeButton);
@@ -117,6 +131,7 @@ public class Dashboard extends Routes implements Component {
 
     @Override
     public void render() {
-        //we are not rendering the default design, instead it is used as a layout to render other elements
+        // we are not rendering the default design, instead it is used as a layout to
+        // render other elements
     }
 }
