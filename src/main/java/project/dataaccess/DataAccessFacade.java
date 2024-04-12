@@ -45,6 +45,13 @@ public class DataAccessFacade implements DataAccess {
 		memos.put(authorId, author);
 		saveToStorage(StorageType.AUTHORS, memos);
 	}
+
+	public void saveNewBook(Book book) {
+		HashMap<String, Book> memos = readBooksMap();
+		String bookId = book.getIsbn();
+		memos.put(bookId, book);
+		saveToStorage(StorageType.BOOKS, memos);
+	}
 	
 	@SuppressWarnings("unchecked")
 	public  HashMap<String,Book> readBooksMap() {

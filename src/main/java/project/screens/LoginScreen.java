@@ -52,9 +52,10 @@ public class LoginScreen extends Routes implements Component {
     }
 
     public static LoginScreen getInstance() {
-         if(instance == null){
-             instance = new LoginScreen();
-         }
+//         if(instance == null){
+//             instance = new LoginScreen();
+//         }
+        instance = new LoginScreen();
         return instance;
     }
 }
