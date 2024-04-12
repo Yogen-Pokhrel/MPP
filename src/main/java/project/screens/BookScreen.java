@@ -2,6 +2,7 @@ package project.screens;
 
 import project.business.Author;
 import project.business.Book;
+import project.business.BookCopy;
 import project.business.SystemController;
 import project.dataaccess.Auth;
 import project.screens.BookTable.BookTable;
@@ -54,9 +55,9 @@ public class BookScreen extends Routes implements Component {
     }
 
     public void paintTableData() {
-        String[] columnNames = new String[] { "ISBN", "Book Name", "Copies", "Author Name" };
+        String[] columnNames = new String[] { "ISBN", "Book Name", "Copies", "Available", "Author Name" };
         if (SystemController.currentAuth != Auth.LIBRARIAN) {
-            columnNames = new String[] { "ISBN", "Book Name", "Copies", "Author Name", "Action" };
+            columnNames = new String[] { "ISBN", "Book Name", "Copies", "Available", "Author Name", "Action" };
         }
 
         SystemController controller = new SystemController();
@@ -74,8 +75,13 @@ public class BookScreen extends Routes implements Component {
                 Author author = authors.get(authors.size() - 1);
                 authorNames.append(author.getFirstName()).append(" ").append(author.getLastName());
             }
-
-            data[index++] = (new Object[] { book.getIsbn(), book.getTitle(), book.getNumCopies(),
+            int availableCopies = 0;
+            for(BookCopy bookCopy: book.getCopies()){
+                if(bookCopy.isAvailable()){
+                    availableCopies++;
+                }
+            }
+            data[index++] = (new Object[] { book.getIsbn(), book.getTitle(), book.getNumCopies(), availableCopies,
                     authorNames.toString(), book });
         }
 
