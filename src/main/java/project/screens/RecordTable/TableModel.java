@@ -1,4 +1,4 @@
-package project.screens.BookTable;
+package project.screens.RecordTable;
 
 import javax.swing.table.DefaultTableModel;
 

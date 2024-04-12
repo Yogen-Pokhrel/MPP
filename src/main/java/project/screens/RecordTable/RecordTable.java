@@ -1,4 +1,4 @@
-package project.screens.BookTable;
+package project.screens.RecordTable;
 
 import java.awt.Font;
 
@@ -8,15 +8,13 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 import project.business.Book;
-import project.business.SystemController;
-import project.dataaccess.Auth;
 import project.dataaccess.DataAccess;
 import project.dataaccess.DataAccessFacade;
 import project.screens.BookScreen;
 
-public class BookTable extends JTable {
+public class RecordTable extends JTable {
 
-    public BookTable(Object[][] rowData, Object[] columnNames) {
+    public RecordTable(Object[][] rowData, Object[] columnNames) {
 
         super(new TableModel(rowData, columnNames));
         getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
@@ -28,17 +26,14 @@ public class BookTable extends JTable {
         columnModel.getColumn(2).setPreferredWidth(10);
         columnModel.getColumn(3).setPreferredWidth(10);
         columnModel.getColumn(4).setPreferredWidth(150);
-
-        if (SystemController.currentAuth != Auth.LIBRARIAN) {
-            columnModel.getColumn(5).setCellRenderer(new ButtonRenderer());
-        }
+        columnModel.getColumn(5).setCellRenderer(new ButtonRenderer());
 
         addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int row = rowAtPoint(evt.getPoint());
                 int col = columnAtPoint(evt.getPoint());
-                if (row >= 0 && col == 4) {
+                if (row >= 0 && col == 5) {
                     Book book = (Book) getValueAt(row, col);
                     book.addCopy();
                     DataAccess da = new DataAccessFacade();
