@@ -68,7 +68,6 @@ public class SystemController implements ControllerInterface {
 		return member;
 	}
 
-
 	public Book getBookByISBN(String isbn) throws NullPointerException{
 		DataAccess da = new DataAccessFacade();
 		HashMap<String, Book> allMembers = da.readBooksMap();
@@ -77,6 +76,16 @@ public class SystemController implements ControllerInterface {
 			throw new NullPointerException("No book found with provided ISBN");
 		}
 		return book;
+	}
+
+	public CheckoutRecord getCheckoutRecordByMemberId(String memberId) throws NullPointerException{
+		DataAccess da = new DataAccessFacade();
+		HashMap<String, CheckoutRecord> allCheckoutRecords = da.readCheckoutRecordMap();
+		CheckoutRecord checkoutRecord = allCheckoutRecords.get(memberId);
+		if(checkoutRecord == null){
+			throw new NullPointerException("No checkout record data found for the given user");
+		}
+		return checkoutRecord;
 	}
 	
 	
