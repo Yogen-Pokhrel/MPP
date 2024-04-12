@@ -19,7 +19,7 @@ import project.dataaccess.DataAccessFacade.StorageType;
 public class DataAccessFacade implements DataAccess {
 	
 	enum StorageType {
-		BOOKS, MEMBERS, USERS, AUTHORS;
+		BOOKS, MEMBERS, USERS, AUTHORS, CHECKOUTRECORD;
 	}
 	// Windows user can use
 	
@@ -40,6 +40,13 @@ public class DataAccessFacade implements DataAccess {
 	}
 
 	public void saveNewAuthor(Author author) {
+		HashMap<String, Author> memos = readAuthorMap();
+		String authorId = author.getAuthorId();
+		memos.put(authorId, author);
+		saveToStorage(StorageType.AUTHORS, memos);
+	}
+
+	public void saveNewCheckoutRecord(Author author) {
 		HashMap<String, Author> memos = readAuthorMap();
 		String authorId = author.getAuthorId();
 		memos.put(authorId, author);

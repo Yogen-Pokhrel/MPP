@@ -1,5 +1,8 @@
 package project.screens;
 
+import project.business.SystemController;
+import project.dataaccess.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -31,33 +34,22 @@ public class Dashboard extends Routes implements Component {
     private JButton pageButton;
 
     private JButton allAuthors;
+    private JLabel loggedUserLabel;
 
     private Dashboard() {
-        allBooksButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                navigateTo(Routes.SCREENS.Books);
-            }
-        });
-
-        allMembersButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                navigateTo(SCREENS.Members);
-            }
-        });
-        logoutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                navigateTo(SCREENS.Login);
-            }
-        });
+        allBooksButton.addActionListener(e -> navigateTo(Routes.SCREENS.Books));
+        allMembersButton.addActionListener(e -> navigateTo(SCREENS.Members));
+        logoutButton.addActionListener(e -> navigateTo(SCREENS.Login));
         allAuthors.addActionListener(e -> navigateTo(SCREENS.Authors));
         CheckoutBookButton.addActionListener(e -> navigateTo(SCREENS.CheckoutBook));
     }
 
     @Override
     public JPanel getMainPanel() {
+        User user = SystemController.loggedInUser;
+        if(user != null){
+            loggedUserLabel.setText("Hi, " + user.getFirstName());
+        }
         return contentPanel;
     }
 
