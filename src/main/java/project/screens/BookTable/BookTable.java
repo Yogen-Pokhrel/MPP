@@ -8,6 +8,8 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 import project.business.Book;
+import project.business.SystemController;
+import project.dataaccess.Auth;
 import project.dataaccess.DataAccess;
 import project.dataaccess.DataAccessFacade;
 import project.screens.BookScreen;
@@ -27,7 +29,9 @@ public class BookTable extends JTable {
         columnModel.getColumn(3).setPreferredWidth(10);
         columnModel.getColumn(4).setPreferredWidth(150);
 
-        columnModel.getColumn(5).setCellRenderer(new ButtonRenderer());
+        if (SystemController.currentAuth != Auth.LIBRARIAN) {
+            columnModel.getColumn(4).setCellRenderer(new ButtonRenderer());
+        }
 
         addMouseListener(new java.awt.event.MouseAdapter() {
             @Override

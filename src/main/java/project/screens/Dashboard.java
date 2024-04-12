@@ -73,7 +73,7 @@ public class Dashboard extends Routes implements Component {
     }
 
     public JButton[] getAsideButtons() {
-        if (SystemController.currentAuth != Auth.LIBRARIAN) {
+        if (SystemController.currentAuth == Auth.ADMIN) {
             checkoutBooksButton.setVisible(false);
         }
         return new JButton[] { allBooksButton, allMembersButton, checkoutBooksButton, allAuthors };

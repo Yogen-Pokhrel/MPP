@@ -71,17 +71,21 @@ public class AddBookScreen extends Routes implements Component{
                     authors.add((Author) item);
                 }
                 Book book = new Book(
-                        isbnNumTextField.getText(),
-                        titleTextField.getText(),
+                        ValidationUtils.formatISBN(isbnNumTextField.getText().trim()),
+                        titleTextField.getText().trim(),
                         borrowTime.getValue(),
                         authors
                 );
                 SystemController systemController = new SystemController();
                 systemController.addNewBook(book);
+                DialogUtils.showSuccessMessage("Book "+ titleTextField.getText().trim() + " created successfully!");
+                navigateTo(SCREENS.Books);
             }
         });
         addAuthorButton.addActionListener(e -> navigateTo(SCREENS.AddAuthor));
     }
+
+
 
     @Override
     public JPanel getMainPanel() {

@@ -4,6 +4,7 @@ import project.business.Author;
 import project.business.Book;
 import project.business.BookCopy;
 import project.business.SystemController;
+import project.dataaccess.Auth;
 import project.screens.BookTable.BookTable;
 
 import javax.swing.*;
@@ -54,7 +55,11 @@ public class BookScreen extends Routes implements Component {
     }
 
     public void paintTableData() {
-        String[] columnNames = { "ISBN", "Book Name", "Copies", "Available", "Author Name", "Action", };
+        String[] columnNames = new String[] { "ISBN", "Book Name", "Copies", "Author Name" };
+        if (SystemController.currentAuth != Auth.LIBRARIAN) {
+            columnNames = new String[] { "ISBN", "Book Name", "Copies", "Author Name", "Action" };
+        }
+
         SystemController controller = new SystemController();
         HashMap<String, Book> books = controller.getAllBooks();
         Object[][] data = new Object[books.size()][];
