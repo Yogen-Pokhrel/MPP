@@ -24,9 +24,10 @@ public class BookTable extends JTable {
         columnModel.getColumn(0).setPreferredWidth(30);
         columnModel.getColumn(1).setPreferredWidth(150);
         columnModel.getColumn(2).setPreferredWidth(10);
-        columnModel.getColumn(3).setPreferredWidth(150);
+        columnModel.getColumn(3).setPreferredWidth(10);
+        columnModel.getColumn(4).setPreferredWidth(150);
 
-        columnModel.getColumn(4).setCellRenderer(new ButtonRenderer());
+        columnModel.getColumn(5).setCellRenderer(new ButtonRenderer());
 
         addMouseListener(new java.awt.event.MouseAdapter() {
             @Override

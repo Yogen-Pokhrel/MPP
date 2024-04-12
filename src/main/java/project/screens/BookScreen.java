@@ -2,6 +2,7 @@ package project.screens;
 
 import project.business.Author;
 import project.business.Book;
+import project.business.BookCopy;
 import project.business.SystemController;
 import project.screens.BookTable.BookTable;
 
@@ -53,7 +54,7 @@ public class BookScreen extends Routes implements Component {
     }
 
     public void paintTableData() {
-        String[] columnNames = { "ISBN", "Book Name", "Copies", "Author Name", "Action", };
+        String[] columnNames = { "ISBN", "Book Name", "Copies", "Available", "Author Name", "Action", };
         SystemController controller = new SystemController();
         HashMap<String, Book> books = controller.getAllBooks();
         Object[][] data = new Object[books.size()][];
@@ -69,8 +70,13 @@ public class BookScreen extends Routes implements Component {
                 Author author = authors.get(authors.size() - 1);
                 authorNames.append(author.getFirstName()).append(" ").append(author.getLastName());
             }
-
-            data[index++] = (new Object[] { book.getIsbn(), book.getTitle(), book.getNumCopies(),
+            int availableCopies = 0;
+            for(BookCopy bookCopy: book.getCopies()){
+                if(bookCopy.isAvailable()){
+                    availableCopies++;
+                }
+            }
+            data[index++] = (new Object[] { book.getIsbn(), book.getTitle(), book.getNumCopies(), availableCopies,
                     authorNames.toString(), book });
         }
 

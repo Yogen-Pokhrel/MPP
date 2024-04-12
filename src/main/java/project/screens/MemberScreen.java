@@ -1,10 +1,14 @@
 package project.screens;
 
 import project.business.Author;
+import project.business.Book;
 import project.business.LibraryMember;
 import project.business.SystemController;
+import project.dataaccess.DataAccess;
+import project.dataaccess.DataAccessFacade;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.HashMap;
 
@@ -31,17 +35,18 @@ public class MemberScreen extends Routes implements Component{
     }
 
     void paintTableData(){
-        String[] columnNames = { "ID", "Name", "Phone", "Address" };
+        String[] columnNames = { "ID", "Name", "Phone", "Address", "Action" };
         SystemController controller = new SystemController();
         HashMap<String, LibraryMember> members = controller.getAllLibraryMembers();
 
         Object[][] data = new Object[members.size()][];
         int index = 0;
         for(LibraryMember member: members.values()){
-            data[index++] =(new Object[]{member.getMemberId(),member.getFirstName() + " " + member.getLastName(), member.getTelephone(), member.getAddress()});
+            data[index++] =(new Object[]{member.getMemberId(),member.getFirstName() + " " + member.getLastName(), member.getTelephone(), member.getAddress(), "View Checkout Record"});
         }
 
-        dataTable = new JTable(data, columnNames);
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        dataTable.setModel(model);
         dataTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
     }
 
@@ -65,8 +70,24 @@ public class MemberScreen extends Routes implements Component{
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+        dataTable = new JTable();
+        dataTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = dataTable.rowAtPoint(evt.getPoint());
+                int col = dataTable.columnAtPoint(evt.getPoint());
+                if (row >= 0 && col == 4) {
+                    String memberId = (String) dataTable.getValueAt(row, 0);
+                    displayCheckoutBooks(memberId);
+                }
+            }
+        });
         paintTableData();
         UIDefaults defaults = UIManager.getLookAndFeelDefaults();
         defaults.putIfAbsent("Table.alternateRowColor", Color.LIGHT_GRAY);
+    }
+
+    void displayCheckoutBooks(String memberId){
+
     }
 }

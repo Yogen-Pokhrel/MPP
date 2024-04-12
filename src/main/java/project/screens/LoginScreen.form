@@ -45,7 +45,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="51f8" binding="rightSidebarContainerInner" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="51f8" binding="rightSidebarContainerInner" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="20" bottom="0" right="20"/>
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -58,7 +58,7 @@
             <children>
               <component id="2a69d" class="javax.swing.JTextField" binding="username">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="40"/>
                   </grid>
                 </constraints>
@@ -68,7 +68,7 @@
                   <foreground color="-11184811"/>
                   <margin top="2" left="6" bottom="2" right="6"/>
                   <name value="username"/>
-                  <text value="Enter user id"/>
+                  <text value=""/>
                 </properties>
               </component>
               <component id="36183" class="javax.swing.JLabel" binding="loginSidebarTitle">
@@ -78,7 +78,7 @@
                 <properties>
                   <font size="18"/>
                   <foreground color="-11184811"/>
-                  <text value="Welcome home"/>
+                  <text value="Login"/>
                 </properties>
               </component>
               <vspacer id="408be">
@@ -90,7 +90,7 @@
               </vspacer>
               <component id="c9632" class="javax.swing.JButton" binding="loginButton" default-binding="true">
                 <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
                     <minimum-size width="-1" height="40"/>
                   </grid>
                 </constraints>
@@ -108,7 +108,7 @@
               </component>
               <component id="db69c" class="javax.swing.JPasswordField" binding="password">
                 <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="40"/>
                   </grid>
                 </constraints>
@@ -116,17 +116,33 @@
                   <background color="-1"/>
                   <foreground color="-11184811"/>
                   <name value="userPassword"/>
-                  <text value="Enter password"/>
+                  <text value=""/>
                   <toolTipText value="Enter password"/>
                 </properties>
               </component>
               <component id="cbbbb" class="javax.swing.JLabel" binding="errorMessage" custom-create="true">
                 <constraints>
-                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <foreground color="-2738639"/>
                   <text value=""/>
+                </properties>
+              </component>
+              <component id="ed9b5" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="User ID"/>
+                </properties>
+              </component>
+              <component id="40fd8" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Password"/>
                 </properties>
               </component>
             </children>

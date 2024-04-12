@@ -47,7 +47,7 @@
               <foreground color="-11184811"/>
               <margin top="2" left="6" bottom="2" right="6"/>
               <name value="memberId"/>
-              <text value="1001"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="6d5d8" class="javax.swing.JLabel">
@@ -72,7 +72,7 @@
               <foreground color="-11184811"/>
               <margin top="2" left="6" bottom="2" right="6"/>
               <name value="isbn"/>
-              <text value="99-22223"/>
+              <text value=""/>
             </properties>
           </component>
           <vspacer id="170b3">

@@ -16,7 +16,7 @@ public class Main {
             Routes.thread.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             Routes.thread.init();
-            Routes.thread.setSize(900,800);
+            Routes.thread.setSize(1200,800);
             Routes.thread.setResizable(false);
             centerFrameOnDesktop(Routes.thread);
             Routes.thread.setVisible(true);
