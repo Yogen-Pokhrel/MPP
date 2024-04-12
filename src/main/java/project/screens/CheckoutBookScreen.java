@@ -2,6 +2,7 @@ package project.screens;
 
 import project.business.*;
 import project.project.utils.validation.DialogUtils;
+import project.project.utils.validation.ValidationUtils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -19,16 +20,31 @@ public class CheckoutBookScreen extends Routes implements Component {
     private JTextField isbn;
     private JTable dataTable;
     private JScrollPane dataTableWrapper;
+    private JLabel isbnLabel;
+    private JLabel memberLabel;
+    private StringBuilder validationMessage;
+
 
     public CheckoutBookScreen() {
+        validationMessage= new StringBuilder();
+
         submitButton.addActionListener(e -> {
+            validationMessage.setLength(0);
+            validateInput();
+            if(!validationMessage.isEmpty()){
+                DialogUtils.showValidationMessage(validationMessage.toString());
+                return;
+            }
+
             SystemController controller = new SystemController();
-             String memberId = this.memberId.getText().trim();
-             String isbn = this.isbn.getText().trim();
+            String memberId = this.memberId.getText().trim();
+            String isbn = ValidationUtils.formatISBN(this.isbn.getText().trim());
+//            String isbn = this.isbn.getText().trim();
             LibraryMember libraryMember = null;
             Book book = null;
 
-            //TODO: Add validation here for memberId and ISBN
+
+
 
              try{
                  libraryMember = controller.getMemberByID(memberId);
@@ -109,5 +125,15 @@ public class CheckoutBookScreen extends Routes implements Component {
         dataTable = new JTable();
         UIDefaults defaults = UIManager.getLookAndFeelDefaults();
         defaults.putIfAbsent("Table.alternateRowColor", Color.LIGHT_GRAY);
+    }
+
+    void  validateInput(){
+        validateEmptyFields();
+        ValidationUtils.validateISBN(isbn, isbnLabel, validationMessage);
+    }
+
+    void validateEmptyFields(){
+        ValidationUtils.validateField(memberId, memberLabel, validationMessage);
+        ValidationUtils.validateField(isbn, isbnLabel, validationMessage);
     }
 }
