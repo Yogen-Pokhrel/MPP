@@ -9,7 +9,7 @@ public class CheckoutEntry {
 
     private LocalDate lastRenewedDate;
 
-    CheckoutEntry(Book book){
+    public CheckoutEntry(Book book){
         BookCopy copy = book.getNextAvailableCopy();
         if(copy != null){
             copy.changeAvailability();

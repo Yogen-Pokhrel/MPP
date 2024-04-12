@@ -57,6 +57,27 @@ public class SystemController implements ControllerInterface {
 		DataAccess da = new DataAccessFacade();
 		return da.readMemberMap();
 	}
+
+	public LibraryMember getMemberByID(String memberId) throws NullPointerException{
+		DataAccess da = new DataAccessFacade();
+		HashMap<String, LibraryMember> allMembers = da.readMemberMap();
+		LibraryMember member = allMembers.get(memberId);
+		if(member == null){
+			throw new NullPointerException("No member found with provided id");
+		}
+		return member;
+	}
+
+
+	public Book getBookByISBN(String isbn) throws NullPointerException{
+		DataAccess da = new DataAccessFacade();
+		HashMap<String, Book> allMembers = da.readBooksMap();
+		Book book = allMembers.get(isbn);
+		if(book == null){
+			throw new NullPointerException("No book found with provided ISBN");
+		}
+		return book;
+	}
 	
 	
 }

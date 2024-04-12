@@ -14,4 +14,5 @@ public class LibrarySystemException extends Exception implements Serializable {
 	public LibrarySystemException(Throwable t) {
 		super(t);
 	}
+
 }
