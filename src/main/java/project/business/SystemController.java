@@ -11,7 +11,7 @@ import project.dataaccess.DataAccessFacade;
 import project.dataaccess.User;
 
 public class SystemController implements ControllerInterface {
-	public static Auth currentAuth = Auth.LIBRARIAN;
+	public static Auth currentAuth = null;
 	public static User loggedInUser = null;
 	
 	public void login(String id, String password) throws LoginException {
