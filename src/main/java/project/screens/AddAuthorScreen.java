@@ -99,31 +99,18 @@ public class AddAuthorScreen extends Routes implements Component {
     }
     void  validateInput(){
         validateEmptyFields();
-        appendMsg(ValidationUtils.validatePhoneNumber(phoneNumTextField, phoneNumLabel));
-        validateZip();
+        ValidationUtils.validatePhoneNumber(phoneNumTextField, phoneNumLabel, validationMessage);
+        ValidationUtils.validateZipCode(zipTextField, zipLabel, validationMessage);
     }
 
     void validateEmptyFields(){
-        appendMsg(ValidationUtils.validateField(fNameTextField, fNameLabel));
-        appendMsg(ValidationUtils.validateField(lNameTextField, lNameLabel));
-        appendMsg(ValidationUtils.validateField(phoneNumTextField, phoneNumLabel));
-        appendMsg(ValidationUtils.validateField(bioTextField, bioLabel));
-        appendMsg(ValidationUtils.validateField(streetTextField, streetLabel));
-        appendMsg(ValidationUtils.validateField(cityTextField, cityLabel));
-        appendMsg(ValidationUtils.validateField(stateTextField, stateLabel));
-        appendMsg(ValidationUtils.validateField(zipTextField, zipLabel));
-    }
-
-    void appendMsg(String msg){
-        if(msg!= null){
-            validationMessage.append(msg);
-        }
-    }
-
-    void validateZip(){
-        if(zipTextField.getText().isEmpty()) return;
-        if(ValidationUtils.isValidZipCode(zipTextField.getText())) return;
-        validationMessage.append("Enter a valid zip code\n");
-        zipTextField.requestFocusInWindow();
+        ValidationUtils.validateField(fNameTextField, fNameLabel, validationMessage);
+        ValidationUtils.validateField(lNameTextField, lNameLabel, validationMessage);
+        ValidationUtils.validateField(phoneNumTextField, phoneNumLabel, validationMessage);
+        ValidationUtils.validateField(bioTextField, bioLabel, validationMessage);
+        ValidationUtils.validateField(streetTextField, streetLabel, validationMessage);
+        ValidationUtils.validateField(cityTextField, cityLabel, validationMessage);
+        ValidationUtils.validateField(stateTextField, stateLabel, validationMessage);
+        ValidationUtils.validateField(zipTextField, zipLabel, validationMessage);
     }
 }
