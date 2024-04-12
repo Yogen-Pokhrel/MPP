@@ -3,6 +3,7 @@ package project.screens;
 import project.business.Address;
 import project.business.Book;
 import project.business.LibraryMember;
+import project.business.SystemController;
 import project.dataaccess.DataAccess;
 import project.dataaccess.DataAccessFacade;
 import project.project.utils.validation.DialogUtils;
@@ -60,8 +61,8 @@ public class AddMember extends Routes implements Component{
                     phone.getText(),
                     new Address(street.getText(), city.getText(), state.getText(), zipCode.getText())
             );
-            DataAccess da = new DataAccessFacade();
-            da.saveNewMember(libraryMember);
+            SystemController systemController = new SystemController();
+            systemController.addNewMember(libraryMember);
         });
     }
 

@@ -76,8 +76,8 @@ public class AddBookScreen extends Routes implements Component{
                         borrowTime.getValue(),
                         authors
                 );
-                DataAccess da = new DataAccessFacade();
-                da.saveNewBook(book);
+                SystemController systemController = new SystemController();
+                systemController.addNewBook(book);
             }
         });
         addAuthorButton.addActionListener(e -> navigateTo(SCREENS.AddAuthor));
