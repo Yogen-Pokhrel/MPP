@@ -59,4 +59,17 @@ public class ValidationUtils {
         textField.requestFocusInWindow();
         stringBuilder.append("Enter a valid " + label.getText().trim() + "\n");
     }
+
+    public static String formatISBN(String input) {
+        if (input.matches("\\d{2}-\\d{5}")) {
+            // Input is already in the correct format
+            return input;
+        } else if (input.matches("\\d{7}")) {
+            // Input is in the second format, convert it to the first format
+            return input.substring(0, 2) + "-" + input.substring(2);
+        } else {
+            // Input has invalid format, handle accordingly
+            return "Invalid input format";
+        }
+    }
 }

@@ -20,7 +20,6 @@ public class AddMember extends Routes implements Component{
     private JTextField fName;
     private JTextField lName;
     private JTextField phone;
-    private JTextField bio;
     private JTextField street;
     private JTextField city;
     private JTextField state;
@@ -28,7 +27,6 @@ public class AddMember extends Routes implements Component{
     private JLabel fNameLabel;
     private JLabel lNameLabel;
     private JLabel phoneNumberLabel;
-    private JLabel bioLabel;
     private JLabel addressLabel;
     private JLabel streetLabel;
     private JLabel cityLabel;
@@ -56,13 +54,15 @@ public class AddMember extends Routes implements Component{
             }
             LibraryMember libraryMember = new LibraryMember(
                     ("M-" + java.lang.System.currentTimeMillis()),
-                    fName.getText(),
-                    lName.getText(),
-                    phone.getText(),
-                    new Address(street.getText(), city.getText(), state.getText(), zipCode.getText())
+                    fName.getText().trim(),
+                    lName.getText().trim(),
+                    phone.getText().trim(),
+                    new Address(street.getText().trim(), city.getText().trim(), state.getText().trim(), zipCode.getText().trim())
             );
             SystemController systemController = new SystemController();
             systemController.addNewMember(libraryMember);
+            DialogUtils.showSuccessMessage("Member "+ fName.getText().trim() +" "+ lName.getText().trim() + " created successfully!");
+            navigateTo(SCREENS.Members);
         });
     }
 
@@ -106,7 +106,6 @@ public class AddMember extends Routes implements Component{
         ValidationUtils.validateField(fName, fNameLabel, validationMessage);
         ValidationUtils.validateField(lName, lNameLabel, validationMessage);
         ValidationUtils.validateField(phone, phoneNumberLabel, validationMessage);
-        ValidationUtils.validateField(bio, bioLabel, validationMessage);
         ValidationUtils.validateField(street, streetLabel, validationMessage);
         ValidationUtils.validateField(city, cityLabel, validationMessage);
         ValidationUtils.validateField(state, stateLabel, validationMessage);

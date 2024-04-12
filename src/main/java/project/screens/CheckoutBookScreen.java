@@ -23,8 +23,8 @@ public class CheckoutBookScreen extends Routes implements Component {
     public CheckoutBookScreen() {
         submitButton.addActionListener(e -> {
             SystemController controller = new SystemController();
-             String memberId = this.memberId.getText();
-             String isbn = this.isbn.getText();
+             String memberId = this.memberId.getText().trim();
+             String isbn = this.isbn.getText().trim();
             LibraryMember libraryMember = null;
             Book book = null;
 
