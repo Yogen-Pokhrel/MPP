@@ -63,6 +63,8 @@ public class AddMember extends Routes implements Component{
             );
             SystemController systemController = new SystemController();
             systemController.addNewMember(libraryMember);
+            DialogUtils.showSuccessMessage("Member "+ fName.getText().trim() +" "+ lName.getText().trim() + " created successfully!");
+            navigateTo(SCREENS.Members);
         });
     }
 

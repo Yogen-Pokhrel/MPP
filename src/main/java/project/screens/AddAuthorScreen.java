@@ -65,6 +65,8 @@ public class AddAuthorScreen extends Routes implements Component {
                 );
                 SystemController systemController = new SystemController();
                 systemController.addNewAuthor(author);
+                DialogUtils.showSuccessMessage("Author "+ fNameTextField.getText().trim() +" "+ lNameTextField.getText().trim() + " created successfully!");
+                navigateTo(SCREENS.Authors);
             }
         });
     }
