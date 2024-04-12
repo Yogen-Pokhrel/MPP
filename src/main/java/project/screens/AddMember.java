@@ -20,7 +20,6 @@ public class AddMember extends Routes implements Component{
     private JTextField fName;
     private JTextField lName;
     private JTextField phone;
-    private JTextField bio;
     private JTextField street;
     private JTextField city;
     private JTextField state;
@@ -28,7 +27,6 @@ public class AddMember extends Routes implements Component{
     private JLabel fNameLabel;
     private JLabel lNameLabel;
     private JLabel phoneNumberLabel;
-    private JLabel bioLabel;
     private JLabel addressLabel;
     private JLabel streetLabel;
     private JLabel cityLabel;
@@ -108,7 +106,6 @@ public class AddMember extends Routes implements Component{
         ValidationUtils.validateField(fName, fNameLabel, validationMessage);
         ValidationUtils.validateField(lName, lNameLabel, validationMessage);
         ValidationUtils.validateField(phone, phoneNumberLabel, validationMessage);
-        ValidationUtils.validateField(bio, bioLabel, validationMessage);
         ValidationUtils.validateField(street, streetLabel, validationMessage);
         ValidationUtils.validateField(city, cityLabel, validationMessage);
         ValidationUtils.validateField(state, stateLabel, validationMessage);
