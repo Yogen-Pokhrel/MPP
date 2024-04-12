@@ -31,14 +31,14 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="81f5f" class="javax.swing.JLabel">
+          <component id="81f5f" class="javax.swing.JLabel" binding="fNameLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
               <foreground color="-11184811"/>
-              <text value="First Name"/>
+              <text value=" First Name"/>
             </properties>
           </component>
           <component id="4b119" class="javax.swing.JTextField" binding="fName">
@@ -56,14 +56,14 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="8d190" class="javax.swing.JLabel">
+          <component id="8d190" class="javax.swing.JLabel" binding="lNameLabel">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
               <foreground color="-11184811"/>
-              <text value="Last Name"/>
+              <text value=" Last Name"/>
             </properties>
           </component>
           <component id="bd12e" class="javax.swing.JTextField" binding="lName">
@@ -81,14 +81,14 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="33d74" class="javax.swing.JLabel">
+          <component id="33d74" class="javax.swing.JLabel" binding="phoneNumberLabel">
             <constraints>
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
               <foreground color="-11184811"/>
-              <text value="Phone Number"/>
+              <text value=" Phone Number"/>
             </properties>
           </component>
           <component id="21120" class="javax.swing.JTextField" binding="phone">
@@ -106,14 +106,14 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="4cef2" class="javax.swing.JLabel">
+          <component id="4cef2" class="javax.swing.JLabel" binding="bioLabel">
             <constraints>
               <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
               <foreground color="-11184811"/>
-              <text value="Bio"/>
+              <text value=" Bio"/>
             </properties>
           </component>
           <component id="e7f49" class="javax.swing.JTextField" binding="bio">
@@ -131,24 +131,24 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="4dbd3" class="javax.swing.JLabel">
+          <component id="4dbd3" class="javax.swing.JLabel" binding="addressLabel">
             <constraints>
               <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="16" style="1"/>
               <foreground color="-11184811"/>
-              <text value="Address"/>
+              <text value=" Address"/>
             </properties>
           </component>
-          <component id="a508d" class="javax.swing.JLabel">
+          <component id="a508d" class="javax.swing.JLabel" binding="streetLabel">
             <constraints>
               <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
               <foreground color="-11184811"/>
-              <text value="Street"/>
+              <text value=" Street"/>
             </properties>
           </component>
           <component id="1a4fc" class="javax.swing.JTextField" binding="street">
@@ -166,14 +166,14 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="cf3b5" class="javax.swing.JLabel">
+          <component id="cf3b5" class="javax.swing.JLabel" binding="cityLabel">
             <constraints>
               <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
               <foreground color="-11184811"/>
-              <text value="City"/>
+              <text value=" City"/>
             </properties>
           </component>
           <component id="da7d8" class="javax.swing.JTextField" binding="city">
@@ -191,24 +191,24 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="4ea8b" class="javax.swing.JLabel">
+          <component id="4ea8b" class="javax.swing.JLabel" binding="stateLabel">
             <constraints>
               <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
               <foreground color="-11184811"/>
-              <text value="State"/>
+              <text value=" State"/>
             </properties>
           </component>
-          <component id="18796" class="javax.swing.JLabel">
+          <component id="18796" class="javax.swing.JLabel" binding="zipCodeLabel">
             <constraints>
               <grid row="15" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
               <foreground color="-11184811"/>
-              <text value="Zip Code"/>
+              <text value=" Zip Code"/>
             </properties>
           </component>
           <component id="74eef" class="javax.swing.JTextField" binding="zipCode">
