@@ -14,6 +14,13 @@ public class Person implements Serializable {
 		telephone = t;
 		address = a;
 	}
+
+	public Person(String f, String l, String t) {
+		firstName = f;
+		lastName = l;
+		telephone = t;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

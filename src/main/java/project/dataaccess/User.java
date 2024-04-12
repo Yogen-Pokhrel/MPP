@@ -1,8 +1,10 @@
 package project.dataaccess;
 
+import project.business.Person;
+
 import java.io.Serializable;
 
-final public class User implements Serializable {
+final public class User extends Person implements Serializable {
 	
 	private static final long serialVersionUID = 5147265048973262104L;
 
@@ -10,7 +12,8 @@ final public class User implements Serializable {
 	
 	private String password;
 	private Auth authorization;
-	User(String id, String pass, Auth  auth) {
+	User(String id, String pass, Auth  auth, String fName, String lName, String phone) {
+		super(fName, lName, phone);
 		this.id = id;
 		this.password = pass;
 		this.authorization = auth;
