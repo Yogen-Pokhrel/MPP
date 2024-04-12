@@ -79,14 +79,10 @@ public class SystemController implements ControllerInterface {
 		return book;
 	}
 
-	public CheckoutRecord getCheckoutRecordByMemberId(String memberId) throws NullPointerException{
+	public CheckoutRecord getCheckoutRecordByMemberId(String memberId){
 		DataAccess da = new DataAccessFacade();
 		HashMap<String, CheckoutRecord> allCheckoutRecords = da.readCheckoutRecordMap();
-		CheckoutRecord checkoutRecord = allCheckoutRecords.get(memberId);
-		if(checkoutRecord == null){
-			throw new NullPointerException("No checkout record data found for the given user");
-		}
-		return checkoutRecord;
+		return allCheckoutRecords.get(memberId);
 	}
 
 	public void addNewBook(Book book){

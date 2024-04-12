@@ -1,20 +1,18 @@
 package project.screens;
 
 import project.business.*;
-import project.dataaccess.DataAccess;
-import project.dataaccess.DataAccessFacade;
 import project.project.utils.validation.DialogUtils;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.HashMap;
 
 public class CheckoutBookScreen extends Routes implements Component {
 
     private static CheckoutBookScreen instance;
     private JPanel contentPane;
 
-    private JPanel inner;
+    private JPanel innerPanel;
     private JButton submitButton;
     private JButton clearButton;
     private JTextField memberId;
@@ -29,6 +27,9 @@ public class CheckoutBookScreen extends Routes implements Component {
              String isbn = this.isbn.getText();
             LibraryMember libraryMember = null;
             Book book = null;
+
+            //TODO: Add validation here for memberId and ISBN
+
              try{
                  libraryMember = controller.getMemberByID(memberId);
                  book = controller.getBookByISBN(isbn);
@@ -36,25 +37,29 @@ public class CheckoutBookScreen extends Routes implements Component {
                  DialogUtils.showValidationMessage(nullPointerException.getMessage());
                  return;
              }
-             BookCopy bookCopy = null;
-             try{
-                 bookCopy = book.getNextAvailableCopy();
-             }catch (NullPointerException nullPointerException){
-                 DialogUtils.showValidationMessage(nullPointerException.getMessage());
+             BookCopy bookCopy = book.getNextAvailableCopy();
+             if(bookCopy == null){
+                 DialogUtils.showValidationMessage("No copies of this book is available");
                  return;
              }
 
-            CheckoutRecord checkoutRecord = new CheckoutRecord(
-                    libraryMember,
-                    new CheckoutEntry(book, bookCopy)
-            );
+            CheckoutRecord checkoutRecord = controller.getCheckoutRecordByMemberId(memberId);
+             if(checkoutRecord == null){
+                 checkoutRecord = new CheckoutRecord(
+                         libraryMember,
+                         new CheckoutEntry(book, bookCopy)
+                 );
+             }else{
+                 checkoutRecord.getCheckoutEntry().add(new CheckoutEntry(book, bookCopy));
+             }
 
-            SystemController systemController = new SystemController();
-            systemController.addNewCheckoutRecord(checkoutRecord);
-//            paintTableData(memberId);
+             controller.addNewCheckoutRecord(checkoutRecord);
+             controller.addNewBook(book);
+            paintTableData(memberId);
         });
         clearButton.addActionListener(e -> {
-
+            memberId.setText("");
+            isbn.setText("");
         });
     }
 
@@ -81,15 +86,12 @@ public class CheckoutBookScreen extends Routes implements Component {
         refresh();
     }
 
+
     void paintTableData(String memberId){
         String[] columnNames = { "Copy Num", "ISBN", "Book Name", "Checkout Date", "Due Date" };
         SystemController controller = new SystemController();
-        CheckoutRecord checkoutRecord;
-        try{
-             checkoutRecord = controller.getCheckoutRecordByMemberId(memberId);
-        }catch (NullPointerException nullPointerException){
-            return;
-        }
+        CheckoutRecord checkoutRecord = controller.getCheckoutRecordByMemberId(memberId);
+        if(checkoutRecord == null) return;
 
         Object[][] data = new Object[checkoutRecord.getCheckoutEntry().size()][];
         int index = 0;
@@ -97,15 +99,14 @@ public class CheckoutBookScreen extends Routes implements Component {
             data[index++] =(new Object[]{checkoutEntry.getBookCopy().getCopyNum(), checkoutEntry.getBook().getIsbn(), checkoutEntry.getBook().getTitle(), checkoutEntry.getCheckoutDate(), checkoutEntry.getDueDate(), });
         }
 
-        dataTable = new JTable(data, columnNames);
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        dataTable.setModel(model);
         dataTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
-//        createUIComponents();
     }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
         dataTable = new JTable();
-        paintTableData("1001");
         UIDefaults defaults = UIManager.getLookAndFeelDefaults();
         defaults.putIfAbsent("Table.alternateRowColor", Color.LIGHT_GRAY);
     }
