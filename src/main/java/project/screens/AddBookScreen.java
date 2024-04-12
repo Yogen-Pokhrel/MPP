@@ -71,8 +71,8 @@ public class AddBookScreen extends Routes implements Component{
                     authors.add((Author) item);
                 }
                 Book book = new Book(
-                        isbnNumTextField.getText(),
-                        titleTextField.getText(),
+                        isbnNumTextField.getText().trim(),
+                        titleTextField.getText().trim(),
                         borrowTime.getValue(),
                         authors
                 );

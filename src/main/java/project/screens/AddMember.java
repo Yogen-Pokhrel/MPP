@@ -56,10 +56,10 @@ public class AddMember extends Routes implements Component{
             }
             LibraryMember libraryMember = new LibraryMember(
                     ("M-" + java.lang.System.currentTimeMillis()),
-                    fName.getText(),
-                    lName.getText(),
-                    phone.getText(),
-                    new Address(street.getText(), city.getText(), state.getText(), zipCode.getText())
+                    fName.getText().trim(),
+                    lName.getText().trim(),
+                    phone.getText().trim(),
+                    new Address(street.getText().trim(), city.getText().trim(), state.getText().trim(), zipCode.getText().trim())
             );
             SystemController systemController = new SystemController();
             systemController.addNewMember(libraryMember);

@@ -52,16 +52,16 @@ public class AddAuthorScreen extends Routes implements Component {
                     return;
                 }
                 Author author = new Author(
-                      fNameTextField.getText(),
-                      lNameTextField.getText(),
-                        phoneNumTextField.getText(),
+                      fNameTextField.getText().trim(),
+                      lNameTextField.getText().trim(),
+                        phoneNumTextField.getText().trim(),
                         new Address(
-                                streetTextField.getText(),
-                                cityTextField.getText(),
-                                stateTextField.getText(),
-                                zipTextField.getText()
+                                streetTextField.getText().trim(),
+                                cityTextField.getText().trim(),
+                                stateTextField.getText().trim(),
+                                zipTextField.getText().trim()
                         ),
-                        bioTextField.getText()
+                        bioTextField.getText().trim()
                 );
                 SystemController systemController = new SystemController();
                 systemController.addNewAuthor(author);
