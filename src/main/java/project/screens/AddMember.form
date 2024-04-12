@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="project.screens.AddMember">
-  <grid id="cbd77" binding="contentPane" layout-manager="BorderLayout" hgap="1" vgap="1">
+  <grid id="cbd77" binding="contentPane" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="48" y="54" width="614" height="619"/>
+      <xy x="48" y="54" width="615" height="647"/>
     </constraints>
     <properties>
       <background color="-1"/>
@@ -12,9 +13,14 @@
     </properties>
     <border type="none" title=""/>
     <children>
-      <grid id="a75ca" binding="inner" layout-manager="GridLayoutManager" row-count="19" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="17b0e" binding="inner" layout-manager="GridLayoutManager" row-count="18" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints border-constraint="Center"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="600"/>
+            <preferred-size width="-1" height="600"/>
+          </grid>
+        </constraints>
         <properties>
           <background color="-1"/>
           <doubleBuffered value="true"/>
@@ -25,19 +31,9 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="1bad0" class="javax.swing.JLabel">
+          <component id="81f5f" class="javax.swing.JLabel">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font size="18"/>
-              <foreground color="-11184811"/>
-              <text value="Add Member"/>
-            </properties>
-          </component>
-          <component id="37528" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
@@ -45,9 +41,9 @@
               <text value="First Name"/>
             </properties>
           </component>
-          <component id="c1077" class="javax.swing.JTextField">
+          <component id="4b119" class="javax.swing.JTextField">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="40"/>
               </grid>
             </constraints>
@@ -55,14 +51,14 @@
               <background color="-1"/>
               <caretColor color="-11184811"/>
               <foreground color="-11184811"/>
-              <margin top="2" left="9" bottom="2" right="6"/>
+              <margin top="2" left="6" bottom="2" right="6"/>
               <name value="username"/>
               <text value=""/>
             </properties>
           </component>
-          <component id="24337" class="javax.swing.JLabel">
+          <component id="8d190" class="javax.swing.JLabel">
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
@@ -70,9 +66,9 @@
               <text value="Last Name"/>
             </properties>
           </component>
-          <component id="85213" class="javax.swing.JTextField">
+          <component id="bd12e" class="javax.swing.JTextField">
             <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="40"/>
               </grid>
             </constraints>
@@ -80,19 +76,14 @@
               <background color="-1"/>
               <caretColor color="-11184811"/>
               <foreground color="-11184811"/>
-              <margin top="2" left="9" bottom="2" right="6"/>
+              <margin top="2" left="6" bottom="2" right="6"/>
               <name value="username"/>
               <text value=""/>
             </properties>
           </component>
-          <vspacer id="ce2a1">
+          <component id="33d74" class="javax.swing.JLabel">
             <constraints>
-              <grid row="18" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </vspacer>
-          <component id="62f27" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
@@ -100,9 +91,9 @@
               <text value="Phone Number"/>
             </properties>
           </component>
-          <component id="de43b" class="javax.swing.JTextField">
+          <component id="21120" class="javax.swing.JTextField">
             <constraints>
-              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="40"/>
               </grid>
             </constraints>
@@ -110,14 +101,14 @@
               <background color="-1"/>
               <caretColor color="-11184811"/>
               <foreground color="-11184811"/>
-              <margin top="2" left="9" bottom="2" right="6"/>
+              <margin top="2" left="6" bottom="2" right="6"/>
               <name value="username"/>
               <text value=""/>
             </properties>
           </component>
-          <component id="3574b" class="javax.swing.JLabel">
+          <component id="4cef2" class="javax.swing.JLabel">
             <constraints>
-              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
@@ -125,9 +116,9 @@
               <text value="Bio"/>
             </properties>
           </component>
-          <component id="7a85c" class="javax.swing.JTextField">
+          <component id="e7f49" class="javax.swing.JTextField">
             <constraints>
-              <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="40"/>
               </grid>
             </constraints>
@@ -135,14 +126,14 @@
               <background color="-1"/>
               <caretColor color="-11184811"/>
               <foreground color="-11184811"/>
-              <margin top="2" left="9" bottom="2" right="6"/>
+              <margin top="2" left="6" bottom="2" right="6"/>
               <name value="username"/>
               <text value=""/>
             </properties>
           </component>
-          <component id="1a935" class="javax.swing.JLabel">
+          <component id="4dbd3" class="javax.swing.JLabel">
             <constraints>
-              <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="16" style="1"/>
@@ -150,9 +141,9 @@
               <text value="Address"/>
             </properties>
           </component>
-          <component id="699c3" class="javax.swing.JLabel">
+          <component id="a508d" class="javax.swing.JLabel">
             <constraints>
-              <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
@@ -160,9 +151,9 @@
               <text value="Street"/>
             </properties>
           </component>
-          <component id="ffad7" class="javax.swing.JTextField">
+          <component id="1a4fc" class="javax.swing.JTextField">
             <constraints>
-              <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="40"/>
               </grid>
             </constraints>
@@ -170,14 +161,14 @@
               <background color="-1"/>
               <caretColor color="-11184811"/>
               <foreground color="-11184811"/>
-              <margin top="2" left="9" bottom="2" right="6"/>
+              <margin top="2" left="6" bottom="2" right="6"/>
               <name value="username"/>
               <text value=""/>
             </properties>
           </component>
-          <component id="f5e4" class="javax.swing.JLabel">
+          <component id="cf3b5" class="javax.swing.JLabel">
             <constraints>
-              <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
@@ -185,9 +176,9 @@
               <text value="City"/>
             </properties>
           </component>
-          <component id="9af1c" class="javax.swing.JTextField">
+          <component id="da7d8" class="javax.swing.JTextField">
             <constraints>
-              <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="40"/>
               </grid>
             </constraints>
@@ -195,14 +186,14 @@
               <background color="-1"/>
               <caretColor color="-11184811"/>
               <foreground color="-11184811"/>
-              <margin top="2" left="9" bottom="2" right="6"/>
+              <margin top="2" left="6" bottom="2" right="6"/>
               <name value="username"/>
               <text value=""/>
             </properties>
           </component>
-          <component id="95267" class="javax.swing.JLabel">
+          <component id="4ea8b" class="javax.swing.JLabel">
             <constraints>
-              <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="13" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
@@ -210,9 +201,9 @@
               <text value="State"/>
             </properties>
           </component>
-          <component id="b9bbd" class="javax.swing.JTextField">
+          <component id="e3304" class="javax.swing.JTextField">
             <constraints>
-              <grid row="15" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="14" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="40"/>
               </grid>
             </constraints>
@@ -220,14 +211,14 @@
               <background color="-1"/>
               <caretColor color="-11184811"/>
               <foreground color="-11184811"/>
-              <margin top="2" left="9" bottom="2" right="6"/>
+              <margin top="2" left="6" bottom="2" right="6"/>
               <name value="username"/>
               <text value=""/>
             </properties>
           </component>
-          <component id="9f6f6" class="javax.swing.JLabel">
+          <component id="18796" class="javax.swing.JLabel">
             <constraints>
-              <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="15" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="14"/>
@@ -235,9 +226,9 @@
               <text value="Zip Code"/>
             </properties>
           </component>
-          <component id="401cd" class="javax.swing.JTextField">
+          <component id="74eef" class="javax.swing.JTextField">
             <constraints>
-              <grid row="17" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="16" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="40"/>
               </grid>
             </constraints>
@@ -245,9 +236,24 @@
               <background color="-1"/>
               <caretColor color="-11184811"/>
               <foreground color="-11184811"/>
-              <margin top="2" left="9" bottom="2" right="6"/>
+              <margin top="2" left="6" bottom="2" right="6"/>
               <name value="username"/>
               <text value=""/>
+            </properties>
+          </component>
+          <component id="1664d" class="javax.swing.JButton" binding="saveButton">
+            <constraints>
+              <grid row="17" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-14076514"/>
+              <borderPainted value="false"/>
+              <focusTraversalPolicyProvider value="false"/>
+              <foreground color="-1"/>
+              <margin top="10" left="10" bottom="10" right="10"/>
+              <name value="saveButton"/>
+              <opaque value="true"/>
+              <text value="Save"/>
             </properties>
           </component>
         </children>

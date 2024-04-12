@@ -27,6 +27,7 @@ public class TestData {
 		td.bookData();
 		td.libraryMemberData();
 		td.userData();
+		td.authorData();
 		DataAccess da = new DataAccessFacade();
 		System.out.println(da.readBooksMap());
 		System.out.println(da.readUserMap());
@@ -44,6 +45,10 @@ public class TestData {
 	
 	public void userData() {
 		DataAccessFacade.loadUserMap(allUsers);
+	}
+
+	public void authorData() {
+		DataAccessFacade.loadAuthorMap(allAuthors);
 	}
 	
 	//create library members

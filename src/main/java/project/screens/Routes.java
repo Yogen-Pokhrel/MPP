@@ -23,7 +23,7 @@ public class Routes extends JFrame {
 
     void init() {
         //other logic can be implemented to redirect the user to the dashboard page if already logged in during application startup
-        navigateTo(SCREENS.Login);
+        navigateTo(SCREENS.Books);
     }
 
     void navigateTo(SCREENS screen) {

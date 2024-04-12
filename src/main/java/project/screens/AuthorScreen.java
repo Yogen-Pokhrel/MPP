@@ -1,7 +1,12 @@
 package project.screens;
 
+import project.business.Author;
+import project.business.Book;
+import project.business.SystemController;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 
 public class AuthorScreen extends Routes implements Component {
     private JPanel contentPane;
@@ -22,11 +27,15 @@ public class AuthorScreen extends Routes implements Component {
     }
 
     void paintTableData(){
-        String[] columnNames = { "ID", "Author Name" };
-        String[][] data = {
-                { "20", "Saurab" },
-                { "30", "Abraham", }
-        };
+        String[] columnNames = { "ID", "Author Name", "Phone", "Address" };
+        SystemController controller = new SystemController();
+        HashMap<String, Author> authors = controller.getAllAuthors();
+
+        Object[][] data = new Object[authors.size()][];
+        int index = 0;
+        for(Author author: authors.values()){
+            data[index++] =(new Object[]{author.getAuthorId(),author.getFirstName() + " " + author.getLastName(), author.getTelephone(), author.getAddress()});
+        }
 
         dataTable = new JTable(data, columnNames);
         dataTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
