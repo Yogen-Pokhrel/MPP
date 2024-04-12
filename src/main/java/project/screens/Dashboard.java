@@ -5,8 +5,6 @@ import project.dataaccess.User;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Dashboard extends Routes implements Component {
     private static Dashboard instance;
@@ -21,7 +19,7 @@ public class Dashboard extends Routes implements Component {
     private JPanel contentPanel;
     private JButton allBooksButton;
     private JButton allMembersButton;
-    private JButton CheckoutBookButton;
+    private JButton checkoutBooksButton;
     private JPanel main;
     private JPanel aside;
     private JPanel mainPanelWrapper;
@@ -41,7 +39,7 @@ public class Dashboard extends Routes implements Component {
         allMembersButton.addActionListener(e -> navigateTo(SCREENS.Members));
         logoutButton.addActionListener(e -> navigateTo(SCREENS.Login));
         allAuthors.addActionListener(e -> navigateTo(SCREENS.Authors));
-        CheckoutBookButton.addActionListener(e -> navigateTo(SCREENS.CheckoutBook));
+        checkoutBooksButton.addActionListener(e -> navigateTo(SCREENS.CheckoutBook));
     }
 
     @Override
@@ -74,7 +72,7 @@ public class Dashboard extends Routes implements Component {
     }
 
     public JButton[] getAsideButtons() {
-        return new JButton[] { allBooksButton, allMembersButton, CheckoutBookButton, allAuthors };
+        return new JButton[] { allBooksButton, allMembersButton, checkoutBooksButton, allAuthors };
     }
 
     public void repaintButtons(SCREENS screen) {
@@ -82,21 +80,12 @@ public class Dashboard extends Routes implements Component {
         JButton activeButton = null;
         switch (screen) {
             case Books:
-                activeButton = allBooksButton;
-                break;
-            case AddBook:
-                activeButton = allBooksButton;
-                break;
+            case AddBook: activeButton = allBooksButton;break;
             case AddMember:
-                activeButton = allMembersButton;
-                break;
-            case Members:
-                activeButton = allMembersButton;
-                break;
+            case Members: activeButton = allMembersButton;break;
             case AddAuthor:
-            case Authors:
-                activeButton = allAuthors;
-                break;
+            case Authors: activeButton = allAuthors;break;
+            case CheckoutBook: activeButton = checkoutBooksButton; break;
         }
         if (activeButton != null) {
             markAsSelected(activeButton);

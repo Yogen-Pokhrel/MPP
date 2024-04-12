@@ -10,7 +10,7 @@ import project.dataaccess.DataAccessFacade;
 import project.dataaccess.User;
 
 public class SystemController implements ControllerInterface {
-	public static Auth currentAuth = null;
+	public static Auth currentAuth = Auth.LIBRARIAN;
 	public static User loggedInUser = null;
 	
 	public void login(String id, String password) throws LoginException {
@@ -56,6 +56,27 @@ public class SystemController implements ControllerInterface {
 	public HashMap<String, LibraryMember> getAllLibraryMembers() {
 		DataAccess da = new DataAccessFacade();
 		return da.readMemberMap();
+	}
+
+	public LibraryMember getMemberByID(String memberId) throws NullPointerException{
+		DataAccess da = new DataAccessFacade();
+		HashMap<String, LibraryMember> allMembers = da.readMemberMap();
+		LibraryMember member = allMembers.get(memberId);
+		if(member == null){
+			throw new NullPointerException("No member found with provided id");
+		}
+		return member;
+	}
+
+
+	public Book getBookByISBN(String isbn) throws NullPointerException{
+		DataAccess da = new DataAccessFacade();
+		HashMap<String, Book> allMembers = da.readBooksMap();
+		Book book = allMembers.get(isbn);
+		if(book == null){
+			throw new NullPointerException("No book found with provided ISBN");
+		}
+		return book;
 	}
 	
 	

@@ -9,10 +9,7 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 
-import project.business.Author;
-import project.business.Book;
-import project.business.BookCopy;
-import project.business.LibraryMember;
+import project.business.*;
 import project.dataaccess.DataAccessFacade.StorageType;
 
 
@@ -46,10 +43,10 @@ public class DataAccessFacade implements DataAccess {
 		saveToStorage(StorageType.AUTHORS, memos);
 	}
 
-	public void saveNewCheckoutRecord(Author author) {
-		HashMap<String, Author> memos = readAuthorMap();
-		String authorId = author.getAuthorId();
-		memos.put(authorId, author);
+	public void saveNewCheckoutRecord(CheckoutRecord checkoutRecord) {
+		HashMap<String, CheckoutRecord> memos = readCheckoutRecordMap();
+		String memberId = checkoutRecord.getLibraryMember().getMemberId();
+		memos.put(memberId, checkoutRecord);
 		saveToStorage(StorageType.AUTHORS, memos);
 	}
 
@@ -82,8 +79,16 @@ public class DataAccessFacade implements DataAccess {
 		return (HashMap<String, Author>) readFromStorage(
 				StorageType.AUTHORS);
 	}
-	
-	
+
+	@SuppressWarnings("unchecked")
+	public HashMap<String, CheckoutRecord> readCheckoutRecordMap() {
+		//Returns a Map with name/value pairs being
+		//   memberId -> LibraryMember
+		return (HashMap<String, CheckoutRecord>) readFromStorage(
+				StorageType.CHECKOUTRECORD);
+	}
+
+
 	@SuppressWarnings("unchecked")
 	public HashMap<String, User> readUserMap() {
 		//Returns a Map with name/value pairs being
