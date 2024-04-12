@@ -27,9 +27,10 @@
               <size top="0" left="20" bottom="0" right="0"/>
             </border>
             <children>
-              <component id="16362" class="javax.swing.JLabel">
+              <component id="16362" class="javax.swing.JLabel" binding="loggedUserLabel">
                 <constraints border-constraint="Center"/>
                 <properties>
+                  <name value="loggedUserLabel"/>
                   <text value="Hi, Yogen"/>
                 </properties>
               </component>
