@@ -18,9 +18,10 @@ public class MemberScreen extends Routes implements Component{
     private MemberScreen() {
     }
     public static MemberScreen getInstance() {
-        if(instance == null){
-            instance = new MemberScreen();
-        }
+//        if(instance == null){
+//            instance = new MemberScreen();
+//        }
+        instance = new MemberScreen();
         return instance;
     }
 

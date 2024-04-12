@@ -2,6 +2,8 @@ package project.screens;
 
 import project.business.*;
 import project.dataaccess.Auth;
+import project.dataaccess.DataAccess;
+import project.dataaccess.DataAccessFacade;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,20 +17,18 @@ public class AddBookScreen extends Routes implements Component{
     private JPanel contentPane;
     private static AddBookScreen instance;
     private JTextField titleTextField;
-    private JLabel addBookLabel;
-    private JLabel titleLabel;
-    private JLabel isbnNumLabel;
     private JTextField isbnNumTextField;
-    private JLabel borrowTimeLabel;
     private JComboBox borrowTimeDropdown;
-    private JLabel authorLabel;
     private JComboBox authorDropdown;
 
-    private JButton addAuthorButton;
     private JList selectedAuthorList;
+    private JLabel titleLabel;
+    private JLabel isbnNumLabel;
+    private JLabel borrowTimeLabel;
+    private JLabel authorLabel;
+    private JButton addAuthorButton;
     private JPanel inner;
     private JButton saveButton;
-    private JComboBox comboBox1;
 
     private void printListContents(JList<String> list) {
         ListModel<String> model = list.getModel(); // Get the model associated with the JList
@@ -78,8 +78,11 @@ public class AddBookScreen extends Routes implements Component{
                         borrowTime.getValue(),
                         authors
                 );
+                DataAccess da = new DataAccessFacade();
+                da.saveNewBook(book);
             }
         });
+        addAuthorButton.addActionListener(e -> navigateTo(SCREENS.AddAuthor));
     }
 
     @Override
@@ -101,9 +104,10 @@ public class AddBookScreen extends Routes implements Component{
     }
 
     public static AddBookScreen getInstance() {
-        if(instance == null){
-            instance = new AddBookScreen();
-        }
+//        if(instance == null){
+//            instance = new AddBookScreen();
+//        }
+        instance = new AddBookScreen();
         return instance;
     }
 
@@ -121,7 +125,6 @@ public class AddBookScreen extends Routes implements Component{
         int index = 0;
         DefaultComboBoxModel<Author> model = (DefaultComboBoxModel<Author>) authorDropdown.getModel();
         for(Author author: authors.values()){
-            System.out.println(author.getFirstName());
             model.insertElementAt(author,index++);
         }
     }

@@ -7,9 +7,10 @@ public class CheckoutBookScreen extends Routes implements Component {
     private static CheckoutBookScreen instance;
 
     public static CheckoutBookScreen getInstance() {
-        if (instance == null) {
-            instance = new CheckoutBookScreen();
-        }
+//        if (instance == null) {
+//            instance = new CheckoutBookScreen();
+//        }
+        instance = new CheckoutBookScreen();
         return instance;
     }
 

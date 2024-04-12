@@ -20,9 +20,10 @@ public class AuthorScreen extends Routes implements Component {
     }
 
     public static AuthorScreen getInstance() {
-        if(instance == null){
-            instance = new AuthorScreen();
-        }
+//        if(instance == null){
+//            instance = new AuthorScreen();
+//        }
+        instance = new AuthorScreen();
         return instance;
     }
 

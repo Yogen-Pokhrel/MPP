@@ -21,9 +21,10 @@ public class BookScreen extends Routes implements Component {
     private BookScreen() {
     }
     public static BookScreen getInstance() {
-        if(instance == null){
-            instance = new BookScreen();
-        }
+//        if(instance == null){
+//            instance = new BookScreen();
+//        }
+        instance = new BookScreen();
         return instance;
     }
 
@@ -51,7 +52,7 @@ public class BookScreen extends Routes implements Component {
     }
 
     void paintTableData(){
-        String[] columnNames = { "ID", "Book Name", "Copies", "Author Name" };
+        String[] columnNames = { "ISBN", "Book Name", "Copies", "Author Name" };
         SystemController controller = new SystemController();
         HashMap<String, Book> books = controller.getAllBooks();
         Object[][] data = new Object[books.size()][];

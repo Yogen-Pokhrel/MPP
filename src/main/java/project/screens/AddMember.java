@@ -1,5 +1,11 @@
 package project.screens;
 
+import project.business.Address;
+import project.business.Book;
+import project.business.LibraryMember;
+import project.dataaccess.DataAccess;
+import project.dataaccess.DataAccessFacade;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,17 +14,15 @@ public class AddMember extends Routes implements Component{
     private JPanel contentPane;
     private JPanel inner;
     private JButton saveButton;
+    private JTextField fName;
+    private JTextField lName;
+    private JTextField phone;
+    private JTextField bio;
+    private JTextField street;
+    private JTextField city;
+    private JTextField state;
+    private JTextField zipCode;
     private static AddMember instance;
-    private JTextField titleTextField;
-    private JLabel titleLabel;
-    private JLabel isbnNumLabel;
-    private JTextField isbnNumTextField;
-    private JLabel borrowTimeLabel;
-    private JComboBox borrowTimeDropdown;
-    private JLabel authorLabel;
-    private JComboBox authorDropdown;
-    private JButton addAuthorButton;
-    private JList selectedAuthorList;
 
     private AddMember() {
         saveButton.addActionListener(new ActionListener() {
@@ -26,6 +30,17 @@ public class AddMember extends Routes implements Component{
             public void actionPerformed(ActionEvent e) {
 
             }
+        });
+        saveButton.addActionListener(e -> {
+            LibraryMember libraryMember = new LibraryMember(
+                    ("M-" + java.lang.System.currentTimeMillis()),
+                    fName.getText(),
+                    lName.getText(),
+                    phone.getText(),
+                    new Address(street.getText(), city.getText(), state.getText(), zipCode.getText())
+            );
+            DataAccess da = new DataAccessFacade();
+            da.saveNewMember(libraryMember);
         });
     }
 
@@ -48,9 +63,10 @@ public class AddMember extends Routes implements Component{
     }
 
     public static AddMember getInstance() {
-        if(instance == null){
-            instance = new AddMember();
-        }
+//        if(instance == null){
+//            instance = new AddMember();
+//        }
+        instance = new AddMember();
         return instance;
     }
 

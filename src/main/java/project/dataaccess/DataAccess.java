@@ -14,4 +14,5 @@ public interface DataAccess {
 	public HashMap<String, Author> readAuthorMap();
 	public void saveNewMember(LibraryMember member);
 	public void saveNewAuthor(Author author);
+	public void saveNewBook(Book author);
 }
