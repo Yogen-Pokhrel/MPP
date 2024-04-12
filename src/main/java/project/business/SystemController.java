@@ -45,6 +45,16 @@ public class SystemController implements ControllerInterface {
 		DataAccess da = new DataAccessFacade();
 		return da.readBooksMap();
 	}
+
+	public HashMap<String, Author> getAllAuthors() {
+		DataAccess da = new DataAccessFacade();
+		return da.readAuthorMap();
+	}
+
+	public HashMap<String, LibraryMember> getAllLibraryMembers() {
+		DataAccess da = new DataAccessFacade();
+		return da.readMemberMap();
+	}
 	
 	
 }

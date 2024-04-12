@@ -1,7 +1,12 @@
 package project.screens;
 
+import project.business.Author;
+import project.business.LibraryMember;
+import project.business.SystemController;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 
 public class MemberScreen extends Routes implements Component{
     private JButton button1;
@@ -25,16 +30,18 @@ public class MemberScreen extends Routes implements Component{
     }
 
     void paintTableData(){
-        String[] columnNames = { "ID", "Name", "Address" };
-        String[][] data = {
-                { "20","Kundan Kumar Jha", "Fairfield 4031" },
-                { "30","Anand Jha", "Ottomwa 6014", }
-        };
+        String[] columnNames = { "ID", "Name", "Phone", "Address" };
+        SystemController controller = new SystemController();
+        HashMap<String, LibraryMember> members = controller.getAllLibraryMembers();
+
+        Object[][] data = new Object[members.size()][];
+        int index = 0;
+        for(LibraryMember member: members.values()){
+            data[index++] =(new Object[]{member.getMemberId(),member.getFirstName() + " " + member.getLastName(), member.getTelephone(), member.getAddress()});
+        }
 
         dataTable = new JTable(data, columnNames);
         dataTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
-
-        //dataTable.setBounds(30, 40, 200, 300);
     }
 
     @Override

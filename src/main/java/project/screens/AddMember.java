@@ -1,9 +1,13 @@
 package project.screens;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AddMember extends Routes implements Component{
     private JPanel contentPane;
+    private JPanel inner;
+    private JButton saveButton;
     private static AddMember instance;
     private JTextField titleTextField;
     private JLabel titleLabel;
@@ -15,9 +19,14 @@ public class AddMember extends Routes implements Component{
     private JComboBox authorDropdown;
     private JButton addAuthorButton;
     private JList selectedAuthorList;
-    private JPanel inner;
 
     private AddMember() {
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     @Override
