@@ -30,7 +30,7 @@ public class BookTable extends JTable {
         columnModel.getColumn(4).setPreferredWidth(150);
 
         if (SystemController.currentAuth != Auth.LIBRARIAN) {
-            columnModel.getColumn(4).setCellRenderer(new ButtonRenderer());
+            columnModel.getColumn(5).setCellRenderer(new ButtonRenderer());
         }
 
         addMouseListener(new java.awt.event.MouseAdapter() {

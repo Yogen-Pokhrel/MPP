@@ -1,11 +1,9 @@
 package project.screens;
 
-import project.business.Author;
-import project.business.Book;
-import project.business.LibraryMember;
-import project.business.SystemController;
+import project.business.*;
 import project.dataaccess.DataAccess;
 import project.dataaccess.DataAccessFacade;
+import project.project.utils.validation.DialogUtils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -88,6 +86,17 @@ public class MemberScreen extends Routes implements Component{
     }
 
     void displayCheckoutBooks(String memberId){
+        SystemController controller = new SystemController();
+        CheckoutRecord checkoutRecord = controller.getCheckoutRecordByMemberId(memberId);
+        if(checkoutRecord == null){
+            DialogUtils.showMessage("Member ID: " + memberId +"\nThis member has not checked out any books", "Checked out record");
+            return;
+        }
 
+        StringBuilder sb = new StringBuilder();
+        for(CheckoutEntry checkoutEntry : checkoutRecord.getCheckoutEntry()){
+            sb.append(checkoutEntry.getBook().getIsbn()).append(" - ").append(checkoutEntry.getBook().getTitle()).append(", Copy:").append(checkoutEntry.getBookCopy().getCopyNum()).append("\n");
+        }
+        DialogUtils.showMessage("Member ID: " + memberId + "\n" + sb.toString(), "Checked out record");
     }
 }

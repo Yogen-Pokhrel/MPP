@@ -11,4 +11,8 @@ public class DialogUtils {
     public static void showSuccessMessage(String message) {
         JOptionPane.showMessageDialog(null, message, "Success", JOptionPane.PLAIN_MESSAGE);
     }
+
+    public static void showMessage(String message, String title) {
+        JOptionPane.showMessageDialog(null, message, title, JOptionPane.PLAIN_MESSAGE);
+    }
 }

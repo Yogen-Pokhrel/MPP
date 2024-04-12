@@ -55,9 +55,9 @@ public class BookScreen extends Routes implements Component {
     }
 
     public void paintTableData() {
-        String[] columnNames = new String[] { "ISBN", "Book Name", "Copies", "Author Name" };
+        String[] columnNames = new String[] { "ISBN", "Book Name", "Copies", "Available", "Author Name" };
         if (SystemController.currentAuth != Auth.LIBRARIAN) {
-            columnNames = new String[] { "ISBN", "Book Name", "Copies", "Author Name", "Action" };
+            columnNames = new String[] { "ISBN", "Book Name", "Copies", "Available", "Author Name", "Action" };
         }
 
         SystemController controller = new SystemController();
