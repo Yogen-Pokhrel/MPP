@@ -1,13 +1,14 @@
 package project.screens;
 
-import project.business.Author;
-import project.business.Book;
-import project.business.SystemController;
+import project.business.*;
+import project.dataaccess.Auth;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class AddBookScreen extends Routes implements Component{
@@ -22,9 +23,9 @@ public class AddBookScreen extends Routes implements Component{
     private JComboBox borrowTimeDropdown;
     private JLabel authorLabel;
     private JComboBox authorDropdown;
+
     private JButton addAuthorButton;
-    private JList<String> selectedAuthorList;
-    private DefaultListModel<String> selectedAuthorModel;
+    private JList selectedAuthorList;
     private JPanel inner;
     private JButton saveButton;
     private JComboBox comboBox1;
@@ -43,11 +44,13 @@ public class AddBookScreen extends Routes implements Component{
     }
 
     private AddBookScreen() {
+        populateAuthors();
+        populateBorrowTimeDropdown();
         authorDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String selectedItem = (String) authorDropdown.getSelectedItem();
-                DefaultListModel<String> model = (DefaultListModel) selectedAuthorList.getModel(); // Get the model associated with the JList
+                Author selectedItem = (Author) authorDropdown.getSelectedItem();
+                DefaultListModel<Author> model = (DefaultListModel<Author>) selectedAuthorList.getModel(); // Get the model associated with the JList
                 if(model.contains(selectedItem)){
                     model.removeElement(selectedItem);
                 } else{
@@ -61,16 +64,20 @@ public class AddBookScreen extends Routes implements Component{
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<Author> authorList = new ArrayList<>();
-                int borrowTime = (int) borrowTimeDropdown.getSelectedItem();
+                // TODO Add Validation of BorrowTime and Author Selction
+                List<Author> authors = new ArrayList<>();
+                BorrowTimeEnum borrowTime = (BorrowTimeEnum) borrowTimeDropdown.getSelectedItem();
+                DefaultListModel<Author> model = (DefaultListModel<Author>) selectedAuthorList.getModel();
+                Object[] array = model.toArray();
+                for(Object item: array){
+                    authors.add((Author) item);
+                }
                 Book book = new Book(
                         isbnNumTextField.getText(),
                         titleTextField.getText(),
-                        borrowTime,
-                        authorList
+                        borrowTime.getValue(),
+                        authors
                 );
-
-                SystemController controller = new SystemController();
             }
         });
     }
@@ -100,7 +107,28 @@ public class AddBookScreen extends Routes implements Component{
         return instance;
     }
 
+    public void populateBorrowTimeDropdown(){
+        DefaultComboBoxModel<BorrowTimeEnum>  model = (DefaultComboBoxModel<BorrowTimeEnum>) borrowTimeDropdown.getModel();
+        int index = 0;
+        for(BorrowTimeEnum borrowTime: BorrowTimeEnum.values()){
+            model.insertElementAt(borrowTime, index++);
+        }
+    }
+
+    public void populateAuthors(){
+        SystemController controller = new SystemController();
+        HashMap<String, Author> authors = controller.getAllAuthors();
+        int index = 0;
+        DefaultComboBoxModel<Author> model = (DefaultComboBoxModel<Author>) authorDropdown.getModel();
+        for(Author author: authors.values()){
+            System.out.println(author.getFirstName());
+            model.insertElementAt(author,index++);
+        }
+    }
+
     private void createUIComponents() {
         // TODO: place custom component creation code here
+
+
     }
 }
