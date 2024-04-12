@@ -5,7 +5,7 @@ import project.business.Book;
 import project.business.BookCopy;
 import project.business.SystemController;
 import project.dataaccess.Auth;
-import project.screens.BookTable.BookTable;
+import project.screens.RecordTable.RecordTable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,10 +55,7 @@ public class BookScreen extends Routes implements Component {
     }
 
     public void paintTableData() {
-        String[] columnNames = new String[] { "ISBN", "Book Name", "Copies", "Available", "Author Name" };
-        if (SystemController.currentAuth != Auth.LIBRARIAN) {
-            columnNames = new String[] { "ISBN", "Book Name", "Copies", "Available", "Author Name", "Action" };
-        }
+        String[] columnNames = new String[] { "ISBN", "Book Name", "Copies", "Available", "Author Name", "Action" };
 
         SystemController controller = new SystemController();
         HashMap<String, Book> books = controller.getAllBooks();
@@ -76,8 +73,8 @@ public class BookScreen extends Routes implements Component {
                 authorNames.append(author.getFirstName()).append(" ").append(author.getLastName());
             }
             int availableCopies = 0;
-            for(BookCopy bookCopy: book.getCopies()){
-                if(bookCopy.isAvailable()){
+            for (BookCopy bookCopy : book.getCopies()) {
+                if (bookCopy.isAvailable()) {
                     availableCopies++;
                 }
             }
@@ -85,7 +82,11 @@ public class BookScreen extends Routes implements Component {
                     authorNames.toString(), book });
         }
 
-        dataTable = new BookTable(data, columnNames);
+        dataTable = new RecordTable(data, columnNames);
+        if (SystemController.currentAuth == Auth.LIBRARIAN) {
+            dataTable.getColumnModel().removeColumn(dataTable.getColumnModel().getColumn(5));
+        }
+
     }
 
     private void createUIComponents() {
