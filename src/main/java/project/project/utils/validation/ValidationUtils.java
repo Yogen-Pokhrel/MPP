@@ -15,6 +15,11 @@ public class ValidationUtils {
         return validateRegex(regex, zipCode);
     }
 
+    private static boolean isValidISBN(String isbn){
+        String regex = "\\d{2}(-?\\d{5})";
+        return validateRegex(regex, isbn);
+    }
+
     static boolean validateRegex(String regex, String input){
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
@@ -22,14 +27,14 @@ public class ValidationUtils {
     }
 
     public static void validateField(JTextField textField, JLabel label, StringBuilder stringBuilder){
-        if (textField.getText().isEmpty()) {
+        if (textField.getText().trim().isEmpty()) {
             textField.requestFocusInWindow();
             stringBuilder.append(label.getText().trim() + " is empty\n");
         }
     }
 
     public static void validatePhoneNumber(JTextField textField, JLabel label, StringBuilder stringBuilder){
-        if(textField.getText().isEmpty()) return;
+        if(textField.getText().trim().isEmpty()) return;
         if (isValidPhoneNumber(textField.getText())) {
             return;
         }
@@ -38,8 +43,17 @@ public class ValidationUtils {
     }
 
     public static void validateZipCode(JTextField textField, JLabel label,StringBuilder stringBuilder){
-        if(textField.getText().isEmpty()) return ;
+        if(textField.getText().trim().isEmpty()) return ;
         if (isValidZipCode(textField.getText())) {
+            return;
+        }
+        textField.requestFocusInWindow();
+        stringBuilder.append("Enter a valid " + label.getText().trim() + "\n");
+    }
+
+    public static void validateISBN(JTextField textField, JLabel label,StringBuilder stringBuilder){
+        if(textField.getText().trim().isEmpty()) return ;
+        if (isValidISBN(textField.getText().trim())) {
             return;
         }
         textField.requestFocusInWindow();
