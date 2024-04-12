@@ -49,9 +49,9 @@ public class CheckoutBookScreen extends Routes implements Component {
                     new CheckoutEntry(book, bookCopy)
             );
 
-            DataAccess da = new DataAccessFacade();
-            da.saveNewCheckoutRecord(checkoutRecord);
-            paintTableData(memberId);
+            SystemController systemController = new SystemController();
+            systemController.addNewCheckoutRecord(checkoutRecord);
+//            paintTableData(memberId);
         });
         clearButton.addActionListener(e -> {
 

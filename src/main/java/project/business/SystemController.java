@@ -1,5 +1,6 @@
 package project.business;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -87,6 +88,25 @@ public class SystemController implements ControllerInterface {
 		}
 		return checkoutRecord;
 	}
-	
-	
+
+	public void addNewBook(Book book){
+		DataAccess da = new DataAccessFacade();
+		da.saveNewBook(book);
+	}
+
+	public void addNewMember(LibraryMember member){
+		DataAccess da = new DataAccessFacade();
+		da.saveNewMember(member);
+	}
+
+	public void addNewAuthor(Author author){
+		DataAccess da = new DataAccessFacade();
+		da.saveNewAuthor(author);
+	}
+
+	public void addNewCheckoutRecord(CheckoutRecord checkoutRecord){
+		DataAccess da = new DataAccessFacade();
+		da.saveNewCheckoutRecord(checkoutRecord);
+	}
+
 }
