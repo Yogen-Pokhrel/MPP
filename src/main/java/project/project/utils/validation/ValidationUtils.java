@@ -21,29 +21,28 @@ public class ValidationUtils {
         return matcher.matches();
     }
 
-    public static String validateField(JTextField textField, JLabel label){
+    public static void validateField(JTextField textField, JLabel label, StringBuilder stringBuilder){
         if (textField.getText().isEmpty()) {
             textField.requestFocusInWindow();
-            return label.getText().trim() + " is empty\n";
+            stringBuilder.append(label.getText().trim() + " is empty\n");
         }
-        return null;
     }
 
-    public static String validatePhoneNumber(JTextField textField, JLabel label){
-        if(textField.getText().isEmpty()) return null;
+    public static void validatePhoneNumber(JTextField textField, JLabel label, StringBuilder stringBuilder){
+        if(textField.getText().isEmpty()) return;
         if (isValidPhoneNumber(textField.getText())) {
-            return null;
+            return;
         }
         textField.requestFocusInWindow();
-        return "Enter a valid " + label.getText().trim() + "\n";
+        stringBuilder.append("Enter a valid " + label.getText().trim() + "\n");
     }
 
-    public static String validateZipCode(JTextField textField, JLabel label){
-        if(textField.getText().isEmpty()) return null;
+    public static void validateZipCode(JTextField textField, JLabel label,StringBuilder stringBuilder){
+        if(textField.getText().isEmpty()) return ;
         if (isValidZipCode(textField.getText())) {
-            return null;
+            return;
         }
         textField.requestFocusInWindow();
-        return "Enter a valid " + label.getText().trim() + "\n";
+        stringBuilder.append("Enter a valid " + label.getText().trim() + "\n");
     }
 }
