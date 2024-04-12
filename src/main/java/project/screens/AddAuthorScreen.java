@@ -100,7 +100,7 @@ public class AddAuthorScreen extends Routes implements Component {
     void  validateInput(){
         validateEmptyFields();
         appendMsg(ValidationUtils.validatePhoneNumber(phoneNumTextField, phoneNumLabel));
-        validateZip();
+        appendMsg(ValidationUtils.validateZipCode(zipTextField, zipLabel));
     }
 
     void validateEmptyFields(){
@@ -120,10 +120,4 @@ public class AddAuthorScreen extends Routes implements Component {
         }
     }
 
-    void validateZip(){
-        if(zipTextField.getText().isEmpty()) return;
-        if(ValidationUtils.isValidZipCode(zipTextField.getText())) return;
-        validationMessage.append("Enter a valid zip code\n");
-        zipTextField.requestFocusInWindow();
-    }
 }

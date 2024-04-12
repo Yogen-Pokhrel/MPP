@@ -5,12 +5,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ValidationUtils {
-     static boolean isValidPhoneNumber(String phoneNumber) {
+     private static boolean isValidPhoneNumber(String phoneNumber) {
         String regex = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
         return validateRegex(regex, phoneNumber);
     }
 
-    public static boolean isValidZipCode(String zipCode){
+    private static boolean isValidZipCode(String zipCode){
         String regex = "\\d{5}(-\\d{4})?";
         return validateRegex(regex, zipCode);
     }
@@ -35,6 +35,15 @@ public class ValidationUtils {
             return null;
         }
         textField.requestFocusInWindow();
-        return label.getText().trim() + " is empty\n";
+        return "Enter a valid " + label.getText().trim() + "\n";
+    }
+
+    public static String validateZipCode(JTextField textField, JLabel label){
+        if(textField.getText().isEmpty()) return null;
+        if (isValidZipCode(textField.getText())) {
+            return null;
+        }
+        textField.requestFocusInWindow();
+        return "Enter a valid " + label.getText().trim() + "\n";
     }
 }
