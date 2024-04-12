@@ -1,5 +1,6 @@
 package project.business;
 
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -68,7 +69,6 @@ public class SystemController implements ControllerInterface {
 		return member;
 	}
 
-
 	public Book getBookByISBN(String isbn) throws NullPointerException{
 		DataAccess da = new DataAccessFacade();
 		HashMap<String, Book> allMembers = da.readBooksMap();
@@ -78,6 +78,31 @@ public class SystemController implements ControllerInterface {
 		}
 		return book;
 	}
-	
-	
+
+	public CheckoutRecord getCheckoutRecordByMemberId(String memberId){
+		DataAccess da = new DataAccessFacade();
+		HashMap<String, CheckoutRecord> allCheckoutRecords = da.readCheckoutRecordMap();
+		return allCheckoutRecords.get(memberId);
+	}
+
+	public void addNewBook(Book book){
+		DataAccess da = new DataAccessFacade();
+		da.saveNewBook(book);
+	}
+
+	public void addNewMember(LibraryMember member){
+		DataAccess da = new DataAccessFacade();
+		da.saveNewMember(member);
+	}
+
+	public void addNewAuthor(Author author){
+		DataAccess da = new DataAccessFacade();
+		da.saveNewAuthor(author);
+	}
+
+	public void addNewCheckoutRecord(CheckoutRecord checkoutRecord){
+		DataAccess da = new DataAccessFacade();
+		da.saveNewCheckoutRecord(checkoutRecord);
+	}
+
 }

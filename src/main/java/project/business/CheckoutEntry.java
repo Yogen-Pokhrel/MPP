@@ -1,20 +1,22 @@
 package project.business;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class CheckoutEntry {
+public class CheckoutEntry implements Serializable {
+    private static final long serialVersionUID = 611069276685962829L;
     private final Book book;
+
+    private final BookCopy bookCopy;
     private final LocalDate checkoutDate;
     private LocalDate dueDate;
 
     private LocalDate lastRenewedDate;
 
-    public CheckoutEntry(Book book){
-        BookCopy copy = book.getNextAvailableCopy();
-        if(copy != null){
-            copy.changeAvailability();
-        }
+    public CheckoutEntry(Book book, BookCopy bookCopy){
+        this.bookCopy = book.getNextAvailableCopy();
         this.book = book;
+        bookCopy.changeAvailability();
         checkoutDate = LocalDate.now();
         dueDate = checkoutDate.plusDays(book.getMaxCheckoutLength());
     }
@@ -29,6 +31,10 @@ public class CheckoutEntry {
 
     public Book getBook() {
         return book;
+    }
+
+    public BookCopy getBookCopy() {
+        return bookCopy;
     }
 
     public void setDueDate(LocalDate dueDate) {

@@ -4,6 +4,8 @@ import project.business.*;
 import project.dataaccess.Auth;
 import project.dataaccess.DataAccess;
 import project.dataaccess.DataAccessFacade;
+import project.project.utils.validation.DialogUtils;
+import project.project.utils.validation.ValidationUtils;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -30,20 +32,11 @@ public class AddBookScreen extends Routes implements Component{
     private JPanel inner;
     private JButton saveButton;
 
-    private void printListContents(JList<String> list) {
-        ListModel<String> model = list.getModel(); // Get the model associated with the JList
-        int size = model.getSize(); // Get the size of the model
+    private StringBuilder validationMessage;
 
-        System.out.println("Contents of the list:");
-
-        // Iterate over the elements of the model and print them
-        for (int i = 0; i < size; i++) {
-            String element = model.getElementAt(i);
-            System.out.println(element);
-        }
-    }
 
     private AddBookScreen() {
+        validationMessage= new StringBuilder();
         populateAuthors();
         populateBorrowTimeDropdown();
         authorDropdown.addActionListener(new ActionListener() {
@@ -64,7 +57,12 @@ public class AddBookScreen extends Routes implements Component{
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Add Validation of BorrowTime and Author Selction
+                validationMessage.setLength(0);
+                validateInput();
+                if(!validationMessage.isEmpty()){
+                    DialogUtils.showValidationMessage(validationMessage.toString());
+                    return;
+                }
                 List<Author> authors = new ArrayList<>();
                 BorrowTimeEnum borrowTime = (BorrowTimeEnum) borrowTimeDropdown.getSelectedItem();
                 DefaultListModel<Author> model = (DefaultListModel<Author>) selectedAuthorList.getModel();
@@ -78,8 +76,8 @@ public class AddBookScreen extends Routes implements Component{
                         borrowTime.getValue(),
                         authors
                 );
-                DataAccess da = new DataAccessFacade();
-                da.saveNewBook(book);
+                SystemController systemController = new SystemController();
+                systemController.addNewBook(book);
             }
         });
         addAuthorButton.addActionListener(e -> navigateTo(SCREENS.AddAuthor));
@@ -132,6 +130,33 @@ public class AddBookScreen extends Routes implements Component{
     private void createUIComponents() {
         // TODO: place custom component creation code here
 
+
+    }
+
+    void  validateInput(){
+        validateEmptyFields();
+        validateBorrowTime();
+        validateAuthors();
+    }
+
+    void validateBorrowTime(){
+        Object item = borrowTimeDropdown.getSelectedItem();
+        if(item == null){
+            validationMessage.append("Select a borrow time\n");
+        }
+    }
+
+    void validateAuthors(){
+        DefaultListModel<Author> model = (DefaultListModel<Author>) selectedAuthorList.getModel();
+        if(model.isEmpty()){
+            validationMessage.append("Select at least one authors\n");
+        }
+    }
+
+    void validateEmptyFields(){
+        ValidationUtils.validateField(titleTextField, titleLabel, validationMessage);
+        ValidationUtils.validateField(isbnNumTextField, isbnNumLabel, validationMessage);
+        ValidationUtils.validateISBN(isbnNumTextField, isbnNumLabel, validationMessage);
 
     }
 }
