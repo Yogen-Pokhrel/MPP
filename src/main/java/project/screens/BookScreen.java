@@ -3,9 +3,9 @@ package project.screens;
 import project.business.Author;
 import project.business.Book;
 import project.business.SystemController;
+import project.screens.BookTable.BookTable;
 
 import javax.swing.*;
-import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,10 +20,11 @@ public class BookScreen extends Routes implements Component {
 
     private BookScreen() {
     }
+
     public static BookScreen getInstance() {
-//        if(instance == null){
-//            instance = new BookScreen();
-//        }
+        // if(instance == null){
+        // instance = new BookScreen();
+        // }
         instance = new BookScreen();
         return instance;
     }
@@ -51,33 +52,29 @@ public class BookScreen extends Routes implements Component {
         refresh();
     }
 
-    void paintTableData(){
-        String[] columnNames = { "ISBN", "Book Name", "Copies", "Author Name" };
+    void paintTableData() {
+        String[] columnNames = { "ISBN", "Book Name", "Copies", "Author Name", "Action", };
         SystemController controller = new SystemController();
         HashMap<String, Book> books = controller.getAllBooks();
         Object[][] data = new Object[books.size()][];
         int index = 0;
-        for(Book book: books.values()){
+        for (Book book : books.values()) {
             java.util.List<Author> authors = book.getAuthors();
             StringBuilder authorNames = new StringBuilder();
-            if(!authors.isEmpty()){
-                for(int i = 0; i < authors.size() -1; i++){
+            if (!authors.isEmpty()) {
+                for (int i = 0; i < authors.size() - 1; i++) {
                     Author author = authors.get(i);
                     authorNames.append(author.getFirstName()).append(" ").append(author.getLastName()).append(", ");
                 }
                 Author author = authors.get(authors.size() - 1);
                 authorNames.append(author.getFirstName()).append(" ").append(author.getLastName());
             }
-            data[index++] =(new Object[]{book.getIsbn(), book.getTitle(), book.getNumCopies(), authorNames.toString()});
+
+            data[index++] = (new Object[] { book.getIsbn(), book.getTitle(), book.getNumCopies(),
+                    authorNames.toString(), book });
         }
 
-        dataTable = new JTable(data, columnNames);
-        TableColumnModel columnModel = dataTable.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(30);
-        columnModel.getColumn(1).setPreferredWidth(150);
-        columnModel.getColumn(3).setPreferredWidth(150);
-        columnModel.getColumn(2).setPreferredWidth(10);
-        dataTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
+        dataTable = new BookTable(data, columnNames);
     }
 
     private void createUIComponents() {
