@@ -135,6 +135,22 @@ public class AddBookScreen extends Routes implements Component{
 
     void  validateInput(){
         validateEmptyFields();
+        validateBorrowTime();
+        validateAuthors();
+    }
+
+    void validateBorrowTime(){
+        Object item = borrowTimeDropdown.getSelectedItem();
+        if(item == null){
+            validationMessage.append("Select a borrow time\n");
+        }
+    }
+
+    void validateAuthors(){
+        DefaultListModel<Author> model = (DefaultListModel<Author>) selectedAuthorList.getModel();
+        if(model.isEmpty()){
+            validationMessage.append("Select at least one authors\n");
+        }
     }
 
     void validateEmptyFields(){
