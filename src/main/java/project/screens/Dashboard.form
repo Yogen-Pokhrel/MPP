@@ -103,7 +103,7 @@
                   <text value="Authors"/>
                 </properties>
               </component>
-              <component id="85ef3" class="javax.swing.JButton" binding="CheckoutBookButton">
+              <component id="85ef3" class="javax.swing.JButton" binding="checkoutBooksButton">
                 <constraints/>
                 <properties>
                   <background color="-1315861"/>
@@ -115,7 +115,7 @@
                   <foreground color="-16711423"/>
                   <horizontalAlignment value="2"/>
                   <inheritsPopupMenu value="false"/>
-                  <name value="CheckoutBookButton"/>
+                  <name value="checkoutBooksButton"/>
                   <opaque value="true"/>
                   <preferredSize width="200" height="40"/>
                   <selected value="false"/>

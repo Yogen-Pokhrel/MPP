@@ -35,7 +35,7 @@
               <text value="Member ID"/>
             </properties>
           </component>
-          <component id="1ce32" class="javax.swing.JTextField">
+          <component id="1ce32" class="javax.swing.JTextField" binding="memberId">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="40"/>
@@ -45,8 +45,8 @@
               <background color="-1"/>
               <caretColor color="-11184811"/>
               <foreground color="-11184811"/>
-              <margin top="2" left="9" bottom="2" right="6"/>
-              <name value="username"/>
+              <margin top="2" left="6" bottom="2" right="6"/>
+              <name value="memberId"/>
               <text value=""/>
             </properties>
           </component>
@@ -60,7 +60,7 @@
               <text value="ISBN"/>
             </properties>
           </component>
-          <component id="f4048" class="javax.swing.JTextField">
+          <component id="f4048" class="javax.swing.JTextField" binding="isbn">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="40"/>
@@ -70,8 +70,8 @@
               <background color="-1"/>
               <caretColor color="-11184811"/>
               <foreground color="-11184811"/>
-              <margin top="2" left="9" bottom="2" right="6"/>
-              <name value="username"/>
+              <margin top="2" left="6" bottom="2" right="6"/>
+              <name value="isbn"/>
               <text value=""/>
             </properties>
           </component>
@@ -91,7 +91,7 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="56641" class="javax.swing.JButton">
+              <component id="56641" class="javax.swing.JButton" binding="submitButton">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -100,11 +100,12 @@
                   <borderPainted value="false"/>
                   <focusTraversalPolicyProvider value="false"/>
                   <foreground color="-1"/>
+                  <name value="submitButton"/>
                   <opaque value="true"/>
                   <text value="Checkout"/>
                 </properties>
               </component>
-              <component id="c7db5" class="javax.swing.JButton">
+              <component id="c7db5" class="javax.swing.JButton" binding="clearButton">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -113,6 +114,7 @@
                   <borderPainted value="false"/>
                   <focusTraversalPolicyProvider value="false"/>
                   <foreground color="-16711423"/>
+                  <name value="clearButton"/>
                   <opaque value="true"/>
                   <text value="Clear"/>
                 </properties>
