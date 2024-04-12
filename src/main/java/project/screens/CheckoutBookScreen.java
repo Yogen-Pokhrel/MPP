@@ -51,7 +51,7 @@ public class CheckoutBookScreen extends Routes implements Component {
 
             DataAccess da = new DataAccessFacade();
             da.saveNewCheckoutRecord(checkoutRecord);
-//            paintTableData(memberId);
+            paintTableData(memberId);
         });
         clearButton.addActionListener(e -> {
 
@@ -87,10 +87,6 @@ public class CheckoutBookScreen extends Routes implements Component {
         CheckoutRecord checkoutRecord;
         try{
              checkoutRecord = controller.getCheckoutRecordByMemberId(memberId);
-            System.out.println("Record Length " + checkoutRecord.getCheckoutEntry().size());
-            for(CheckoutEntry ch: checkoutRecord.getCheckoutEntry()){
-                System.out.println("Check out record" + ch.getBook().getIsbn());
-            }
         }catch (NullPointerException nullPointerException){
             return;
         }
@@ -98,15 +94,17 @@ public class CheckoutBookScreen extends Routes implements Component {
         Object[][] data = new Object[checkoutRecord.getCheckoutEntry().size()][];
         int index = 0;
         for(CheckoutEntry checkoutEntry: checkoutRecord.getCheckoutEntry()){
-            data[index++] =(new Object[]{checkoutEntry.getBookCopy().getCopyNum(), checkoutEntry.getBook().getIsbn(), checkoutEntry.getCheckoutDate(), checkoutEntry.getDueDate() });
+            data[index++] =(new Object[]{checkoutEntry.getBookCopy().getCopyNum(), checkoutEntry.getBook().getIsbn(), checkoutEntry.getBook().getTitle(), checkoutEntry.getCheckoutDate(), checkoutEntry.getDueDate(), });
         }
 
         dataTable = new JTable(data, columnNames);
         dataTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
+//        createUIComponents();
     }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+        dataTable = new JTable();
         paintTableData("1001");
         UIDefaults defaults = UIManager.getLookAndFeelDefaults();
         defaults.putIfAbsent("Table.alternateRowColor", Color.LIGHT_GRAY);
