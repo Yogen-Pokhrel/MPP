@@ -62,7 +62,7 @@ public class LoginScreen extends Routes implements Component {
 
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File("resources/hero.jpeg"));
+            img = ImageIO.read(new File("src/main/java/project/resources/hero.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
