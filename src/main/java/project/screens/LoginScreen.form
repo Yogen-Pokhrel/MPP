@@ -10,8 +10,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="6366d" binding="loginLeftContainer" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
+      <grid id="6366d" binding="loginLeftContainer" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <minimum-size width="300" height="500"/>
@@ -20,14 +19,18 @@
         <properties>
           <background color="-14076514"/>
           <foreground color="-14076514"/>
+          <name value="loginLeftContainer"/>
         </properties>
         <border type="none"/>
         <children>
-          <component id="cf4d1" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
+          <component id="cf4d1" class="javax.swing.JLabel" binding="loginHero" custom-create="true">
+            <constraints border-constraint="Center"/>
             <properties>
+              <horizontalAlignment value="10"/>
+              <maximumSize width="-1" height="-1"/>
+              <minimumSize width="-1" height="-1"/>
+              <name value="loginHero"/>
+              <preferredSize width="-1" height="-1"/>
               <text value=" "/>
             </properties>
           </component>
@@ -66,7 +69,7 @@
                   <background color="-1"/>
                   <caretColor color="-11184811"/>
                   <foreground color="-11184811"/>
-                  <margin top="2" left="6" bottom="2" right="6"/>
+                  <margin top="2" left="9" bottom="2" right="6"/>
                   <name value="username"/>
                   <text value=""/>
                 </properties>

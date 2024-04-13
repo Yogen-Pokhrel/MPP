@@ -3,6 +3,12 @@ package project.screens;
 import project.business.LoginException;
 import project.business.SystemController;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class LoginScreen extends Routes implements Component {
@@ -16,6 +22,7 @@ public class LoginScreen extends Routes implements Component {
     private JLabel loginSidebarTitle;
     private JPasswordField password;
     private JLabel errorMessage;
+    private JLabel loginHero;
 
     private LoginScreen() {
         username.requestFocusInWindow();
@@ -49,6 +56,25 @@ public class LoginScreen extends Routes implements Component {
     private void createUIComponents() {
         // TODO: place custom component creation code here
         errorMessage = new JLabel();
+        loginHero = new JLabel();
+        loginHero.setHorizontalAlignment(JLabel.CENTER);
+        loginHero.setVerticalAlignment(JLabel.CENTER);
+
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("resources/hero.jpeg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (img != null) {
+            ImageIcon imageIcon = new ImageIcon(img);
+            Image image = imageIcon.getImage();
+            Image scaledImage = image.getScaledInstance(600, 800,
+                    Image.SCALE_SMOOTH);
+            imageIcon = new ImageIcon(scaledImage);
+            loginHero.setIcon(imageIcon);
+        }
     }
 
     public static LoginScreen getInstance() {
