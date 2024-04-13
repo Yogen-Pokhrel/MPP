@@ -51,6 +51,7 @@ public class AddAuthorScreen extends Routes implements Component {
                     DialogUtils.showValidationMessage(validationMessage.toString());
                     return;
                 }
+                System.out.println(hasCredentials.isSelected());
                 Author author = new Author(
                       fNameTextField.getText().trim(),
                       lNameTextField.getText().trim(),
@@ -61,7 +62,8 @@ public class AddAuthorScreen extends Routes implements Component {
                                 stateTextField.getText().trim(),
                                 zipTextField.getText().trim()
                         ),
-                        bioTextField.getText().trim()
+                        bioTextField.getText().trim(),
+                        hasCredentials.isSelected()
                 );
                 SystemController systemController = new SystemController();
                 systemController.addNewAuthor(author);
