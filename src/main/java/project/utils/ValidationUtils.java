@@ -20,7 +20,7 @@ public class ValidationUtils {
         return validateRegex(regex, isbn);
     }
 
-    private static boolean isValidCopyNum(String isbn){
+    public static boolean isValidCopyNum(String isbn){
         String regex = "\\d+";
         return validateRegex(regex, isbn);
     }
