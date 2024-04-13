@@ -14,6 +14,7 @@ final public class Author extends Person implements Serializable {
 	public Author(String f, String l, String t, Address a, String bio, boolean credentials) {
 		super(f, l, t, a);
 		this.bio = bio;
+		this.credentials = credentials;
 		this.authorId = ("A-" + java.lang.System.currentTimeMillis());
 	}
 

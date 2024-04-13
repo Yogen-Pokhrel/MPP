@@ -31,7 +31,6 @@ public class LoginScreen extends Routes implements Component {
                 navigateTo(SCREENS.Books);
             }catch (LoginException loginException){
                 errorMessage.setText("Invalid user id or password");
-                System.out.println("Invalid User Credentials");
             }
         });
     }
