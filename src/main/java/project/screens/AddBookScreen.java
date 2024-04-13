@@ -1,21 +1,17 @@
 package project.screens;
 
 import project.business.*;
-import project.dataaccess.Auth;
-import project.dataaccess.DataAccess;
-import project.dataaccess.DataAccessFacade;
-import project.project.utils.validation.DialogUtils;
-import project.project.utils.validation.ValidationUtils;
+import project.utils.DialogUtils;
+import project.utils.ValidationUtils;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class AddBookScreen extends Routes implements Component{
+public class AddBookScreen extends Routes implements Component {
     private JPanel contentPane;
     private static AddBookScreen instance;
     private JTextField titleTextField;
@@ -34,22 +30,21 @@ public class AddBookScreen extends Routes implements Component{
 
     private StringBuilder validationMessage;
 
-
     private AddBookScreen() {
-        validationMessage= new StringBuilder();
+        validationMessage = new StringBuilder();
         populateAuthors();
         populateBorrowTimeDropdown();
         authorDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Author selectedItem = (Author) authorDropdown.getSelectedItem();
-                DefaultListModel<Author> model = (DefaultListModel<Author>) selectedAuthorList.getModel(); // Get the model associated with the JList
-                if(model.contains(selectedItem)){
+                DefaultListModel<Author> model = (DefaultListModel<Author>) selectedAuthorList.getModel();
+                if (model.contains(selectedItem)) {
                     model.removeElement(selectedItem);
-                } else{
+                } else {
                     model.addElement(selectedItem);
                 }
-                if(model.isEmpty()){
+                if (model.isEmpty()) {
                     authorDropdown.setSelectedIndex(-1);
                 }
             }
@@ -59,7 +54,7 @@ public class AddBookScreen extends Routes implements Component{
             public void actionPerformed(ActionEvent e) {
                 validationMessage.setLength(0);
                 validateInput();
-                if(!validationMessage.isEmpty()){
+                if (!validationMessage.isEmpty()) {
                     DialogUtils.showValidationMessage(validationMessage.toString());
                     return;
                 }
@@ -67,30 +62,27 @@ public class AddBookScreen extends Routes implements Component{
                 BorrowTimeEnum borrowTime = (BorrowTimeEnum) borrowTimeDropdown.getSelectedItem();
                 DefaultListModel<Author> model = (DefaultListModel<Author>) selectedAuthorList.getModel();
                 Object[] array = model.toArray();
-                for(Object item: array){
+                for (Object item : array) {
                     authors.add((Author) item);
                 }
                 Book book = new Book(
                         ValidationUtils.formatISBN(isbnNumTextField.getText().trim()),
                         titleTextField.getText().trim(),
                         borrowTime.getValue(),
-                        authors
-                );
+                        authors);
                 SystemController systemController = new SystemController();
                 systemController.addNewBook(book);
-                DialogUtils.showSuccessMessage("Book "+ titleTextField.getText().trim() + " created successfully!");
+                DialogUtils.showSuccessMessage("Book " + titleTextField.getText().trim() + " created successfully!");
                 navigateTo(SCREENS.Books);
             }
         });
         addAuthorButton.addActionListener(e -> navigateTo(SCREENS.AddAuthor));
     }
 
-
-
     @Override
     public JPanel getMainPanel() {
         return contentPane;
-}
+    }
 
     @Override
     public void render() {
@@ -106,58 +98,55 @@ public class AddBookScreen extends Routes implements Component{
     }
 
     public static AddBookScreen getInstance() {
-//        if(instance == null){
-//            instance = new AddBookScreen();
-//        }
         instance = new AddBookScreen();
         return instance;
     }
 
-    public void populateBorrowTimeDropdown(){
-        DefaultComboBoxModel<BorrowTimeEnum>  model = (DefaultComboBoxModel<BorrowTimeEnum>) borrowTimeDropdown.getModel();
+    public void populateBorrowTimeDropdown() {
+        DefaultComboBoxModel<BorrowTimeEnum> model = (DefaultComboBoxModel<BorrowTimeEnum>) borrowTimeDropdown
+                .getModel();
         int index = 0;
-        for(BorrowTimeEnum borrowTime: BorrowTimeEnum.values()){
+        for (BorrowTimeEnum borrowTime : BorrowTimeEnum.values()) {
             model.insertElementAt(borrowTime, index++);
         }
     }
 
-    public void populateAuthors(){
+    public void populateAuthors() {
         SystemController controller = new SystemController();
         HashMap<String, Author> authors = controller.getAllAuthors();
         int index = 0;
         DefaultComboBoxModel<Author> model = (DefaultComboBoxModel<Author>) authorDropdown.getModel();
-        for(Author author: authors.values()){
-            model.insertElementAt(author,index++);
+        for (Author author : authors.values()) {
+            model.insertElementAt(author, index++);
         }
     }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
 
-
     }
 
-    void  validateInput(){
+    void validateInput() {
         validateEmptyFields();
         validateBorrowTime();
         validateAuthors();
     }
 
-    void validateBorrowTime(){
+    void validateBorrowTime() {
         Object item = borrowTimeDropdown.getSelectedItem();
-        if(item == null){
+        if (item == null) {
             validationMessage.append("Select a borrow time\n");
         }
     }
 
-    void validateAuthors(){
+    void validateAuthors() {
         DefaultListModel<Author> model = (DefaultListModel<Author>) selectedAuthorList.getModel();
-        if(model.isEmpty()){
+        if (model.isEmpty()) {
             validationMessage.append("Select at least one authors\n");
         }
     }
 
-    void validateEmptyFields(){
+    void validateEmptyFields() {
         ValidationUtils.validateField(titleTextField, titleLabel, validationMessage);
         ValidationUtils.validateField(isbnNumTextField, isbnNumLabel, validationMessage);
         ValidationUtils.validateISBN(isbnNumTextField, isbnNumLabel, validationMessage);

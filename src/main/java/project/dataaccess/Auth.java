@@ -1,7 +1,5 @@
 package project.dataaccess;
 
-import java.io.Serializable;
-
-public enum Auth implements Serializable {
+public enum Auth {
 	LIBRARIAN, ADMIN, BOTH;
 }

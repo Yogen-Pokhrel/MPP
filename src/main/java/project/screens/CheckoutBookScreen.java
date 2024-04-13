@@ -1,8 +1,8 @@
 package project.screens;
 
 import project.business.*;
-import project.project.utils.validation.DialogUtils;
-import project.project.utils.validation.ValidationUtils;
+import project.utils.DialogUtils;
+import project.utils.ValidationUtils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -24,14 +24,13 @@ public class CheckoutBookScreen extends Routes implements Component {
     private JLabel memberLabel;
     private StringBuilder validationMessage;
 
-
     public CheckoutBookScreen() {
-        validationMessage= new StringBuilder();
+        validationMessage = new StringBuilder();
 
         submitButton.addActionListener(e -> {
             validationMessage.setLength(0);
             validateInput();
-            if(!validationMessage.isEmpty()){
+            if (!validationMessage.isEmpty()) {
                 DialogUtils.showValidationMessage(validationMessage.toString());
                 return;
             }
@@ -39,38 +38,33 @@ public class CheckoutBookScreen extends Routes implements Component {
             SystemController controller = new SystemController();
             String memberId = this.memberId.getText().trim();
             String isbn = ValidationUtils.formatISBN(this.isbn.getText().trim());
-//            String isbn = this.isbn.getText().trim();
             LibraryMember libraryMember = null;
             Book book = null;
 
-
-
-
-             try{
-                 libraryMember = controller.getMemberByID(memberId);
-                 book = controller.getBookByISBN(isbn);
-             }catch (NullPointerException nullPointerException){
-                 DialogUtils.showValidationMessage(nullPointerException.getMessage());
-                 return;
-             }
-             BookCopy bookCopy = book.getNextAvailableCopy();
-             if(bookCopy == null){
-                 DialogUtils.showValidationMessage("No copies of this book is available");
-                 return;
-             }
+            try {
+                libraryMember = controller.getMemberByID(memberId);
+                book = controller.getBookByISBN(isbn);
+            } catch (NullPointerException nullPointerException) {
+                DialogUtils.showValidationMessage(nullPointerException.getMessage());
+                return;
+            }
+            BookCopy bookCopy = book.getNextAvailableCopy();
+            if (bookCopy == null) {
+                DialogUtils.showValidationMessage("No copies of this book is available");
+                return;
+            }
 
             CheckoutRecord checkoutRecord = controller.getCheckoutRecordByMemberId(memberId);
-             if(checkoutRecord == null){
-                 checkoutRecord = new CheckoutRecord(
-                         libraryMember,
-                         new CheckoutEntry(book, bookCopy)
-                 );
-             }else{
-                 checkoutRecord.getCheckoutEntry().add(new CheckoutEntry(book, bookCopy));
-             }
+            if (checkoutRecord == null) {
+                checkoutRecord = new CheckoutRecord(
+                        libraryMember,
+                        new CheckoutEntry(book, bookCopy));
+            } else {
+                checkoutRecord.getCheckoutEntry().add(new CheckoutEntry(book, bookCopy));
+            }
 
-             controller.addNewCheckoutRecord(checkoutRecord);
-             controller.addNewBook(book);
+            controller.addNewCheckoutRecord(checkoutRecord);
+            controller.addNewBook(book);
             paintTableData(memberId);
         });
         clearButton.addActionListener(e -> {
@@ -103,21 +97,22 @@ public class CheckoutBookScreen extends Routes implements Component {
         refresh();
     }
 
-
-    void paintTableData(String memberId){
+    void paintTableData(String memberId) {
         String[] columnNames = { "Copy Num", "ISBN", "Book Name", "Checkout Date", "Due Date" };
         SystemController controller = new SystemController();
         CheckoutRecord checkoutRecord = controller.getCheckoutRecordByMemberId(memberId);
-        if(checkoutRecord == null) {
+        if (checkoutRecord == null) {
             DefaultTableModel model = new DefaultTableModel();
             dataTable.setModel(model);
             return;
-        };
+        }
+        ;
 
         Object[][] data = new Object[checkoutRecord.getCheckoutEntry().size()][];
         int index = 0;
-        for(CheckoutEntry checkoutEntry: checkoutRecord.getCheckoutEntry()){
-            data[index++] =(new Object[]{checkoutEntry.getBookCopy().getCopyNum(), checkoutEntry.getBook().getIsbn(), checkoutEntry.getBook().getTitle(), checkoutEntry.getCheckoutDate(), checkoutEntry.getDueDate(), });
+        for (CheckoutEntry checkoutEntry : checkoutRecord.getCheckoutEntry()) {
+            data[index++] = (new Object[] { checkoutEntry.getBookCopy().getCopyNum(), checkoutEntry.getBook().getIsbn(),
+                    checkoutEntry.getBook().getTitle(), checkoutEntry.getCheckoutDate(), checkoutEntry.getDueDate(), });
         }
 
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
@@ -128,17 +123,16 @@ public class CheckoutBookScreen extends Routes implements Component {
     private void createUIComponents() {
         // TODO: place custom component creation code here
         dataTable = new JTable();
-        paintTableData("1001");
         UIDefaults defaults = UIManager.getLookAndFeelDefaults();
         defaults.putIfAbsent("Table.alternateRowColor", Color.LIGHT_GRAY);
     }
 
-    void  validateInput(){
+    void validateInput() {
         validateEmptyFields();
         ValidationUtils.validateISBN(isbn, isbnLabel, validationMessage);
     }
 
-    void validateEmptyFields(){
+    void validateEmptyFields() {
         ValidationUtils.validateField(memberId, memberLabel, validationMessage);
         ValidationUtils.validateField(isbn, isbnLabel, validationMessage);
     }

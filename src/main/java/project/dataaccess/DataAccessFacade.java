@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import project.business.*;
-import project.dataaccess.DataAccessFacade.StorageType;
 
 public class DataAccessFacade implements DataAccess {
 
@@ -26,7 +25,8 @@ public class DataAccessFacade implements DataAccess {
 	 */
 
 	// For Mac Users path can use /
-	public static final String OUTPUT_DIR = System.getProperty("user.dir") + "/src/main/java/project/dataaccess/storage";
+	public static final String OUTPUT_DIR = System.getProperty("user.dir")
+			+ "/dataaccess/storage";
 
 	public static final String DATE_PATTERN = "MM/dd/yyyy";
 
@@ -123,7 +123,7 @@ public class DataAccessFacade implements DataAccess {
 		checkoutRecords.forEach(record -> checkoutRecord.put(record.getLibraryMember().getMemberId(), record));
 		saveToStorage(StorageType.CHECKOUTRECORD, checkoutRecord);
 	}
- 
+
 	static void loadMemberMap(List<LibraryMember> memberList) {
 		HashMap<String, LibraryMember> members = new HashMap<String, LibraryMember>();
 		memberList.forEach(member -> members.put(member.getMemberId(), member));

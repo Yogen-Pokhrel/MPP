@@ -1,16 +1,14 @@
 package project.business;
 
-import java.io.Serializable;
-import java.util.Random;
-
-final public class Author extends Person implements Serializable {
+final public class Author extends Person {
 	private String bio;
 	private String authorId;
 	private boolean credentials;
+
 	public String getBio() {
 		return bio;
 	}
-	
+
 	public Author(String f, String l, String t, Address a, String bio, boolean credentials) {
 		super(f, l, t, a);
 		this.bio = bio;

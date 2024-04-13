@@ -1,19 +1,16 @@
 package project.screens;
 
 import project.business.Address;
-import project.business.Book;
 import project.business.LibraryMember;
 import project.business.SystemController;
-import project.dataaccess.DataAccess;
-import project.dataaccess.DataAccessFacade;
-import project.project.utils.validation.DialogUtils;
-import project.project.utils.validation.ValidationUtils;
+import project.utils.DialogUtils;
+import project.utils.ValidationUtils;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddMember extends Routes implements Component{
+public class AddMember extends Routes implements Component {
     private JPanel contentPane;
     private JPanel inner;
     private JButton saveButton;
@@ -37,7 +34,7 @@ public class AddMember extends Routes implements Component{
     private static AddMember instance;
 
     private AddMember() {
-        validationMessage= new StringBuilder();
+        validationMessage = new StringBuilder();
 
         saveButton.addActionListener(new ActionListener() {
             @Override
@@ -48,7 +45,7 @@ public class AddMember extends Routes implements Component{
         saveButton.addActionListener(e -> {
             validationMessage.setLength(0);
             validateInput();
-            if(!validationMessage.isEmpty()){
+            if (!validationMessage.isEmpty()) {
                 DialogUtils.showValidationMessage(validationMessage.toString());
                 return;
             }
@@ -57,11 +54,12 @@ public class AddMember extends Routes implements Component{
                     fName.getText().trim(),
                     lName.getText().trim(),
                     phone.getText().trim(),
-                    new Address(street.getText().trim(), city.getText().trim(), state.getText().trim(), zipCode.getText().trim())
-            );
+                    new Address(street.getText().trim(), city.getText().trim(), state.getText().trim(),
+                            zipCode.getText().trim()));
             SystemController systemController = new SystemController();
             systemController.addNewMember(libraryMember);
-            DialogUtils.showSuccessMessage("Member "+ fName.getText().trim() +" "+ lName.getText().trim() + " created successfully!");
+            DialogUtils.showSuccessMessage(
+                    "Member " + fName.getText().trim() + " " + lName.getText().trim() + " created successfully!");
             navigateTo(SCREENS.Members);
         });
     }
@@ -69,7 +67,7 @@ public class AddMember extends Routes implements Component{
     @Override
     public JPanel getMainPanel() {
         return contentPane;
-}
+    }
 
     @Override
     public void render() {
@@ -85,9 +83,6 @@ public class AddMember extends Routes implements Component{
     }
 
     public static AddMember getInstance() {
-//        if(instance == null){
-//            instance = new AddMember();
-//        }
         instance = new AddMember();
         return instance;
     }
@@ -96,13 +91,13 @@ public class AddMember extends Routes implements Component{
         // TODO: place custom component creation code here
     }
 
-    void  validateInput(){
+    void validateInput() {
         validateEmptyFields();
         ValidationUtils.validatePhoneNumber(phone, phoneNumberLabel, validationMessage);
         ValidationUtils.validateZipCode(zipCode, zipCodeLabel, validationMessage);
     }
 
-    void validateEmptyFields(){
+    void validateEmptyFields() {
         ValidationUtils.validateField(fName, fNameLabel, validationMessage);
         ValidationUtils.validateField(lName, lNameLabel, validationMessage);
         ValidationUtils.validateField(phone, phoneNumberLabel, validationMessage);

@@ -3,8 +3,8 @@ package project.screens;
 import project.business.*;
 import project.dataaccess.DataAccess;
 import project.dataaccess.DataAccessFacade;
-import project.project.utils.validation.DialogUtils;
 import project.screens.RecordTable.RecordTable;
+import project.utils.DialogUtils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -22,9 +22,6 @@ public class MemberScreen extends Routes implements Component {
     }
 
     public static MemberScreen getInstance() {
-        // if(instance == null){
-        // instance = new MemberScreen();
-        // }
         instance = new MemberScreen();
         return instance;
     }

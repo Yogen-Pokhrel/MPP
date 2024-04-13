@@ -3,16 +3,21 @@ package project.screens;
 import project.business.Address;
 import project.business.Author;
 import project.business.SystemController;
-import project.dataaccess.DataAccess;
-import project.dataaccess.DataAccessFacade;
-import project.project.utils.validation.DialogUtils;
-import project.project.utils.validation.ValidationUtils;
+import project.utils.DialogUtils;
+import project.utils.ValidationUtils;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddAuthorScreen extends Routes implements Component {
+
+    private static AddAuthorScreen instance;
+
+    public static AddAuthorScreen getInstance() {
+        instance = new AddAuthorScreen();
+        return instance;
+    }
 
     private JPanel contentPane;
     private JPanel inner;
@@ -33,52 +38,43 @@ public class AddAuthorScreen extends Routes implements Component {
     private JTextField cityTextField;
     private JLabel stateLabel;
     private JTextField stateTextField;
+
     private JLabel zipLabel;
+
     private JTextField zipTextField;
 
     private StringBuilder validationMessage;
 
-    private static AddAuthorScreen instance;
-
     public AddAuthorScreen() {
-        validationMessage= new StringBuilder();
+        validationMessage = new StringBuilder();
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 validationMessage.setLength(0);
                 validateInput();
-                if(!validationMessage.isEmpty()){
+                if (!validationMessage.isEmpty()) {
                     DialogUtils.showValidationMessage(validationMessage.toString());
                     return;
                 }
                 System.out.println(hasCredentials.isSelected());
                 Author author = new Author(
-                      fNameTextField.getText().trim(),
-                      lNameTextField.getText().trim(),
+                        fNameTextField.getText().trim(),
+                        lNameTextField.getText().trim(),
                         phoneNumTextField.getText().trim(),
                         new Address(
                                 streetTextField.getText().trim(),
                                 cityTextField.getText().trim(),
                                 stateTextField.getText().trim(),
-                                zipTextField.getText().trim()
-                        ),
+                                zipTextField.getText().trim()),
                         bioTextField.getText().trim(),
-                        hasCredentials.isSelected()
-                );
+                        hasCredentials.isSelected());
                 SystemController systemController = new SystemController();
                 systemController.addNewAuthor(author);
-                DialogUtils.showSuccessMessage("Author "+ fNameTextField.getText().trim() +" "+ lNameTextField.getText().trim() + " created successfully!");
+                DialogUtils.showSuccessMessage("Author " + fNameTextField.getText().trim() + " "
+                        + lNameTextField.getText().trim() + " created successfully!");
                 navigateTo(SCREENS.Authors);
             }
         });
-    }
-
-    public static AddAuthorScreen getInstance() {
-//        if(instance == null){
-//            instance = new AddAuthorScreen();
-//        }
-        instance = new AddAuthorScreen();
-        return instance;
     }
 
     @Override
@@ -99,16 +95,13 @@ public class AddAuthorScreen extends Routes implements Component {
         refresh();
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
-    void  validateInput(){
+    void validateInput() {
         validateEmptyFields();
         ValidationUtils.validatePhoneNumber(phoneNumTextField, phoneNumLabel, validationMessage);
         ValidationUtils.validateZipCode(zipTextField, zipLabel, validationMessage);
     }
 
-    void validateEmptyFields(){
+    void validateEmptyFields() {
         ValidationUtils.validateField(fNameTextField, fNameLabel, validationMessage);
         ValidationUtils.validateField(lNameTextField, lNameLabel, validationMessage);
         ValidationUtils.validateField(phoneNumTextField, phoneNumLabel, validationMessage);
@@ -117,5 +110,8 @@ public class AddAuthorScreen extends Routes implements Component {
         ValidationUtils.validateField(cityTextField, cityLabel, validationMessage);
         ValidationUtils.validateField(stateTextField, stateLabel, validationMessage);
         ValidationUtils.validateField(zipTextField, zipLabel, validationMessage);
+    }
+
+    private void createUIComponents() {
     }
 }

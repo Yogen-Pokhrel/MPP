@@ -24,12 +24,12 @@ public class LoginScreen extends Routes implements Component {
             String uName = username.getText();
             String pass = String.valueOf(password.getPassword());
             errorMessage.setText("");
-            try{
+            try {
                 controller.login(uName, pass);
                 username.setText("Enter user id");
                 password.setText("Enter password");
                 navigateTo(SCREENS.Books);
-            }catch (LoginException loginException){
+            } catch (LoginException loginException) {
                 errorMessage.setText("Invalid user id or password");
             }
         });
@@ -52,12 +52,7 @@ public class LoginScreen extends Routes implements Component {
     }
 
     public static LoginScreen getInstance() {
-//         if(instance == null){
-//             instance = new LoginScreen();
-//         }
         instance = new LoginScreen();
         return instance;
     }
 }
-
-
