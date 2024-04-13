@@ -5,9 +5,13 @@ import project.business.Book;
 import project.business.BookCopy;
 import project.business.SystemController;
 import project.dataaccess.Auth;
+import project.dataaccess.DataAccess;
+import project.dataaccess.DataAccessFacade;
 import project.screens.RecordTable.RecordTable;
 
 import javax.swing.*;
+import javax.swing.table.TableColumnModel;
+
 import java.awt.*;
 import java.util.Date;
 import java.util.HashMap;
@@ -83,9 +87,27 @@ public class BookScreen extends Routes implements Component {
         }
 
         dataTable = new RecordTable(data, columnNames);
+
+        TableColumnModel columnModel = dataTable.getColumnModel();
+
+        columnModel.getColumn(0).setPreferredWidth(30);
+        columnModel.getColumn(1).setPreferredWidth(150);
+        columnModel.getColumn(2).setPreferredWidth(10);
+        columnModel.getColumn(3).setPreferredWidth(10);
+        columnModel.getColumn(4).setPreferredWidth(150);
+        columnModel.getColumn(5).setPreferredWidth(10);
+
         if (SystemController.currentAuth == Auth.LIBRARIAN) {
             dataTable.getColumnModel().removeColumn(dataTable.getColumnModel().getColumn(5));
         }
+
+        ((RecordTable) dataTable).addActionListener(5,"Add Copy", (Object obj) -> {
+            Book book = (Book) obj;
+            book.addCopy();
+            DataAccess da = new DataAccessFacade();
+            da.saveNewBook(book);
+            BookScreen.getInstance().render();
+        });
 
     }
 
