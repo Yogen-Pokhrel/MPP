@@ -28,14 +28,20 @@ public class AuthorScreen extends Routes implements Component {
     }
 
     void paintTableData(){
-        String[] columnNames = { "ID", "Author Name", "Phone", "Address" };
+        String[] columnNames = { "ID", "Author Name", "Phone", "Address", "Has Credentials?" };
         SystemController controller = new SystemController();
         HashMap<String, Author> authors = controller.getAllAuthors();
 
         Object[][] data = new Object[authors.size()][];
         int index = 0;
         for(Author author: authors.values()){
-            data[index++] =(new Object[]{author.getAuthorId(),author.getFirstName() + " " + author.getLastName(), author.getTelephone(), author.getAddress()});
+            data[index++] =(
+                    new Object[]{
+                    author.getAuthorId(),
+                    author.getFirstName() + " " + author.getLastName(),
+                    author.getTelephone(), author.getAddress(),
+                    author.getCredentials() ? "Yes" : "No"
+                    });
         }
 
         dataTable = new JTable(data, columnNames);

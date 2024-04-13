@@ -18,6 +18,7 @@ public class LoginScreen extends Routes implements Component {
     private JLabel errorMessage;
 
     private LoginScreen() {
+        username.requestFocusInWindow();
         loginButton.addActionListener(e -> {
             SystemController controller = new SystemController();
             String uName = username.getText();

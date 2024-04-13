@@ -43,7 +43,7 @@ public class MemberScreen extends Routes implements Component {
         int index = 0;
         for (LibraryMember member : members.values()) {
             data[index++] = (new Object[] { member.getMemberId(), member.getFirstName() + " " + member.getLastName(),
-                    member.getTelephone(), member.getAddress(), "View Checkout Record" });
+                    member.getTelephone(), member.getAddress(), member.getMemberId() });
         }
 
         dataTable = new RecordTable(data, columnNames);
