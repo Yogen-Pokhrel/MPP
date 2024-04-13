@@ -54,6 +54,7 @@ public class AddBookScreen extends Routes implements Component {
             public void actionPerformed(ActionEvent e) {
                 validationMessage.setLength(0);
                 validateInput();
+                validateDuplicateISBN();
                 if (!validationMessage.isEmpty()) {
                     DialogUtils.showValidationMessage(validationMessage.toString());
                     return;
@@ -151,5 +152,13 @@ public class AddBookScreen extends Routes implements Component {
         ValidationUtils.validateField(isbnNumTextField, isbnNumLabel, validationMessage);
         ValidationUtils.validateISBN(isbnNumTextField, isbnNumLabel, validationMessage);
 
+    }
+
+    void validateDuplicateISBN() {
+        SystemController controller = new SystemController();
+        HashMap<String, Book> books = controller.getAllBooks();
+        if (books.containsKey(ValidationUtils.formatISBN(isbnNumTextField.getText().trim()))) {
+            validationMessage.append("The ISBN number has already been registered.\n");
+        }
     }
 }
