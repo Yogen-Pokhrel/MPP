@@ -76,6 +76,7 @@ public class CheckoutBookScreen extends Routes implements Component {
         clearButton.addActionListener(e -> {
             memberId.setText("");
             isbn.setText("");
+            paintTableData("");
         });
     }
 
@@ -107,7 +108,11 @@ public class CheckoutBookScreen extends Routes implements Component {
         String[] columnNames = { "Copy Num", "ISBN", "Book Name", "Checkout Date", "Due Date" };
         SystemController controller = new SystemController();
         CheckoutRecord checkoutRecord = controller.getCheckoutRecordByMemberId(memberId);
-        if(checkoutRecord == null) return;
+        if(checkoutRecord == null) {
+            DefaultTableModel model = new DefaultTableModel();
+            dataTable.setModel(model);
+            return;
+        };
 
         Object[][] data = new Object[checkoutRecord.getCheckoutEntry().size()][];
         int index = 0;
@@ -123,6 +128,7 @@ public class CheckoutBookScreen extends Routes implements Component {
     private void createUIComponents() {
         // TODO: place custom component creation code here
         dataTable = new JTable();
+        paintTableData("1001");
         UIDefaults defaults = UIManager.getLookAndFeelDefaults();
         defaults.putIfAbsent("Table.alternateRowColor", Color.LIGHT_GRAY);
     }
