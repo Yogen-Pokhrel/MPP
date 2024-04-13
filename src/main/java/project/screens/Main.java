@@ -7,7 +7,7 @@ import java.awt.Component;
 public class Main {
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            Routes.thread.setTitle("Sample Library Application");
+            Routes.thread.setTitle("Library Application");
             Routes.thread.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             Routes.thread.init();
