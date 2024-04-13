@@ -20,6 +20,11 @@ public class ValidationUtils {
         return validateRegex(regex, isbn);
     }
 
+    private static boolean isValidCopyNum(String isbn){
+        String regex = "\\d+";
+        return validateRegex(regex, isbn);
+    }
+
     static boolean validateRegex(String regex, String input){
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
@@ -54,6 +59,14 @@ public class ValidationUtils {
     public static void validateISBN(JTextField textField, JLabel label,StringBuilder stringBuilder){
         if(textField.getText().trim().isEmpty()) return ;
         if (isValidISBN(textField.getText().trim())) {
+            return;
+        }
+        textField.requestFocusInWindow();
+        stringBuilder.append("Enter a valid " + label.getText().trim() + "\n");
+    }
+    public static void validateCopyNum(JTextField textField, JLabel label,StringBuilder stringBuilder){
+        if(textField.getText().trim().isEmpty()) return ;
+        if (isValidCopyNum(textField.getText().trim())) {
             return;
         }
         textField.requestFocusInWindow();
