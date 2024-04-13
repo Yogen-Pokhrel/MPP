@@ -13,9 +13,7 @@ import javax.swing.*;
 import javax.swing.table.TableColumnModel;
 
 import java.awt.*;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Random;
 
 public class BookScreen extends Routes implements Component {
     private JButton button1;
@@ -28,9 +26,6 @@ public class BookScreen extends Routes implements Component {
     }
 
     public static BookScreen getInstance() {
-        // if(instance == null){
-        // instance = new BookScreen();
-        // }
         instance = new BookScreen();
         return instance;
     }
@@ -101,7 +96,7 @@ public class BookScreen extends Routes implements Component {
             dataTable.getColumnModel().removeColumn(dataTable.getColumnModel().getColumn(5));
         }
 
-        ((RecordTable) dataTable).addActionListener(5,"Add Copy", (Object obj) -> {
+        ((RecordTable) dataTable).addActionListener(5, "Add Copy", (Object obj) -> {
             Book book = (Book) obj;
             book.addCopy();
             DataAccess da = new DataAccessFacade();

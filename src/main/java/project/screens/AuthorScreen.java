@@ -1,7 +1,6 @@
 package project.screens;
 
 import project.business.Author;
-import project.business.Book;
 import project.business.SystemController;
 
 import javax.swing.*;
@@ -20,34 +19,28 @@ public class AuthorScreen extends Routes implements Component {
     }
 
     public static AuthorScreen getInstance() {
-//        if(instance == null){
-//            instance = new AuthorScreen();
-//        }
         instance = new AuthorScreen();
         return instance;
     }
 
-    void paintTableData(){
+    void paintTableData() {
         String[] columnNames = { "ID", "Author Name", "Phone", "Address", "Has Credentials?" };
         SystemController controller = new SystemController();
         HashMap<String, Author> authors = controller.getAllAuthors();
 
         Object[][] data = new Object[authors.size()][];
         int index = 0;
-        for(Author author: authors.values()){
-            data[index++] =(
-                    new Object[]{
+        for (Author author : authors.values()) {
+            data[index++] = (new Object[] {
                     author.getAuthorId(),
                     author.getFirstName() + " " + author.getLastName(),
                     author.getTelephone(), author.getAddress(),
                     author.getCredentials() ? "Yes" : "No"
-                    });
+            });
         }
 
         dataTable = new JTable(data, columnNames);
         dataTable.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
-
-        //dataTable.setBounds(30, 40, 200, 300);
     }
 
     @Override

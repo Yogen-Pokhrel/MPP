@@ -1,4 +1,4 @@
-package project.project.utils.validation;
+package project.utils;
 
 import javax.swing.JOptionPane;
 

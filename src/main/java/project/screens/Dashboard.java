@@ -108,19 +108,14 @@ public class Dashboard extends Routes implements Component {
         for (JButton btn : getAsideButtons()) {
             btn.setBackground(Color.getColor("#EBEBEB"));
             btn.setForeground(Color.black);
-            // btn.setOpaque(false);
-            // btn.setBorderPainted(false);
         }
     }
 
     void markAsSelected(JButton btn) {
         if (btn == null)
             return;
-        // 41 53 158
         btn.setBackground(Color.decode("#29359E"));
         btn.setForeground(Color.white);
-        // btn.setOpaque(true);
-        // btn.setBorderPainted(false);
     }
 
     private void createUIComponents() {
