@@ -5,40 +5,25 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumnModel;
-
-import project.business.Book;
-import project.dataaccess.DataAccess;
-import project.dataaccess.DataAccessFacade;
-import project.screens.BookScreen;
 
 public class RecordTable extends JTable {
 
     public RecordTable(Object[][] rowData, Object[] columnNames) {
-
         super(new TableModel(rowData, columnNames));
         getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 16));
+    }
 
-        TableColumnModel columnModel = getColumnModel();
-
-        columnModel.getColumn(0).setPreferredWidth(30);
-        columnModel.getColumn(1).setPreferredWidth(150);
-        columnModel.getColumn(2).setPreferredWidth(10);
-        columnModel.getColumn(3).setPreferredWidth(10);
-        columnModel.getColumn(4).setPreferredWidth(150);
-        columnModel.getColumn(5).setCellRenderer(new ButtonRenderer());
+    public void addActionListener(int _col, String text, TableAction action) {
+        getColumnModel().getColumn(_col).setCellRenderer(new ButtonRenderer(text));
 
         addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int row = rowAtPoint(evt.getPoint());
                 int col = columnAtPoint(evt.getPoint());
-                if (row >= 0 && col == 5) {
-                    Book book = (Book) getValueAt(row, col);
-                    book.addCopy();
-                    DataAccess da = new DataAccessFacade();
-                    da.saveNewBook(book);
-                    BookScreen.getInstance().render();
+                if (row >= 0 && col == _col) {
+                    Object obj = getValueAt(row, col);
+                    action.performAction(obj);
                 }
             }
         });
@@ -46,7 +31,9 @@ public class RecordTable extends JTable {
 
     public class ButtonRenderer extends JButton implements TableCellRenderer {
 
-        public ButtonRenderer() {
+        private String text;
+        public ButtonRenderer(String text) {
+            this.text = text;
             setOpaque(true);
         }
 
@@ -54,7 +41,7 @@ public class RecordTable extends JTable {
         public java.awt.Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                 boolean hasFocus,
                 int row, int column) {
-            setText("Add Copy");
+            setText(text);
             return this;
         }
 
