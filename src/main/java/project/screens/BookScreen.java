@@ -95,14 +95,15 @@ public class BookScreen extends Routes implements Component {
         if (SystemController.currentAuth == Auth.LIBRARIAN) {
             dataTable.getColumnModel().removeColumn(dataTable.getColumnModel().getColumn(5));
         }
-
-        ((RecordTable) dataTable).addActionListener(5, "Add Copy", (Object obj) -> {
-            Book book = (Book) obj;
-            book.addCopy();
-            DataAccess da = new DataAccessFacade();
-            da.saveNewBook(book);
-            BookScreen.getInstance().render();
-        });
+        else {
+            ((RecordTable) dataTable).addActionListener(5, "Add Copy", (Object obj) -> {
+                Book book = (Book) obj;
+                book.addCopy();
+                DataAccess da = new DataAccessFacade();
+                da.saveNewBook(book);
+                BookScreen.getInstance().render();
+            });
+        }
 
     }
 
