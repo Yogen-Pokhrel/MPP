@@ -90,7 +90,8 @@ public class SystemController implements ControllerInterface {
 		da.saveNewBook(book);
 	}
 
-	public void updateBook(Book book){
+	public void updateBook(Book book)  throws AuthException{
+		AuthController.checkPermission("updateBook");
 		DataAccess da = new DataAccessFacade();
 		da.saveNewBook(book);
 	}

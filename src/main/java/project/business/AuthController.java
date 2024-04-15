@@ -9,6 +9,7 @@ public class AuthController {
         //endPoint: [AdminPermission, LiberianPermission]
         {
             put("addNewBook", new boolean[]{true, false});
+            put("updateBook", new boolean[]{true, true});
             put("addNewMember", new boolean[]{true, false});
             put("addNewAuthor", new boolean[]{true, false});
             put("addNewCheckoutRecord", new boolean[]{false, true});

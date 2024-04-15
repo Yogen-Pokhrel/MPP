@@ -1,12 +1,7 @@
 package project.screens;
 
-import project.business.Author;
-import project.business.Book;
-import project.business.BookCopy;
-import project.business.SystemController;
+import project.business.*;
 import project.dataaccess.Auth;
-import project.dataaccess.DataAccess;
-import project.dataaccess.DataAccessFacade;
 import project.screens.RecordTable.RecordTable;
 import project.utils.DialogUtils;
 import project.utils.ValidationUtils;
@@ -105,11 +100,14 @@ public class BookScreen extends Routes implements Component {
                     DialogUtils.showValidationMessage("Copy Number is invalid!");
                     return;
                 }
-                Book book = (Book) obj;
-                book.addCopy(Integer.parseInt(inputValue));
-                DataAccess da = new DataAccessFacade();
-                da.saveNewBook(book);
-                BookScreen.getInstance().render();
+                try{
+                    Book book = (Book) obj;
+                    book.addCopy(Integer.parseInt(inputValue));
+                    controller.updateBook(book);
+                    BookScreen.getInstance().render();
+                }catch (AuthException authException){
+                    DialogUtils.showMessage(authException.getMessage(), "Error");
+                }
             });
         }
 

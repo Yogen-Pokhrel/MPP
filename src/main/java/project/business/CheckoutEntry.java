@@ -5,6 +5,8 @@ import java.time.LocalDate;
 
 public class CheckoutEntry implements Serializable {
     private static final long serialVersionUID = 611069276685962829L;
+
+    //can be removed as bookCopy has two-way association
     private final Book book;
 
     private final BookCopy bookCopy;
