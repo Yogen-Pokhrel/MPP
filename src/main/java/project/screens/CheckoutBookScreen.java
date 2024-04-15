@@ -63,9 +63,13 @@ public class CheckoutBookScreen extends Routes implements Component {
                 checkoutRecord.getCheckoutEntry().add(new CheckoutEntry(book, bookCopy));
             }
 
-            controller.addNewCheckoutRecord(checkoutRecord);
-            controller.addNewBook(book);
-            paintTableData(memberId);
+            try{
+                controller.addNewCheckoutRecord(checkoutRecord);
+                controller.updateBook(book);
+                paintTableData(memberId);
+            }catch (AuthException authException){
+                DialogUtils.showMessage(authException.getMessage(), "Error");
+            }
         });
         clearButton.addActionListener(e -> {
             memberId.setText("");

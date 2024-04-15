@@ -29,13 +29,12 @@ public class AddBookScreen extends Routes implements Component {
     private JButton saveButton;
     private JLabel copyNumLabel;
     private JTextField copyNumTextField;
+    private JButton cancelButton;
 
     private StringBuilder validationMessage;
 
     private AddBookScreen() {
         validationMessage = new StringBuilder();
-        populateAuthors();
-        populateBorrowTimeDropdown();
         authorDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,12 +76,31 @@ public class AddBookScreen extends Routes implements Component {
                         Integer.parseInt(copyNumTextField.getText().trim())
                 );
                 SystemController systemController = new SystemController();
-                systemController.addNewBook(book);
-                DialogUtils.showSuccessMessage("Book " + titleTextField.getText().trim() + " created successfully!");
-                navigateTo(SCREENS.Books);
+                try{
+                    systemController.addNewBook(book);
+                    DialogUtils.showSuccessMessage("Book " + titleTextField.getText().trim() + " created successfully!");
+                    resetForm();
+                    navigateTo(SCREENS.Books);
+                }catch (AuthException authException){
+                    DialogUtils.showMessage(authException.getMessage(), "Error");
+                }
             }
         });
-        addAuthorButton.addActionListener(e -> navigateTo(SCREENS.AddAuthor));
+        addAuthorButton.addActionListener(e -> AddAuthorScreen.getInstance().render(SCREENS.AddBook));
+        cancelButton.addActionListener(e -> {
+            navigateTo(SCREENS.Books);
+            resetForm();
+        });
+    }
+
+    void resetForm(){
+        titleTextField.setText("");
+        copyNumTextField.setText("");
+        isbnNumTextField.setText("");
+        authorDropdown.setSelectedIndex(-1);
+        borrowTimeDropdown.setSelectedIndex(-1);
+        DefaultListModel<Author> model = (DefaultListModel<Author>) selectedAuthorList.getModel();
+        model.removeAllElements();
     }
 
     @Override
@@ -98,19 +116,24 @@ public class AddBookScreen extends Routes implements Component {
         dash.repaintButtons(Routes.SCREENS.Books);
         JPanel mainPanel = dash.getInnerPanel();
         mainPanel.removeAll();
+        populateAuthors();
+        populateBorrowTimeDropdown();
         mainPanel.add(getMainPanel());
         thread.setContentPane(dash.getMainPanel());
         refresh();
     }
 
     public static AddBookScreen getInstance() {
-        instance = new AddBookScreen();
+        if(instance == null){
+            instance = new AddBookScreen();
+        }
         return instance;
     }
 
     public void populateBorrowTimeDropdown() {
         DefaultComboBoxModel<BorrowTimeEnum> model = (DefaultComboBoxModel<BorrowTimeEnum>) borrowTimeDropdown
                 .getModel();
+        model.removeAllElements();
         int index = 0;
         for (BorrowTimeEnum borrowTime : BorrowTimeEnum.values()) {
             model.insertElementAt(borrowTime, index++);
@@ -122,6 +145,7 @@ public class AddBookScreen extends Routes implements Component {
         HashMap<String, Author> authors = controller.getAllAuthors();
         int index = 0;
         DefaultComboBoxModel<Author> model = (DefaultComboBoxModel<Author>) authorDropdown.getModel();
+        model.removeAllElements();
         for (Author author : authors.values()) {
             model.insertElementAt(author, index++);
         }
