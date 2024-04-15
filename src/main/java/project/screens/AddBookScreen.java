@@ -27,6 +27,8 @@ public class AddBookScreen extends Routes implements Component {
     private JButton addAuthorButton;
     private JPanel inner;
     private JButton saveButton;
+    private JLabel copyNumLabel;
+    private JTextField copyNumTextField;
 
     private StringBuilder validationMessage;
 
@@ -66,11 +68,14 @@ public class AddBookScreen extends Routes implements Component {
                 for (Object item : array) {
                     authors.add((Author) item);
                 }
+                int copyNum = Integer.parseInt(copyNumTextField.getText().trim());
                 Book book = new Book(
                         ValidationUtils.formatISBN(isbnNumTextField.getText().trim()),
                         titleTextField.getText().trim(),
                         borrowTime.getValue(),
-                        authors);
+                        authors,
+                        Integer.parseInt(copyNumTextField.getText().trim())
+                );
                 SystemController systemController = new SystemController();
                 systemController.addNewBook(book);
                 DialogUtils.showSuccessMessage("Book " + titleTextField.getText().trim() + " created successfully!");
@@ -151,7 +156,8 @@ public class AddBookScreen extends Routes implements Component {
         ValidationUtils.validateField(titleTextField, titleLabel, validationMessage);
         ValidationUtils.validateField(isbnNumTextField, isbnNumLabel, validationMessage);
         ValidationUtils.validateISBN(isbnNumTextField, isbnNumLabel, validationMessage);
-
+        ValidationUtils.validateField(copyNumTextField, copyNumLabel, validationMessage);
+        ValidationUtils.validateCopyNum(copyNumTextField, copyNumLabel, validationMessage);
     }
 
     void validateDuplicateISBN() {
