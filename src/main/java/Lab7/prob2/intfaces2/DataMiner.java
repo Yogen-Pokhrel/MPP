@@ -1,8 +1,5 @@
 package Lab7.prob2.intfaces2;
 
-import lesson5.lecture.intfaces2.ClosedCurve;
-import lesson5.lecture.intfaces2.Rectangle;
-
 import java.util.ArrayList;
 import java.util.List;
 

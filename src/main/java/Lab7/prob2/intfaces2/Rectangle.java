@@ -1,7 +1,5 @@
 package Lab7.prob2.intfaces2;
 
-import lesson5.lecture.intfaces2.ClosedCurve;
-
 public class Rectangle implements ClosedCurve {
 	private double length, width;
 	public Rectangle(double length, double width) {
