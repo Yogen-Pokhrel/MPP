@@ -85,31 +85,31 @@ public class SystemController implements ControllerInterface {
 	}
 
 	public void addNewBook(Book book) throws AuthException{
-		AuthController.checkPermission("addNewBook");
+		AuthController.checkPermission(Endpoints.addNewBook);
 		DataAccess da = new DataAccessFacade();
 		da.saveNewBook(book);
 	}
 
 	public void updateBook(Book book)  throws AuthException{
-		AuthController.checkPermission("updateBook");
+		AuthController.checkPermission(Endpoints.updateBook);
 		DataAccess da = new DataAccessFacade();
 		da.saveNewBook(book);
 	}
 
 	public void addNewMember(LibraryMember member) throws AuthException{
-		AuthController.checkPermission("addNewMember");
+		AuthController.checkPermission(Endpoints.addNewMember);
 		DataAccess da = new DataAccessFacade();
 		da.saveNewMember(member);
 	}
 
 	public void addNewAuthor(Author author)throws AuthException{
-		AuthController.checkPermission("addNewAuthor");
+		AuthController.checkPermission(Endpoints.addNewAuthor);
 		DataAccess da = new DataAccessFacade();
 		da.saveNewAuthor(author);
 	}
 
 	public void addNewCheckoutRecord(CheckoutRecord checkoutRecord) throws AuthException{
-		AuthController.checkPermission("addNewCheckoutRecord");
+		AuthController.checkPermission(Endpoints.addNewCheckoutRecord);
 		DataAccess da = new DataAccessFacade();
 		da.saveNewCheckoutRecord(checkoutRecord);
 	}

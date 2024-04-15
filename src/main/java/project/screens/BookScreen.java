@@ -95,6 +95,7 @@ public class BookScreen extends Routes implements Component {
         else {
             ((RecordTable) dataTable).addActionListener(5, "Add Copy", (Object obj) -> {
                 String inputValue = JOptionPane.showInputDialog(this, "Enter number of copies:", "Add Copies", JOptionPane.PLAIN_MESSAGE);
+                if(inputValue == null) return;
                 boolean isValid = ValidationUtils.isValidCopyNum(inputValue);
                 if(!isValid) {
                     DialogUtils.showValidationMessage("Copy Number is invalid!");
