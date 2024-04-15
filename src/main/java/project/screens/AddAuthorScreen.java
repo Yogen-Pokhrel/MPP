@@ -15,7 +15,9 @@ public class AddAuthorScreen extends Routes implements Component {
     private static AddAuthorScreen instance;
 
     public static AddAuthorScreen getInstance() {
-        instance = new AddAuthorScreen();
+        if(instance == null){
+            instance = new AddAuthorScreen();
+        }
         return instance;
     }
 
@@ -42,8 +44,11 @@ public class AddAuthorScreen extends Routes implements Component {
     private JLabel zipLabel;
 
     private JTextField zipTextField;
+    private JButton cancelButton;
 
     private StringBuilder validationMessage;
+
+    private SCREENS redirection;
 
     public AddAuthorScreen() {
         validationMessage = new StringBuilder();
@@ -56,7 +61,6 @@ public class AddAuthorScreen extends Routes implements Component {
                     DialogUtils.showValidationMessage(validationMessage.toString());
                     return;
                 }
-                System.out.println(hasCredentials.isSelected());
                 Author author = new Author(
                         fNameTextField.getText().trim(),
                         lNameTextField.getText().trim(),
@@ -72,7 +76,24 @@ public class AddAuthorScreen extends Routes implements Component {
                 systemController.addNewAuthor(author);
                 DialogUtils.showSuccessMessage("Author " + fNameTextField.getText().trim() + " "
                         + lNameTextField.getText().trim() + " created successfully!");
+                resetForm();
+                if(redirection == null){
+                    navigateTo(SCREENS.Authors);
+                }else {
+                    SCREENS temp = redirection;
+                    redirection = null;
+                    navigateTo(temp);
+                }
+            }
+        });
+        cancelButton.addActionListener(e ->{
+            resetForm();
+            if(redirection == null){
                 navigateTo(SCREENS.Authors);
+            }else {
+                SCREENS temp = redirection;
+                redirection = null;
+                navigateTo(temp);
             }
         });
     }
@@ -95,6 +116,11 @@ public class AddAuthorScreen extends Routes implements Component {
         refresh();
     }
 
+    public void render(SCREENS navigateTo) {
+        redirection = navigateTo;
+        render();
+    }
+
     void validateInput() {
         validateEmptyFields();
         ValidationUtils.validatePhoneNumber(phoneNumTextField, phoneNumLabel, validationMessage);
@@ -113,5 +139,16 @@ public class AddAuthorScreen extends Routes implements Component {
     }
 
     private void createUIComponents() {
+    }
+
+    void resetForm(){
+        fNameTextField.setText("");
+        lNameTextField.setText("");
+        phoneNumTextField.setText("");
+        bioTextField.setText("");
+        streetTextField.setText("");
+        cityTextField.setText("");
+        stateTextField.setText("");
+        zipTextField.setText("");
     }
 }

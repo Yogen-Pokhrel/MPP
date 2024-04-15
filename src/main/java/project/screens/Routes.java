@@ -10,7 +10,7 @@ public class Routes extends JFrame {
         // override default margin and paddings
     }
 
-    enum SCREENS {
+    public enum SCREENS {
         Login,
         Books,
         Members,
