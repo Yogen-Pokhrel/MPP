@@ -8,6 +8,8 @@ import project.dataaccess.Auth;
 import project.dataaccess.DataAccess;
 import project.dataaccess.DataAccessFacade;
 import project.screens.RecordTable.RecordTable;
+import project.utils.DialogUtils;
+import project.utils.ValidationUtils;
 
 import javax.swing.*;
 import javax.swing.table.TableColumnModel;
@@ -97,8 +99,14 @@ public class BookScreen extends Routes implements Component {
         }
         else {
             ((RecordTable) dataTable).addActionListener(5, "Add Copy", (Object obj) -> {
+                String inputValue = JOptionPane.showInputDialog(this, "Enter number of copies:", "Add Copies", JOptionPane.PLAIN_MESSAGE);
+                boolean isValid = ValidationUtils.isValidCopyNum(inputValue);
+                if(!isValid) {
+                    DialogUtils.showValidationMessage("Copy Number is invalid!");
+                    return;
+                }
                 Book book = (Book) obj;
-                book.addCopy();
+                book.addCopy(Integer.parseInt(inputValue));
                 DataAccess da = new DataAccessFacade();
                 da.saveNewBook(book);
                 BookScreen.getInstance().render();
