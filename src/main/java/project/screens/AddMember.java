@@ -1,6 +1,7 @@
 package project.screens;
 
 import project.business.Address;
+import project.business.AuthException;
 import project.business.LibraryMember;
 import project.business.SystemController;
 import project.utils.DialogUtils;
@@ -57,10 +58,14 @@ public class AddMember extends Routes implements Component {
                     new Address(street.getText().trim(), city.getText().trim(), state.getText().trim(),
                             zipCode.getText().trim()));
             SystemController systemController = new SystemController();
-            systemController.addNewMember(libraryMember);
-            DialogUtils.showSuccessMessage(
-                    "Member " + fName.getText().trim() + " " + lName.getText().trim() + " created successfully!");
-            navigateTo(SCREENS.Members);
+            try{
+                systemController.addNewMember(libraryMember);
+                DialogUtils.showSuccessMessage(
+                        "Member " + fName.getText().trim() + " " + lName.getText().trim() + " created successfully!");
+                navigateTo(SCREENS.Members);
+            }catch (AuthException authException){
+                DialogUtils.showMessage(authException.getMessage(), "Error");
+            }
         });
     }
 

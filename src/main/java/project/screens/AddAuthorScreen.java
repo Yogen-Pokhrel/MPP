@@ -1,6 +1,7 @@
 package project.screens;
 
 import project.business.Address;
+import project.business.AuthException;
 import project.business.Author;
 import project.business.SystemController;
 import project.utils.DialogUtils;
@@ -73,16 +74,20 @@ public class AddAuthorScreen extends Routes implements Component {
                         bioTextField.getText().trim(),
                         hasCredentials.isSelected());
                 SystemController systemController = new SystemController();
-                systemController.addNewAuthor(author);
-                DialogUtils.showSuccessMessage("Author " + fNameTextField.getText().trim() + " "
-                        + lNameTextField.getText().trim() + " created successfully!");
-                resetForm();
-                if(redirection == null){
-                    navigateTo(SCREENS.Authors);
-                }else {
-                    SCREENS temp = redirection;
-                    redirection = null;
-                    navigateTo(temp);
+                try{
+                    systemController.addNewAuthor(author);
+                    DialogUtils.showSuccessMessage("Author " + fNameTextField.getText().trim() + " "
+                            + lNameTextField.getText().trim() + " created successfully!");
+                    resetForm();
+                    if(redirection == null){
+                        navigateTo(SCREENS.Authors);
+                    }else {
+                        SCREENS temp = redirection;
+                        redirection = null;
+                        navigateTo(temp);
+                    }
+                }catch (AuthException authException){
+                    DialogUtils.showMessage(authException.getMessage(), "Error");
                 }
             }
         });
