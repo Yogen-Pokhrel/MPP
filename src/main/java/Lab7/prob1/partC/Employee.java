@@ -1,5 +1,7 @@
 package Lab7.prob1.partC;
 
+import java.util.Objects;
+
 public class Employee {
 	private String name;
 	private int salary;
@@ -32,6 +34,10 @@ public class Employee {
 		Employee emp = (Employee)ob;
 		return emp.name.equals(name) && emp.salary == salary;
 	}
-	
-	
+
+	// Implementation of Overridden equals() method
+	@Override
+	public int hashCode() {
+		return Objects.hash(name, salary);
+	}
 }

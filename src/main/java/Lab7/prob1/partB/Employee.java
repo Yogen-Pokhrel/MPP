@@ -1,5 +1,7 @@
 package Lab7.prob1.partB;
 
+import java.util.Objects;
+
 public class Employee {
 	private String name;
 	private int salary;
@@ -24,8 +26,25 @@ public class Employee {
 	public String toString() {
 		return "(" + name + ", " + salary + ")";
 	}
-	
-	public boolean equals(Employee e) {
-		return e.name.equals(name) && e.salary == salary;
+
+	// Wrong implementation
+	//	public boolean equals(Employee e) {
+	//		return e.name.equals(name) && e.salary == salary;
+	//	}
+
+	// Proper Overridden equals() method
+	@Override
+	public boolean equals(Object ob) {
+		if(ob == null) return false;
+		if(getClass() != ob.getClass()) return false;
+		Employee emp = (Employee)ob;
+		return emp.getName().equals(name) && emp.getSalary() == salary;
 	}
+
+//  No need to override hashCode because we are not using HashMap, Hashtable or HashSet
+//	Not implemented in the given code either
+//	@Override
+//	public int hashCode() {
+//		return Objects.hash(name, salary);
+//	}
 }

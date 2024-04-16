@@ -1,0 +1,17 @@
+The key of a HashMap should be final.
+Here, after setting the key once, when we encounter the key again,
+we are changing the values inside the key, which would consider it the new key.
+
+Note that even though the code has four similar entries of "(Richard, 55000)" in duplicate array.
+Once, we execute remove duplicates, if we print the list we get only two entries of "(Richard, 55000)".
+Because on second occurrence, the boolean value "visited" is changed to "true".
+
+The Key can be made immutable by setting the "Employee" class final and
+removing all setters.
+
+if(!tracker.containsKey(e)) {
+    tracker.put(e, e);
+    noDupsList.add(e);
+} else {
+    tracker.get(e).setVisited(true);
+}

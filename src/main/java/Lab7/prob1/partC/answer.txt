@@ -1,0 +1,8 @@
+The Employee class needs to override the "hashCode" method of Object class.
+HashMap uses hashCode to store and retrieve data. So, need to override "hashCode()" method.
+
+It can be implemented as follows:
+@Override
+public int hashCode() {
+    return Objects.hash(name, salary);
+}

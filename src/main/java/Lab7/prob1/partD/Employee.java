@@ -1,6 +1,6 @@
 package Lab7.prob1.partD;
 
-public class Employee {
+public final class Employee {
 	private String name;
 	private int salary;
 	private boolean visited = false;
@@ -9,7 +9,8 @@ public class Employee {
 		this.name = name;
 		this.salary = salary;
 	}
-	
+
+	// Need to remove setter
 	public void setVisited(boolean b) {
 		visited = b;
 	}
@@ -17,12 +18,18 @@ public class Employee {
 	public String getName() {
 		return name;
 	}
+
+	// Need to remove setter
+
 	public void setName(String name) {
 		this.name = name;
 	}
 	public int getSalary() {
 		return salary;
 	}
+
+	// Need to remove setter
+
 	public void setSalary(int salary) {
 		this.salary = salary;
 	}
