@@ -1,8 +1,6 @@
 package Lab8.prob2.prob2b;
 
 import Lab8.prob2.Product;
-import Lab8.prob2.prob2a.ProductPriceComparator;
-import Lab8.prob2.prob2b.ProductTitleComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
