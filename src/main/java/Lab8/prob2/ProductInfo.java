@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import Lab8.prob2.prob2a.ProductPriceComparator;
+import Lab8.prob2.prob2b.ProductTitleComparator;
+
 public class ProductInfo {
 
 
