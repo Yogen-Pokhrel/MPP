@@ -1,4 +1,4 @@
-package Lab8;
+package Lab8.prob2;
 
 public class Product {
 	final String title;
