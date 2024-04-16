@@ -1,4 +1,4 @@
-package Lab8;
+package Lab8.prob2;
 
 public class Product {
 	final String title;
@@ -22,6 +22,7 @@ public class Product {
 		this.price = price;
 		this.model = model;
 	}
+
 
 	@Override
 	public String toString() {
