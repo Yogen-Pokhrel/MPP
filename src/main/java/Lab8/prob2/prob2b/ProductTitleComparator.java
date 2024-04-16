@@ -1,4 +1,6 @@
-package Lab8.prob2;
+package Lab8.prob2.prob2b;
+
+import Lab8.prob2.Product;
 
 import java.util.Comparator;
 
