@@ -23,6 +23,7 @@ public class Product {
 		this.model = model;
 	}
 
+
 	@Override
 	public String toString() {
 		return String.format("\n %s : %s : %s", title, price, model);
