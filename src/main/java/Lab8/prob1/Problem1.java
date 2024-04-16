@@ -1,4 +1,4 @@
-package Lab8;
+package Lab8.prob1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
