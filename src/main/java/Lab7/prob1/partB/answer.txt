@@ -1,0 +1,19 @@
+Employee class does not override "equals()" method of parent class "Object".
+
+Even though the class "Employee" class has "equals" method, due to different method signature,
+compiler treats this method as instance method.
+
+The current implementation has method signature as : public String equals(Employee obj)
+The method signature should be : public String equals(Object obj)
+
+Also, while overriding the method signature, we need to compare for the memory location first.
+Then check the className. After that, we need to check value of each instance fields.
+
+@Override
+public boolean equals(Object obj) {
+    if(this == obj) return  true;
+    if(obj== null || getClass() !=  obj.getClass()) return  false;
+    Employee e = (Employee) obj;
+    return e.name.equals(name) && e.salary == salary;
+}
+

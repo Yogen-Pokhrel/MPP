@@ -1,6 +1,7 @@
 package Lab7.prob1.partC;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -77,7 +78,19 @@ public class EmployeeInfo {
 			}
 		};
 
+
 		List<Employee> answer = removeDuplicates(list);
+		answer.sort(new Comparator<Employee>() {
+			@Override
+			public int compare(Employee o1, Employee o2) {
+				if(o1.getName().compareTo(o2.getName()) != 0)
+					return o1.getName().compareTo(o2.getName());
+				return o1.getSalary() - o2.getSalary();
+			}
+		});
+		answer.forEach(
+				e -> System.out.println(e.toString())
+		);
 		System.out.println("Is answer correct? " + listsAreEqual(answer, dupsRemoved));
 	}
 	
