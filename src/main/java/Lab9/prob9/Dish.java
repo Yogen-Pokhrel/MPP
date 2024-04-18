@@ -1,4 +1,4 @@
-package lesson9.labsolns.prob10;
+package Lab9.prob9;
 import java.util.*;
 
 public class Dish {
@@ -48,4 +48,5 @@ public class Dish {
                            new Dish("pizza", true, 550, Dish.Type.OTHER),
                            new Dish("prawns", false, 400, Dish.Type.FISH),
                            new Dish("salmon", false, 450, Dish.Type.FISH));
+
 }

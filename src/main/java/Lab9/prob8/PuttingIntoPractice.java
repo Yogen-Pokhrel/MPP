@@ -1,3 +1,5 @@
+package Lab9.prob8;
+
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 
