@@ -1,11 +1,4 @@
-package lesson9.lecture.streamandoperations;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
+package Lab9.prob10;
 
 class Human
 {

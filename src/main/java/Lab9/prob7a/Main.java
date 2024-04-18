@@ -1,7 +1,6 @@
-package lesson9.labs.prob7b;
+package Lab9.prob7a;
 
 import java.util.*;
-
 
 public class Main {
 
@@ -16,7 +15,8 @@ public class Main {
 		                  new Employee("Alice", "Richards", 101000),
 		                  new Employee("Donald", "Trump", 100000));
 		
-		
+		//your stream pipeline here
+
 	}
 
 }
