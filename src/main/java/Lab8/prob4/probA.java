@@ -13,6 +13,7 @@ public class probA {
     public static void main(String[] args) {
         String[] names = {"Alexis", "Tim", "Kyleen", "Kristy"};
         Arrays.sort(names, String::compareToIgnoreCase);
-        System.out.println(Arrays.toString(names));
+        List<String> sortedList = Arrays.asList(names);
+        sortedList.forEach(System.out::println);
     }
 }
