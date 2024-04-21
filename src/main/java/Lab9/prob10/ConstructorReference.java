@@ -58,7 +58,7 @@ public static void main(String args[]){
 	Human[] list = {
 			new Human("Joe",35,"Male"),
 			new Human("Jane",45,"Female"),
-			new Human("John",30,"Male"),
+			new Human("Yogen",26,"Male"),
 			new Human("Dikshya",24,  "Female"),
 			new Human("Sushma"),
 			new Human("Hari", 55, "male")
@@ -72,7 +72,7 @@ public static void main(String args[]){
     // Query 2 : Create an object by choosing suitable Interface to the specified constructors(Totally 3 constructors)
 	// using forth type of Method Reference ClassName::new. Then print the object status
 	TriFunction<String, Integer, String, Human> factory = Human::new;
-	Human h1 = factory.apply("Yogen", 29, "Male");
+	Human h1 = factory.apply("Yogen", 26, "Male");
 
 	BiFunction<String, Integer, Human> factory2 = Human::new;
 	Human h2 = factory2.apply("Dinesh", 20);
