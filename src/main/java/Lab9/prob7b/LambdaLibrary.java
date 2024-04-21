@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 
 public class LambdaLibrary {
 
-    public static final TriFunction<List<Employee>, Integer, String , List<String>> SALARY_NAME_CHECK = (list, salary, searchStr) ->
+    public static final TriFunction<List<Employee>, Integer, Character , String> SALARY_NAME_CHECK = (list, minimumSalary, employeeSurNameAfterCharacter) ->
             list.stream()
-                    .filter(x -> x.getSalary()>100000)
-                    .filter(x -> x.getLastName().compareTo("M") > 0)
+                    .filter(x -> x.getSalary()>minimumSalary)
+                    .filter(x -> x.getLastName().charAt(0) > employeeSurNameAfterCharacter)
                     .map(x -> x.getFirstName() + " " + x.getLastName())
                     .sorted()
-                    .collect(Collectors.toList());
+                    .collect(Collectors.joining(", "));
 }
