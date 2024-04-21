@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class PuttingIntoPractice {
     public static void main(String... args) {
@@ -27,48 +28,36 @@ public class PuttingIntoPractice {
                 .forEach(System.out::println);
 
         // Query 2: What are all the unique cities where the traders work?
-        System.out.println("Query 2: What are all the unique cities where the traders work?");
+        System.out.println("\nQuery 2: What are all the unique cities where the traders work?");
         transactions.stream().map(Transaction::getTrader).map(Trader::getCity).distinct().forEach(System.out::println);
 
         // Query 3: Find all traders from Cambridge and sort them by name.
-        System.out.println("Query 3: Find all traders from Cambridge and sort them by name.");
+        System.out.println("\nQuery 3: Find all traders from Cambridge and sort them by name.");
         transactions.stream().map(Transaction::getTrader).filter(x -> x.getCity().equals("Cambridge")).distinct()
                 .sorted(Comparator.comparing(Trader::getName)).forEach(System.out::println);
 
         // Query 4: Return a string of all traders names sorted alphabetically.
-        System.out.println("Query 4: Return a string of all traders names sorted alphabetically.");
+        System.out.println("\nQuery 4: Return a string of all traders names sorted alphabetically.");
         transactions.stream().map(Transaction::getTrader).sorted(Comparator.comparing(Trader::getName)).distinct()
                 .forEach(System.out::println);
 
         // Query 5: Are there any trader based in Milan?
         boolean isPresentInMilan = transactions.stream().map(Transaction::getTrader)
-                .filter(x -> x.getCity().equals("Milan")).findAny().isPresent();
-        System.out.println("Query 5: Are there any trader based in Milan?\n" + isPresentInMilan);
+                .anyMatch(x -> Optional.ofNullable(x.getCity()).orElse("").equals("Milan"));
+        System.out.println("\nQuery 5: Are there any trader based in Milan?\n" + isPresentInMilan);
 
-        // Query 6: Update all transactions so that the traders from Milan are set to
-        // Cambridge.
-        ArrayList<Transaction> updatedTransactions = transactions.stream()
-                .reduce(
-                        new ArrayList<Transaction>(),
-                        (transactionList, transaction) -> {
-                            Trader trader = transaction.getTrader();
-                            if (trader.getCity().equals("Milan")) {
-                                trader.setCity("Cambridge");
-                            }
-                            ArrayList<Transaction> newList = new ArrayList<>(transactionList);
-                            newList.add(transaction);
-                            return newList;
-                        },
-                        (list1, list2) -> {
-                            ArrayList<Transaction> result = new ArrayList<>(list1);
-                            result.addAll(list2);
-                            return result;
-                        });
-
-        updatedTransactions.forEach(System.out::println);
+        // Query 6: Update all transactions so that the traders from Milan are set to Cambridge.
+        List<Transaction> newTransactions = transactions.stream().map(x-> {
+            if(x.getTrader().getCity().equals("Milan")){
+                x.getTrader().setCity("Cambridge");
+            }
+            return x;
+        }).toList();
+        System.out.println("\nQuery 6: Update all transactions so that the traders from Milan are set to Cambridge.");
+        newTransactions.forEach(System.out::println);
 
         // Query 7: What's the highest value in all the transactions?
         Optional<Integer> maxValue = transactions.stream().map(Transaction::getValue).max(Integer::compare);
-        System.out.println("Query 7: What's the highest value in all the transactions?\n" + maxValue.get());
+        System.out.println("\nQuery 7: What's the highest value in all the transactions?\n" + maxValue.get());
     }
 }
