@@ -16,11 +16,11 @@ public class Main {
 			  new Employee("Alice", "Richards", 101000),
 			  new Employee("Donald", "Trump", 100000)
 		);
-		
+
 		list.stream()
-				.filter(x -> x.getSalary()>100000)
+				.filter(x -> x.getSalary() > 100000)
 				.filter(x -> x.getLastName().compareTo("M") > 0)
-				.map(x -> x.getFirstName() + " " + x.getLastName())
+				.map(x -> x.getFirstName() +" "+ x.getLastName())
 				.sorted()
 				.forEach(System.out::println);
 	}
