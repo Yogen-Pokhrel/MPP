@@ -13,13 +13,13 @@ public class Employee {
 	
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder("<");
-		sb.append("first name: ");
+		StringBuilder sb = new StringBuilder("\n");
+//		sb.append("first name: ");
 		sb.append(firstName);
-		sb.append(" last name: ");
+//		sb.append(" last name: ");
 		sb.append(lastName);
-		sb.append(" salary: ");
-		sb.append("" + salary+">");
+//		sb.append(" salary: ");
+		sb.append(": " + salary+"");
 		return sb.toString();
 		
 	}

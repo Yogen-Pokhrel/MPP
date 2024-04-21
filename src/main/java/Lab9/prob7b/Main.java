@@ -16,7 +16,7 @@ public class Main {
 		                  new Employee("Alice", "Richards", 101000),
 		                  new Employee("Donald", "Trump", 100000));
 		
-		
+		List<String> salaryNameFilteredList = LambdaLibrary.SALARY_NAME_CHECK.apply(list, 100000, "M");
+		System.out.println(salaryNameFilteredList);
 	}
-
 }
