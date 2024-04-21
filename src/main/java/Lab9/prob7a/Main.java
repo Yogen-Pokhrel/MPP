@@ -1,6 +1,7 @@
 package Lab9.prob7a;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -17,11 +18,13 @@ public class Main {
 			  new Employee("Donald", "Trump", 100000)
 		);
 
-		list.stream()
+		String allEmployees = list.stream()
 				.filter(x -> x.getSalary() > 100000)
-				.filter(x -> x.getLastName().compareTo("M") > 0)
+				.filter(x -> x.getLastName().charAt(0) > 'M')
 				.map(x -> x.getFirstName() +" "+ x.getLastName())
 				.sorted()
-				.forEach(System.out::println);
+				.collect(Collectors.joining(", "));
+
+		System.out.println(allEmployees);
 	}
 }
