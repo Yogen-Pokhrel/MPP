@@ -12,7 +12,6 @@ public class GroupUtil {
 		return new Group<T>(group.getSpecialElement(), elements);
 	}
 
-
 	//Test using this main method
 	public static void main(String[] args) {
 		List<Integer> list = Arrays.asList(0,1,2,3,4);
